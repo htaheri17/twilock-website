@@ -1,4 +1,4 @@
-const origin = (process.env.SITE_URL || "https://twilock.app").replace(/\/$/, "");
+const origin = (process.env.SITE_URL || "https://twilock.com").replace(/\/$/, "");
 const failures = [];
 
 const check = async (url, label) => {

@@ -19,7 +19,7 @@ To preview locally:
 npm run serve
 ```
 
-The canonical origin defaults to `https://twilock.app`. Set `SITE_URL` while building if the production domain changes.
+The canonical origin defaults to `https://twilock.com`. Set `SITE_URL` while building if the production domain changes.
 
 ## Porkbun handoff
 

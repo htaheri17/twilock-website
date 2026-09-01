@@ -129,7 +129,7 @@ for (const canonical of canonicals.keys()) {
 if ((sitemap.match(/<url>/g) || []).length !== 10) fail("sitemap.xml: expected 10 URLs");
 
 const robots = await readFile(path.join(projectDir, "robots.txt"), "utf8");
-if (!robots.includes("Allow: /") || !robots.includes("Sitemap: https://twilock.app/sitemap.xml")) fail("robots.txt: crawl or sitemap directive is incorrect");
+if (!robots.includes("Allow: /") || !robots.includes("Sitemap: https://twilock.com/sitemap.xml")) fail("robots.txt: crawl or sitemap directive is incorrect");
 
 const css = await readFile(path.join(projectDir, "assets/site.css"), "utf8");
 for (const match of css.matchAll(/content:\s*["']([^"']*)["']/g)) {

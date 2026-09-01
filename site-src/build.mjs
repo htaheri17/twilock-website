@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const sourceDir = path.dirname(fileURLToPath(import.meta.url));
 const projectDir = path.resolve(sourceDir, "..");
 const distDir = path.join(projectDir, "dist");
-const siteUrl = (process.env.SITE_URL || "https://twilock.app").replace(/\/$/, "");
+const siteUrl = (process.env.SITE_URL || "https://twilock.com").replace(/\/$/, "");
 const appStoreUrl = "https://apps.apple.com/us/app/twilock-screen-time-blocker/id6786474238";
 const checkedDate = "August 31, 2026";
 const isoDate = "2026-08-31";

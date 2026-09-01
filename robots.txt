@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://twilock.app/sitemap.xml
+Sitemap: https://twilock.com/sitemap.xml
