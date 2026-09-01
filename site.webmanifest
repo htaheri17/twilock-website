@@ -1,0 +1,17 @@
+{
+  "name": "Twilock: Screen Time Blocker",
+  "short_name": "Twilock",
+  "description": "Protect the hours before sleep and after waking.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#050817",
+  "theme_color": "#050817",
+  "icons": [
+    {
+      "src": "/assets/twilock-icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
