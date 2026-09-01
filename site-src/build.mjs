@@ -234,6 +234,25 @@ const homeBody = `
     </div>
   </section>
 
+  <section class="section-tight privacy-section" aria-labelledby="privacy-summary-title">
+    <div class="shell privacy-summary">
+      <div class="privacy-summary-copy">
+        <span class="kicker">Privacy at a glance</span>
+        <h2 id="privacy-summary-title">What Twilock can and cannot see.</h2>
+        <p>Twilock needs Apple’s Screen Time authorization to apply the shields you schedule. Apple keeps your selections private, and Twilock keeps the core data on your iPhone.</p>
+        <div class="privacy-summary-links">
+          <a class="text-link" href="https://developer.apple.com/documentation/FamilyControls/FamilyActivitySelection">Read Apple’s Screen Time documentation</a>
+          <a class="text-link" href="/privacy/">Read Twilock’s privacy policy</a>
+        </div>
+      </div>
+      <div class="privacy-points">
+        <article class="privacy-point"><span class="privacy-point-number">01</span><h3>You approve access</h3><p>Twilock asks for Screen Time authorization before it can apply a shield. You can revoke that access in iPhone Settings, which stops the protection.</p></article>
+        <article class="privacy-point"><span class="privacy-point-number">02</span><h3>Your choices are opaque</h3><p>Apple represents the apps and categories you choose with opaque values. Twilock can apply your shield without receiving readable app identities.</p></article>
+        <article class="privacy-point"><span class="privacy-point-number">03</span><h3>Core data stays on your iPhone</h3><p>Your selected apps, raw Screen Time activity, and Night or Morning window settings stay on your device. Optional account and social data is covered separately in the privacy policy.</p></article>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="strict-mode" aria-labelledby="strict-title">
     <div class="shell strict-layout">
       <div class="strict-copy">
