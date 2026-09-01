@@ -244,7 +244,13 @@ const homeBody = `
         <p class="price-fineprint">Strict Mode is a commitment tool, not parental-control software or an emergency service. Leave essential apps outside your blocked set.</p>
       </div>
       <div class="commitment-panel">
-        <div class="lock-mark" aria-hidden="true">⌁</div>
+        <div class="lock-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <rect x="5" y="10" width="14" height="10" rx="3"></rect>
+            <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+            <circle cx="12" cy="15" r="1.5"></circle>
+          </svg>
+        </div>
         <blockquote>“I made this rule while I was thinking clearly. Keep it.”</blockquote>
         <p>That is the whole idea: your earlier decision gets more weight than the impulse that arrives later.</p>
       </div>

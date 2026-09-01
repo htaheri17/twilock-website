@@ -608,6 +608,16 @@ p {
   font-weight: 850;
 }
 
+.lock-mark svg {
+  width: 27px;
+  height: 27px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
 .commitment-panel blockquote {
   max-width: 470px;
   margin: 0;
