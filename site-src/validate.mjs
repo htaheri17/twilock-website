@@ -32,6 +32,7 @@ const descriptions = new Map();
 const canonicals = new Map();
 
 const fail = (message) => failures.push(message);
+const visibleDashPattern = /[-‐‑‒–—]/;
 
 for (const relative of required) {
   for (const base of [projectDir, distDir]) {
@@ -91,6 +92,19 @@ for (const relative of htmlFiles) {
   const forbidden = [/\bTODO\b/i, /\bYOUR [A-Z]/, /placeholder/i, /lorem ipsum/i];
   for (const pattern of forbidden) if (pattern.test(html)) fail(`${label}: contains unfinished copy matching ${pattern}`);
 
+  const withoutScripts = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
+  const visibleText = [...withoutScripts.matchAll(/>([^<]+)</g)].map((match) => match[1]).join(" ");
+  const accessibleText = [...withoutScripts.matchAll(/\b(?:aria-label|alt|title)="([^"]*)"/g)].map((match) => match[1]).join(" ");
+  const metadataText = [title, description,
+    html.match(/<meta property="og:title" content="([^"]*)">/)?.[1],
+    html.match(/<meta property="og:description" content="([^"]*)">/)?.[1],
+    html.match(/<meta name="twitter:title" content="([^"]*)">/)?.[1],
+    html.match(/<meta name="twitter:description" content="([^"]*)">/)?.[1],
+  ].filter(Boolean).join(" ");
+  if (visibleDashPattern.test(`${visibleText} ${accessibleText} ${metadataText}`)) {
+    fail(`${label}: user-visible text contains a hyphen or dash`);
+  }
+
   for (const match of html.matchAll(/href="([^"]+)"/g)) {
     const href = match[1];
     if (!href.startsWith("/")) continue;
@@ -116,6 +130,11 @@ if ((sitemap.match(/<url>/g) || []).length !== 10) fail("sitemap.xml: expected 1
 
 const robots = await readFile(path.join(projectDir, "robots.txt"), "utf8");
 if (!robots.includes("Allow: /") || !robots.includes("Sitemap: https://twilock.app/sitemap.xml")) fail("robots.txt: crawl or sitemap directive is incorrect");
+
+const css = await readFile(path.join(projectDir, "assets/site.css"), "utf8");
+for (const match of css.matchAll(/content:\s*["']([^"']*)["']/g)) {
+  if (visibleDashPattern.test(match[1])) fail("assets/site.css: generated user-visible content contains a hyphen or dash");
+}
 
 const walkSize = async (directory) => {
   let total = 0;

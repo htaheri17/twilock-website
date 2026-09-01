@@ -9,6 +9,22 @@ const siteUrl = (process.env.SITE_URL || "https://twilock.app").replace(/\/$/, "
 const appStoreUrl = "https://apps.apple.com/us/app/twilock-screen-time-blocker/id6786474238";
 const checkedDate = "August 31, 2026";
 const isoDate = "2026-08-31";
+const visibleDashPattern = /[-‐‑‒–—]/g;
+
+const cleanUserCopy = (value) => value.replace(visibleDashPattern, " ").replace(/ {2,}/g, " ");
+
+const cleanVisibleMarkup = (markup) => markup
+  .replace(/>([^<]+)</g, (_, text) => `>${cleanUserCopy(text)}<`)
+  .replace(/\b(aria-label|alt|title)="([^"]*)"/g, (_, attribute, value) => `${attribute}="${cleanUserCopy(value)}"`);
+
+const cleanSchemaCopy = (value) => {
+  if (Array.isArray(value)) return value.map(cleanSchemaCopy);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, cleanSchemaCopy(item)]));
+  }
+  if (typeof value !== "string" || /^https?:\/\//.test(value) || /^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+  return cleanUserCopy(value);
+};
 
 const routes = [
   "",
@@ -115,6 +131,8 @@ const footer = () => `
 
 const renderPage = ({ route, title, description, body, type = "website", schema = [], bodyClass = "" }) => {
   const canonical = canonicalFor(route);
+  const cleanTitle = cleanUserCopy(title);
+  const cleanDescription = cleanUserCopy(description);
   const graph = [
     {
       "@type": "WebSite",
@@ -125,13 +143,18 @@ const renderPage = ({ route, title, description, body, type = "website", schema 
     },
     ...schema,
   ];
+  const visiblePage = cleanVisibleMarkup(`
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  ${nav(route)}
+  <main id="main-content">${body}</main>
+  ${footer()}`);
   return `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${title}</title>
-  <meta name="description" content="${description}">
+  <title>${cleanTitle}</title>
+  <meta name="description" content="${cleanDescription}">
   <meta name="theme-color" content="#050817">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="apple-itunes-app" content="app-id=6786474238">
@@ -142,25 +165,22 @@ const renderPage = ({ route, title, description, body, type = "website", schema 
   <link rel="stylesheet" href="/assets/site.css">
   <meta property="og:type" content="${type}">
   <meta property="og:site_name" content="Twilock">
-  <meta property="og:title" content="${title}">
-  <meta property="og:description" content="${description}">
+  <meta property="og:title" content="${cleanTitle}">
+  <meta property="og:description" content="${cleanDescription}">
   <meta property="og:url" content="${canonical}">
   <meta property="og:image" content="${siteUrl}/assets/twilock-icon.png">
   <meta property="og:image:width" content="1024">
   <meta property="og:image:height" content="1024">
   <meta property="og:image:alt" content="Twilock moon and lock app icon">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="${title}">
-  <meta name="twitter:description" content="${description}">
+  <meta name="twitter:title" content="${cleanTitle}">
+  <meta name="twitter:description" content="${cleanDescription}">
   <meta name="twitter:image" content="${siteUrl}/assets/twilock-icon.png">
-  <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}</script>
+  <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": cleanSchemaCopy(graph) })}</script>
   <script defer src="/assets/site.js"></script>
 </head>
 <body class="${bodyClass}">
-  <a class="skip-link" href="#main-content">Skip to content</a>
-  ${nav(route)}
-  <main id="main-content">${body}</main>
-  ${footer()}
+  ${visiblePage}
 </body>
 </html>`;
 };
@@ -990,7 +1010,7 @@ ${routes.map((route) => `  <url><loc>${canonicalFor(route)}</loc><lastmod>${isoD
 </urlset>\n`;
   await writeDeploymentFile("sitemap.xml", sitemap);
   await writeDeploymentFile("robots.txt", `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`);
-  await writeDeploymentFile("humans.txt", "Twilock is designed and built by Hussain Taheri.\nWebsite last verified: 2026-08-31.\n");
+  await writeDeploymentFile("humans.txt", "Twilock is designed and built by Hussain Taheri.\nWebsite last verified: August 31, 2026.\n");
 
   const notFound = renderPage({
     route: "404",
