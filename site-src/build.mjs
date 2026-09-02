@@ -11,6 +11,7 @@ const checkedDate = "August 31, 2026";
 const isoDate = "2026-08-31";
 const newGuideDate = "September 1, 2026";
 const newGuideIsoDate = "2026-09-01";
+const appStoreRatingCheckedDate = "September 2, 2026";
 const visibleDashPattern = /[-‐‑‒–—]/g;
 
 const cleanUserCopy = (value) => value.replace(visibleDashPattern, " ").replace(/ {2,}/g, " ");
@@ -27,6 +28,15 @@ const cleanSchemaCopy = (value) => {
   if (typeof value !== "string" || /^https?:\/\//.test(value) || /^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
   return cleanUserCopy(value);
 };
+
+const minifyCss = (value) => value
+  .replace(/\/\*[\s\S]*?\*\//g, "")
+  .replace(/\s+/g, " ")
+  .replace(/\s*([{}:;,>+~])\s*/g, "$1")
+  .replace(/;}/g, "}")
+  .trim();
+
+const minifyJavaScript = (value) => value.replace(/\s+/g, " ").trim();
 
 const routes = [
   "",
@@ -108,10 +118,12 @@ const nav = (route) => {
             <a href="/#how-it-works">How it works</a>
             <a href="/twilock-vs-opal/">Twilock vs Opal</a>
             <a href="/best-nighttime-app-blockers/">Nighttime blocker guide</a>
+            <a href="/block-social-media-at-night-iphone/">Block social media at night</a>
             <a href="/stop-doomscrolling-at-night-iphone/">Stop doomscrolling at night</a>
             <a href="/make-iphone-screen-time-harder-to-bypass/">Make Screen Time harder to bypass</a>
             <a href="/stop-checking-phone-first-thing-morning/">Protect your morning</a>
             <a href="/best-strict-app-blockers-iphone/">Strict blocker guide</a>
+            <a href="/best-screen-time-apps-iphone/">Screen time app guide</a>
             <a href="/about/">About</a>
             <a href="/support/">Support</a>
             ${appStoreButton()}
@@ -130,7 +142,7 @@ const footer = () => `
           <p>A focused iPhone screen-time blocker for the hours before sleep and after waking.</p>
         </div>
         <div class="footer-column"><h2>Product</h2><a href="/#how-it-works">How it works</a><a href="/#strict-mode">Strict Mode</a><a href="/#pricing">Pricing</a><a href="${appStoreUrl}">App Store</a></div>
-        <div class="footer-column"><h2>Learn</h2><a href="/stop-doomscrolling-at-night-iphone/">Stop doomscrolling at night</a><a href="/make-iphone-screen-time-harder-to-bypass/">Strengthen Screen Time</a><a href="/stop-checking-phone-first-thing-morning/">Protect your morning</a><a href="/best-nighttime-app-blockers/">Nighttime app blockers</a></div>
+        <div class="footer-column"><h2>Learn</h2><a href="/block-social-media-at-night-iphone/">Block social media at night</a><a href="/stop-doomscrolling-at-night-iphone/">Stop doomscrolling at night</a><a href="/make-iphone-screen-time-harder-to-bypass/">Strengthen Screen Time</a><a href="/stop-checking-phone-first-thing-morning/">Protect your morning</a><a href="/best-nighttime-app-blockers/">Nighttime app blockers</a><a href="/best-screen-time-apps-iphone/">Screen time apps</a></div>
         <div class="footer-column"><h2>Company</h2><a href="/about/">About</a><a href="/support/">Support</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div>
       </div>
       <div class="footer-bottom"><span>© <span data-current-year>2026</span> Twilock. Built by Hussain Taheri.</span><span>Twilock is not affiliated with Apple or the products compared on this site.</span></div>
@@ -215,6 +227,7 @@ const homeBody = `
     <span><strong>Focused scope</strong> · Up to two hours at night, plus a morning window on Pro</span>
     <span><strong>Private core</strong> · Screen Time and app-usage data stay on your device</span>
     <span><strong>Built for commitment</strong> · Strict Mode is a Pro feature</span>
+    <span><strong>Early App Store rating</strong> · 5.0 from 1 rating, checked ${appStoreRatingCheckedDate}</span>
   </div>
 
   <section class="section" aria-labelledby="problem-title">
@@ -362,14 +375,15 @@ const softwareSchema = {
   "@type": "SoftwareApplication",
   name: "Twilock: Screen Time Blocker",
   operatingSystem: "iOS 16.0 or later",
-  applicationCategory: "ProductivityApplication",
+  applicationCategory: "UtilitiesApplication",
   description: "An iPhone screen-time blocker focused on the periods before sleep and after waking.",
   url: `${siteUrl}/`,
   installUrl: appStoreUrl,
   image: `${siteUrl}/assets/twilock-icon.png`,
-  softwareVersion: "1.0",
+  softwareVersion: "1.0.1",
   author: { "@type": "Person", name: "Hussain Taheri" },
-  offers: { "@type": "Offer", price: "0", priceCurrency: "USD", description: "Free download with optional in-app purchases" },
+  offers: { "@type": "Offer", price: 0, priceCurrency: "USD", description: "Free download with optional in-app purchases" },
+  aggregateRating: { "@type": "AggregateRating", ratingValue: 5, ratingCount: 1, bestRating: 5, worstRating: 1 },
 };
 
 const pages = [
@@ -487,7 +501,7 @@ pages.push({
       <div class="reading-shell">
         ${breadcrumbs("Block social media at night")}
         <span class="eyebrow">Practical iPhone guide</span>
-        <h1>How to block social media at night on iPhone</h1>
+        <h1>Block social media at night without blocking the iPhone apps you need</h1>
         <p class="page-deck">Start with the smallest schedule you will keep. Protect the apps that actually pull you in, leave essential tools available, and decide your escape rule before the block begins.</p>
         <div class="page-meta"><span>By Hussain Taheri</span><span>Updated ${checkedDate}</span><span>7 minute read</span></div>
       </div>
@@ -572,7 +586,7 @@ pages.push({
       <div class="reading-shell">
         ${breadcrumbs("Stop doomscrolling at night")}
         <span class="eyebrow">Practical iPhone guide</span>
-        <h1>How to stop doomscrolling at night on iPhone</h1>
+        <h1>Stop doomscrolling at night before one minute becomes an hour</h1>
         <p class="page-deck">The useful goal is not to make your phone unpleasant all day. It is to interrupt the specific feeds, time, and location that turn one quick check into another lost hour.</p>
         <div class="page-meta"><span>By Hussain Taheri</span><span>Published ${newGuideDate}</span><span>8 minute read</span></div>
       </div>
@@ -681,7 +695,7 @@ pages.push({
       <div class="reading-shell">
         ${breadcrumbs("Make Screen Time harder to bypass")}
         <span class="eyebrow">Honest iPhone setup</span>
-        <h1>How to make iPhone Screen Time harder to bypass</h1>
+        <h1>Make iPhone Screen Time harder to bypass without losing essential access</h1>
         <p class="page-deck">The strongest useful setup is not one that claims to be impossible to escape. It is one that removes easy overrides, protects essential access, and makes a deliberate change harder than an impulsive tap.</p>
         <div class="page-meta"><span>By Hussain Taheri</span><span>Published ${newGuideDate}</span><span>9 minute read</span></div>
       </div>
@@ -782,7 +796,7 @@ pages.push({
       <div class="reading-shell">
         ${breadcrumbs("Stop checking your phone first thing")}
         <span class="eyebrow">Practical morning guide</span>
-        <h1>How to stop checking your phone first thing in the morning</h1>
+        <h1>Stop checking your phone before your morning has even started</h1>
         <p class="page-deck">You do not need a perfect morning routine. You need a small first action that happens before notifications, messages, and feeds decide what deserves your attention.</p>
         <div class="page-meta"><span>By Hussain Taheri</span><span>Published ${newGuideDate}</span><span>8 minute read</span></div>
       </div>
@@ -1238,7 +1252,7 @@ pages.push({
       <div class="reading-shell">
         ${breadcrumbs("Privacy Policy")}
         <span class="eyebrow">Legal</span>
-        <h1>Twilock Privacy Policy</h1>
+        <h1>How Twilock protects your privacy</h1>
         <p class="page-deck">Last updated: August 8, 2026</p>
       </div>
     </header>
@@ -1298,15 +1312,19 @@ pages.push({
       <div class="reading-shell">
         ${breadcrumbs("Terms of Use")}
         <span class="eyebrow">Legal</span>
-        <h1>Twilock Terms of Use</h1>
+        <h1>The agreement governing your use of Twilock</h1>
         <p class="page-deck">Twilock uses Apple’s Standard End User License Agreement (EULA). Twilock does not currently publish a separate custom terms agreement.</p>
       </div>
     </header>
     <div class="shell article-layout">
       <article class="article-body">
         <div class="direct-answer"><p><strong>Official agreement:</strong> Your use of Twilock is governed by <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple’s Standard Licensed Application End User License Agreement</a>.</p></div>
+        <section><h2>What this page means</h2><p>The Apple agreement is the controlling license for Twilock. This page gives you direct links and practical purchase information so you can find the terms that matter without replacing or rewriting Apple’s legal text. If this summary and the EULA ever differ, the EULA controls.</p></section>
+        <section><h2>License and availability</h2><p>Downloading Twilock gives you a license to use the app under Apple’s EULA; it does not transfer ownership of the software. Availability, compatibility, and features may change as Twilock and iOS are updated. The current App Store listing is the best place to confirm device requirements and the version offered in your storefront.</p></section>
         <section><h2>Subscriptions and purchases</h2><p>Twilock Pro is offered as a monthly or annual auto-renewing subscription, or as a one-time Lifetime purchase. Prices are shown before you buy. Subscriptions renew automatically unless canceled at least 24 hours before the end of the current period.</p></section>
-        <section><h2>Managing a subscription</h2><p>Apple processes Twilock purchases. Manage or cancel a subscription from iPhone Settings → your name → Subscriptions. Use <a href="https://reportaproblem.apple.com/">Apple’s Report a Problem service</a> for refund requests.</p></section>
+        <section><h2>Before you purchase</h2><p>Review the price, billing period, and any introductory offer shown by Apple before confirming. Offers and eligibility can vary by storefront and account. Keep access to the Apple Account used for the purchase so you can manage the subscription or restore the entitlement later.</p></section>
+        <section><h2>Managing a subscription</h2><p>Apple processes Twilock purchases. Manage or cancel a subscription from iPhone Settings → your name → Subscriptions. Canceling stops future renewal but does not normally reverse the current billing period. Use <a href="https://reportaproblem.apple.com/">Apple’s Report a Problem service</a> for refund requests because Twilock does not receive or control your payment card details.</p></section>
+        <section><h2>Restoring access</h2><p>If a prior purchase is not recognized, use Restore Purchases inside Twilock while signed in to the Apple Account that made the purchase. For billing, refund, or account-history questions, use Apple’s support tools. For a Twilock feature or entitlement that still does not appear after restoration, contact Twilock support.</p></section>
         <section><h2>Privacy</h2><p>The <a href="/privacy/">Twilock Privacy Policy</a> describes the data the app handles, what stays on device, optional account and social data, analytics, purchases, retention, and deletion.</p></section>
         <section><h2>Contact</h2><p>Questions about Twilock can be sent to <a href="mailto:twilockapp@gmail.com">twilockapp@gmail.com</a>.</p></section>
       </article>
@@ -1337,10 +1355,10 @@ const build = async () => {
     await writeDeploymentFile(outputPath, renderPage(page));
   }
 
-  const css = await readFile(path.join(sourceDir, "styles.css"), "utf8");
-  const js = await readFile(path.join(sourceDir, "site.js"), "utf8");
-  await writeDeploymentFile("assets/site.css", css);
-  await writeDeploymentFile("assets/site.js", js);
+  const css = minifyCss(await readFile(path.join(sourceDir, "styles.css"), "utf8"));
+  const js = minifyJavaScript(await readFile(path.join(sourceDir, "site.js"), "utf8"));
+  await writeDeploymentFile("assets/site.css", `${css}\n`);
+  await writeDeploymentFile("assets/site.js", `${js}\n`);
   await mkdir(path.join(distDir, "assets"), { recursive: true });
   await copyFile(path.join(projectDir, "assets/twilock-icon.png"), path.join(distDir, "assets/twilock-icon.png"));
 
@@ -1362,6 +1380,7 @@ ${pages.map((page) => `  <url><loc>${canonicalFor(page.route)}</loc><lastmod>${p
 </urlset>\n`;
   await writeDeploymentFile("sitemap.xml", sitemap);
   await writeDeploymentFile("robots.txt", `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`);
+  await writeDeploymentFile("llms.txt", `# Twilock\n\n> Twilock is a focused iPhone screen time blocker for the hours before sleep and after waking.\n\n## Product\n\n- [Twilock homepage](${siteUrl}/): Product scope, privacy summary, pricing, and App Store access.\n- [Twilock versus Opal](${siteUrl}/twilock-vs-opal/): Source checked comparison of product scope, strictness, platforms, and price.\n- [About Twilock](${siteUrl}/about/): Founder, purpose, and product principles.\n- [Support](${siteUrl}/support/): Product help, purchases, account deletion, and contact options.\n\n## Practical guides\n\n- [Block social media at night on iPhone](${siteUrl}/block-social-media-at-night-iphone/)\n- [Stop doomscrolling at night on iPhone](${siteUrl}/stop-doomscrolling-at-night-iphone/)\n- [Make iPhone Screen Time harder to bypass](${siteUrl}/make-iphone-screen-time-harder-to-bypass/)\n- [Stop checking your phone first thing in the morning](${siteUrl}/stop-checking-phone-first-thing-morning/)\n\n## Comparisons\n\n- [Best nighttime app blockers for iPhone](${siteUrl}/best-nighttime-app-blockers/)\n- [Best strict app blockers for iPhone](${siteUrl}/best-strict-app-blockers-iphone/)\n- [Best screen time apps for iPhone](${siteUrl}/best-screen-time-apps-iphone/)\n\n## Policies\n\n- [Privacy policy](${siteUrl}/privacy/)\n- [Terms of use](${siteUrl}/terms/)\n\nAll product and comparison claims should be checked against the linked page and its dated sources.\n`);
   await writeDeploymentFile("humans.txt", "Twilock is designed and built by Hussain Taheri.\nWebsite last verified: August 31, 2026.\n");
 
   const notFound = renderPage({

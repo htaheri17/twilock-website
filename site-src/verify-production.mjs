@@ -18,9 +18,11 @@ const check = async (url, label) => {
 
 const { body: sitemap } = await check(`${origin}/sitemap.xml`, "sitemap.xml");
 const { body: robots } = await check(`${origin}/robots.txt`, "robots.txt");
+const { body: llms } = await check(`${origin}/llms.txt`, "llms.txt");
 
 if (!robots.includes("Allow: /")) failures.push("robots.txt: missing Allow: /");
 if (!robots.includes(`Sitemap: ${origin}/sitemap.xml`)) failures.push("robots.txt: sitemap URL does not match the production origin");
+if (!llms.startsWith("# Twilock\n")) failures.push("llms.txt: expected Twilock heading is missing");
 
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
 if (sitemapUrls.length !== 13) failures.push(`sitemap.xml: expected 13 canonical URLs, found ${sitemapUrls.length}`);

@@ -22,6 +22,7 @@ const required = [
   "terms/index.html",
   "404.html",
   "robots.txt",
+  "llms.txt",
   "sitemap.xml",
   "site.webmanifest",
   "assets/site.css",
@@ -62,6 +63,9 @@ for (const relative of htmlFiles) {
   if (!title) fail(`${label}: missing title`);
   if (!description) fail(`${label}: missing meta description`);
   if (!canonical) fail(`${label}: missing canonical URL`);
+
+  const h1 = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)?.[1].replace(/<[^>]+>/g, "").trim();
+  if (title && h1 && title.toLowerCase() === h1.toLowerCase()) fail(`${label}: title and H1 should not be identical`);
 
   if (relative !== "404.html") {
     if (titles.has(title)) fail(`${label}: duplicate title with ${titles.get(title)}`);
@@ -125,6 +129,25 @@ for (const relative of htmlFiles) {
   }
 }
 
+for (const [canonical, label] of canonicals) {
+  const pathname = new URL(canonical).pathname;
+  if (pathname === "/") continue;
+  let incomingLinks = 0;
+  for (const relative of htmlFiles.filter((file) => file !== "404.html" && file !== label)) {
+    const html = await readFile(path.join(projectDir, relative), "utf8");
+    if (html.includes(`href="${pathname}"`)) incomingLinks += 1;
+  }
+  if (incomingLinks === 0) fail(`${label}: canonical page has no incoming internal links`);
+}
+
+const home = await readFile(path.join(projectDir, "index.html"), "utf8");
+const homeSchemaText = home.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
+const homeSchema = homeSchemaText ? JSON.parse(homeSchemaText) : null;
+const softwareApp = homeSchema?.["@graph"]?.find((item) => item["@type"] === "SoftwareApplication");
+if (!softwareApp?.offers || !softwareApp?.aggregateRating) {
+  fail("index.html: SoftwareApplication requires visible offer and verified rating data");
+}
+
 const sitemap = await readFile(path.join(projectDir, "sitemap.xml"), "utf8");
 for (const canonical of canonicals.keys()) {
   if (!sitemap.includes(`<loc>${canonical}</loc>`)) fail(`sitemap.xml: missing ${canonical}`);
@@ -134,10 +157,18 @@ if ((sitemap.match(/<url>/g) || []).length !== 13) fail("sitemap.xml: expected 1
 const robots = await readFile(path.join(projectDir, "robots.txt"), "utf8");
 if (!robots.includes("Allow: /") || !robots.includes("Sitemap: https://twilock.com/sitemap.xml")) fail("robots.txt: crawl or sitemap directive is incorrect");
 
+const llms = await readFile(path.join(projectDir, "llms.txt"), "utf8");
+if (!llms.startsWith("# Twilock\n") || !llms.includes("https://twilock.com/stop-doomscrolling-at-night-iphone/")) {
+  fail("llms.txt: title or primary guide links are missing");
+}
+
 const css = await readFile(path.join(projectDir, "assets/site.css"), "utf8");
 for (const match of css.matchAll(/content:\s*["']([^"']*)["']/g)) {
   if (visibleDashPattern.test(match[1])) fail("assets/site.css: generated user-visible content contains a hyphen or dash");
 }
+if (css.trim().includes("\n")) fail("assets/site.css: production CSS is not minified");
+const js = await readFile(path.join(projectDir, "assets/site.js"), "utf8");
+if (js.trim().includes("\n")) fail("assets/site.js: production JavaScript is not minified");
 
 const walkSize = async (directory) => {
   let total = 0;
