@@ -9,6 +9,8 @@ const siteUrl = (process.env.SITE_URL || "https://twilock.com").replace(/\/$/, "
 const appStoreUrl = "https://apps.apple.com/us/app/twilock-screen-time-blocker/id6786474238";
 const checkedDate = "August 31, 2026";
 const isoDate = "2026-08-31";
+const newGuideDate = "September 1, 2026";
+const newGuideIsoDate = "2026-09-01";
 const visibleDashPattern = /[-‐‑‒–—]/g;
 
 const cleanUserCopy = (value) => value.replace(visibleDashPattern, " ").replace(/ {2,}/g, " ");
@@ -30,6 +32,9 @@ const routes = [
   "",
   "twilock-vs-opal",
   "block-social-media-at-night-iphone",
+  "stop-doomscrolling-at-night-iphone",
+  "make-iphone-screen-time-harder-to-bypass",
+  "stop-checking-phone-first-thing-morning",
   "best-nighttime-app-blockers",
   "best-strict-app-blockers-iphone",
   "best-screen-time-apps-iphone",
@@ -54,12 +59,12 @@ const breadcrumbSchema = (route, label) => ({
   ],
 });
 
-const articleSchema = (route, headline, description) => ({
+const articleSchema = (route, headline, description, date = isoDate) => ({
   "@type": "Article",
   headline,
   description,
-  datePublished: isoDate,
-  dateModified: isoDate,
+  datePublished: date,
+  dateModified: date,
   mainEntityOfPage: canonicalFor(route),
   author: { "@type": "Person", name: "Hussain Taheri", url: `${siteUrl}/about/` },
   publisher: { "@type": "Organization", name: "Twilock", url: `${siteUrl}/` },
@@ -93,7 +98,7 @@ const nav = (route) => {
         <nav class="desktop-nav" aria-label="Primary navigation">
           ${link("/#how-it-works", "How it works")}
           ${link("/twilock-vs-opal/", "Compare", ["twilock-vs-opal"])}
-          ${link("/best-nighttime-app-blockers/", "Guides", ["block-social-media-at-night-iphone", "best-nighttime-app-blockers", "best-strict-app-blockers-iphone", "best-screen-time-apps-iphone"])}
+          ${link("/best-nighttime-app-blockers/", "Guides", ["block-social-media-at-night-iphone", "stop-doomscrolling-at-night-iphone", "make-iphone-screen-time-harder-to-bypass", "stop-checking-phone-first-thing-morning", "best-nighttime-app-blockers", "best-strict-app-blockers-iphone", "best-screen-time-apps-iphone"])}
           ${link("/about/", "About", ["about"])}
           ${appStoreButton(true)}
         </nav>
@@ -103,6 +108,9 @@ const nav = (route) => {
             <a href="/#how-it-works">How it works</a>
             <a href="/twilock-vs-opal/">Twilock vs Opal</a>
             <a href="/best-nighttime-app-blockers/">Nighttime blocker guide</a>
+            <a href="/stop-doomscrolling-at-night-iphone/">Stop doomscrolling at night</a>
+            <a href="/make-iphone-screen-time-harder-to-bypass/">Make Screen Time harder to bypass</a>
+            <a href="/stop-checking-phone-first-thing-morning/">Protect your morning</a>
             <a href="/best-strict-app-blockers-iphone/">Strict blocker guide</a>
             <a href="/about/">About</a>
             <a href="/support/">Support</a>
@@ -122,7 +130,7 @@ const footer = () => `
           <p>A focused iPhone screen-time blocker for the hours before sleep and after waking.</p>
         </div>
         <div class="footer-column"><h2>Product</h2><a href="/#how-it-works">How it works</a><a href="/#strict-mode">Strict Mode</a><a href="/#pricing">Pricing</a><a href="${appStoreUrl}">App Store</a></div>
-        <div class="footer-column"><h2>Learn</h2><a href="/twilock-vs-opal/">Twilock vs Opal</a><a href="/block-social-media-at-night-iphone/">Block social media at night</a><a href="/best-nighttime-app-blockers/">Nighttime app blockers</a><a href="/best-screen-time-apps-iphone/">Screen-time apps</a></div>
+        <div class="footer-column"><h2>Learn</h2><a href="/stop-doomscrolling-at-night-iphone/">Stop doomscrolling at night</a><a href="/make-iphone-screen-time-harder-to-bypass/">Strengthen Screen Time</a><a href="/stop-checking-phone-first-thing-morning/">Protect your morning</a><a href="/best-nighttime-app-blockers/">Nighttime app blockers</a></div>
         <div class="footer-column"><h2>Company</h2><a href="/about/">About</a><a href="/support/">Support</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div>
       </div>
       <div class="footer-bottom"><span>© <span data-current-year>2026</span> Twilock. Built by Hussain Taheri.</span><span>Twilock is not affiliated with Apple or the products compared on this site.</span></div>
@@ -318,6 +326,9 @@ const homeBody = `
         <a class="editorial-card" href="/block-social-media-at-night-iphone/"><div><span class="card-type">Practical guide</span><h3>How to block social media at night on iPhone</h3><p>A setup that keeps essential apps available and avoids an overly ambitious first schedule.</p></div><span class="read-link">Read the guide →</span></a>
         <a class="editorial-card" href="/twilock-vs-opal/"><div><span class="card-type">Honest comparison</span><h3>Twilock vs Opal</h3><p>Focused night-and-morning protection versus a broader, cross-platform attention system.</p></div><span class="read-link">Compare the apps →</span></a>
         <a class="editorial-card" href="/best-strict-app-blockers-iphone/"><div><span class="card-type">Category guide</span><h3>Strict app blockers for iPhone</h3><p>What “strict” actually means across Twilock, Opal, Jomo, one sec, ScreenZen, and Freedom.</p></div><span class="read-link">See the comparison →</span></a>
+        <a class="editorial-card" href="/stop-doomscrolling-at-night-iphone/"><div><span class="card-type">Night guide</span><h3>How to stop doomscrolling at night</h3><p>A practical routine that reduces triggers, protects essential apps, and adds friction before the scroll begins.</p></div><span class="read-link">Build the routine →</span></a>
+        <a class="editorial-card" href="/make-iphone-screen-time-harder-to-bypass/"><div><span class="card-type">iPhone setup</span><h3>Make Screen Time harder to bypass</h3><p>Use Apple’s strongest settings honestly, then decide whether a stricter commitment layer would help.</p></div><span class="read-link">Strengthen Screen Time →</span></a>
+        <a class="editorial-card" href="/stop-checking-phone-first-thing-morning/"><div><span class="card-type">Morning guide</span><h3>Stop checking your phone first thing</h3><p>Design the first part of your morning before notifications and feeds get a chance to decide it for you.</p></div><span class="read-link">Protect your morning →</span></a>
       </div>
     </div>
   </section>
@@ -547,6 +558,322 @@ pages.push({
       ${articleAside("Twilock gives nighttime blocking a simple home: one Night window, the apps you choose, and optional Strict Mode on Pro.")}
     </div>`,
   schema: [articleSchema(nightGuideRoute, "How to Block Social Media at Night on iPhone", "A practical guide to scheduling nighttime social-media blocks on iPhone while keeping essential apps available."), breadcrumbSchema(nightGuideRoute, "Block social media at night")],
+});
+
+const doomscrollingGuideRoute = "stop-doomscrolling-at-night-iphone";
+pages.push({
+  route: doomscrollingGuideRoute,
+  title: "How to Stop Doomscrolling at Night on iPhone",
+  description: "Stop doomscrolling at night on iPhone with a practical routine, Apple Screen Time settings, and a focused nighttime app blocker.",
+  type: "article",
+  lastmod: newGuideIsoDate,
+  body: `
+    <header class="page-hero">
+      <div class="reading-shell">
+        ${breadcrumbs("Stop doomscrolling at night")}
+        <span class="eyebrow">Practical iPhone guide</span>
+        <h1>How to stop doomscrolling at night on iPhone</h1>
+        <p class="page-deck">The useful goal is not to make your phone unpleasant all day. It is to interrupt the specific feeds, time, and location that turn one quick check into another lost hour.</p>
+        <div class="page-meta"><span>By Hussain Taheri</span><span>Published ${newGuideDate}</span><span>8 minute read</span></div>
+      </div>
+    </header>
+    <div class="shell article-layout">
+      <article class="article-body">
+        <div class="direct-answer"><p><strong>Direct answer:</strong> Choose the two or three apps that begin your nighttime loop, set a fixed stop time before you get into bed, silence their notifications, and make them unavailable during that period. Apple Screen Time can schedule Downtime. A focused nighttime app blocker can add more friction if you routinely override your own limit.</p></div>
+
+        <h2>Start with the loop, not your total Screen Time</h2>
+        <p>Doomscrolling at night usually has a recognizable beginning. You check one message, open a feed from habit, or pick up the phone after the lights are already off. The feed keeps supplying another item, so there is no natural moment that tells you to stop.</p>
+        <p>Write down three details for a few nights: the first app you open, the time the scroll begins, and what prompted you to pick up the phone. That gives you a rule you can actually configure. A broad promise to use your phone less does not.</p>
+        <div class="callout"><p>Keep the first rule narrow. Protect the period when the unwanted behavior happens and leave communication, navigation, health, authentication, and emergency tools available.</p></div>
+
+        <h2>A setup you can use tonight</h2>
+        <ol>
+          <li><strong>Choose the trigger apps.</strong> Start with the smallest set that repeatedly begins the scroll. This might be a social feed, video app, news app, forum, or browser.</li>
+          <li><strong>Choose a stop time.</strong> Pick a time that arrives before you normally lose track, not after the scrolling is already established.</li>
+          <li><strong>Remove the invitation.</strong> Silence notifications from those apps and remove their widgets from the Lock Screen and Home Screen.</li>
+          <li><strong>Schedule the boundary.</strong> Use Screen Time Downtime or a nighttime app blocker so the decision happens automatically.</li>
+          <li><strong>Protect essential access.</strong> Confirm that Phone, Messages, Maps, health tools, authentication apps, and anything needed for safety remain available.</li>
+          <li><strong>Move the phone.</strong> Charge it outside arm’s reach. Software removes access while distance removes the cue.</li>
+        </ol>
+        <p>The CDC includes turning off electronic devices at least thirty minutes before bedtime among its general sleep habit recommendations. Treat that as a useful starting point, not a universal prescription. If sleep problems continue, discuss them with a qualified clinician.</p>
+
+        <h2>Use Apple Focus to reduce the cues</h2>
+        <p>Focus can silence selected notifications, darken the Lock Screen, and switch to a simpler Home Screen page on a schedule. That makes it useful for removing prompts that start an unwanted check.</p>
+        <ol>
+          <li>Open <strong>Settings</strong> and choose <strong>Focus</strong>.</li>
+          <li>Choose Sleep or create a custom nighttime Focus.</li>
+          <li>Allow only the people and apps that may need to reach you.</li>
+          <li>Choose a quiet Lock Screen and a Home Screen page without feed apps.</li>
+          <li>Add a schedule that begins before your usual scrolling time.</li>
+        </ol>
+        <p>Focus manages interruptions and presentation. It does not by itself stop you from opening an app. Use it as the first layer, then add Screen Time or a blocker when access is the problem.</p>
+
+        <h2>Use Screen Time for a scheduled block</h2>
+        <p>Apple says Downtime can make most apps unavailable during a schedule while allowing chosen apps and contacts to remain available. The important setting is <strong>Block at Downtime</strong>. Without it, the schedule can act more like a reminder that you may continue past.</p>
+        <ol>
+          <li>Open <strong>Settings</strong>, choose <strong>Screen Time</strong>, and turn on App and Website Activity.</li>
+          <li>Open <strong>Downtime</strong>, choose Scheduled, and set the start and end times.</li>
+          <li>Turn on <strong>Block at Downtime</strong>.</li>
+          <li>Review <strong>Always Allowed</strong> and keep essential tools accessible.</li>
+          <li>Use <strong>Lock Screen Time Settings</strong> if you want changes to require a passcode.</li>
+        </ol>
+        <p>For a more detailed setup focused on specific social apps, read our <a href="/block-social-media-at-night-iphone/">guide to blocking social media at night</a>. If your main problem is overriding the settings, see <a href="/make-iphone-screen-time-harder-to-bypass/">how to make Screen Time harder to bypass</a>.</p>
+
+        <h2>When a nighttime app blocker makes sense</h2>
+        <p>A dedicated blocker can make the schedule easier to understand or harder to reverse. Twilock is built around a Night window of up to two hours. You choose apps or categories with Apple’s private Screen Time picker, then Twilock applies a shield during the scheduled window.</p>
+        <p>The Night window is available on the free tier. Strict Mode is a Pro feature designed to protect an active window from impulsive edits and prevent deleting Twilock during the session. It still leaves a recovery path for genuine need. Twilock is not an emergency service or parental control system, and it should not be described as impossible to bypass.</p>
+
+        <h2>A seven night rollout</h2>
+        <div class="comparison-table-wrap" tabindex="0" role="region" aria-label="Seven night doomscrolling plan">
+          <table class="comparison-table">
+            <caption>Test the schedule before adding more strictness</caption>
+            <thead><tr><th scope="col">Period</th><th scope="col">Action</th><th scope="col">Question</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Nights 1 and 2</th><td>Protect only the top two trigger apps for thirty minutes.</td><td>Did you block anything essential?</td></tr>
+              <tr><th scope="row">Nights 3 and 4</th><td>Adjust the start time to match when the loop actually begins.</td><td>Was the boundary early enough?</td></tr>
+              <tr><th scope="row">Nights 5 and 6</th><td>Keep the rule stable and charge the phone farther away.</td><td>Which cue still starts the check?</td></tr>
+              <tr><th scope="row">Night 7</th><td>Review what you bypassed and change only that weak point.</td><td>Would stronger commitment help?</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Common mistakes</h2>
+        <h3>Blocking the entire phone</h3>
+        <p>An overly broad rule is easy to distrust. When one essential app is unavailable, you may dismantle the entire setup. Target the feeds that begin the problem.</p>
+        <h3>Starting after the usual scroll</h3>
+        <p>A midnight limit does little when the loop begins at ten thirty. Place the boundary before the decision becomes difficult.</p>
+        <h3>Adding maximum strictness immediately</h3>
+        <p>Test app selection, timing, and emergency access first. Stronger commitment should protect a rule that already fits your life.</p>
+        <h3>Treating one difficult night as failure</h3>
+        <p>Use the miss as information. Adjust the trigger, timing, or physical location instead of redesigning everything at once.</p>
+
+        <h2>Frequently asked questions</h2>
+        <div class="faq-list">
+          <details><summary>What is the fastest way to stop doomscrolling before bed?</summary><div>Silence the trigger apps, schedule a thirty minute block before your usual scroll begins, and charge the phone outside arm’s reach. Keep essential apps available.</div></details>
+          <details><summary>Does Sleep Focus block apps?</summary><div>No. Focus can silence notifications and simplify the Lock Screen or Home Screen, but it does not stop an app from opening. Pair it with Screen Time or a blocker if access is the issue.</div></details>
+          <details><summary>Is Apple Screen Time enough?</summary><div>It can be. Turn on Block at Downtime and consider a Screen Time passcode. If you repeatedly override your own settings, a more focused commitment tool may suit you better.</div></details>
+          <details><summary>Should I block every social app?</summary><div>Start with the apps that actually begin your loop. A smaller rule is easier to trust and less likely to interfere with communication or safety.</div></details>
+          <details><summary>Will blocking apps fix a sleep disorder?</summary><div>No. This is a practical habit tool, not medical treatment. Speak with a qualified clinician if you have ongoing sleep concerns.</div></details>
+        </div>
+
+        <h2>Sources</h2>
+        <ul class="source-list">
+          <li><a href="https://support.apple.com/guide/iphone/set-schedules-with-screen-time-iphb0c7313c9/ios">Apple guide to Screen Time schedules</a> for Downtime, Block at Downtime, App Limits, and Always Allowed.</li>
+          <li><a href="https://support.apple.com/guide/iphone/set-up-a-focus-iphd6288a67f/ios">Apple guide to Focus</a> for notification controls, custom screens, and schedules.</li>
+          <li><a href="https://www.cdc.gov/sleep/about/">CDC sleep guidance</a> for general sleep habits and electronic device use before bedtime.</li>
+          <li><a href="${appStoreUrl}">Twilock on the App Store</a> for current features, compatibility, and purchases.</li>
+        </ul>
+      </article>
+      ${articleAside("Twilock gives your nighttime boundary a clear home with a free Night window and optional Strict Mode on Pro.")}
+    </div>`,
+  schema: [articleSchema(doomscrollingGuideRoute, "How to Stop Doomscrolling at Night on iPhone", "A practical guide to reducing nighttime scrolling with fewer cues, a focused schedule, Apple Screen Time, and Twilock.", newGuideIsoDate), breadcrumbSchema(doomscrollingGuideRoute, "Stop doomscrolling at night")],
+});
+
+const harderScreenTimeRoute = "make-iphone-screen-time-harder-to-bypass";
+pages.push({
+  route: harderScreenTimeRoute,
+  title: "How to Make iPhone Screen Time Harder to Bypass",
+  description: "Make iPhone Screen Time harder to bypass with Block at Downtime, a passcode, careful exceptions, and an honest understanding of its limits.",
+  type: "article",
+  lastmod: newGuideIsoDate,
+  body: `
+    <header class="page-hero">
+      <div class="reading-shell">
+        ${breadcrumbs("Make Screen Time harder to bypass")}
+        <span class="eyebrow">Honest iPhone setup</span>
+        <h1>How to make iPhone Screen Time harder to bypass</h1>
+        <p class="page-deck">The strongest useful setup is not one that claims to be impossible to escape. It is one that removes easy overrides, protects essential access, and makes a deliberate change harder than an impulsive tap.</p>
+        <div class="page-meta"><span>By Hussain Taheri</span><span>Published ${newGuideDate}</span><span>9 minute read</span></div>
+      </div>
+    </header>
+    <div class="shell article-layout">
+      <article class="article-body">
+        <div class="direct-answer"><p><strong>Direct answer:</strong> Turn on App and Website Activity, schedule Downtime, enable Block at Downtime, review Always Allowed, and lock Screen Time settings with a separate passcode. These steps remove common one tap overrides, but a person who controls the iPhone and its account should not assume any consumer setup is impossible to bypass.</p></div>
+
+        <h2>Why Screen Time feels easy to override</h2>
+        <p>Screen Time supports several different jobs. It can report activity, show a reminder when a limit arrives, block apps during Downtime, or let a family organizer manage a child’s device. A weak setup often uses only the reminder layer.</p>
+        <p>Apple notes that Screen Time limits can be ignored by default. During scheduled Downtime, <strong>Block at Downtime</strong> changes restricted apps from a reminder into a block. A Screen Time passcode then requires another step before the settings can be changed.</p>
+
+        <h2>Use Apple’s strongest practical configuration</h2>
+        <ol>
+          <li><strong>Turn on activity.</strong> Open Settings, choose Screen Time, then turn on App and Website Activity.</li>
+          <li><strong>Schedule Downtime.</strong> Choose a start and end time that covers the period you want protected.</li>
+          <li><strong>Enable Block at Downtime.</strong> This is the setting that stops restricted apps from opening during the schedule instead of merely showing a reminder.</li>
+          <li><strong>Review Always Allowed.</strong> Keep Phone, Messages, Maps, health, authentication, transportation, and other essential tools available.</li>
+          <li><strong>Lock the settings.</strong> Scroll down in Screen Time and choose Lock Screen Time Settings. Use a four digit passcode that is not an obvious reuse of your device code.</li>
+          <li><strong>Test the exact schedule.</strong> Open every app you may need during the blocked period before relying on the rule.</li>
+        </ol>
+        <div class="callout"><p>If another trusted adult will hold the Screen Time passcode, agree on emergency access and recovery before starting. Do not create a setup that can lock you away from safety, travel, work authentication, medication, or urgent communication.</p></div>
+
+        <h2>Choose the right Apple tool</h2>
+        <div class="comparison-table-wrap" tabindex="0" role="region" aria-label="Apple Screen Time tools and their purpose">
+          <table class="comparison-table">
+            <caption>Different settings solve different access problems</caption>
+            <thead><tr><th scope="col">Tool</th><th scope="col">Best use</th><th scope="col">Important limit</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Downtime</th><td>A recurring period when most apps should be unavailable</td><td>Use Block at Downtime when you need more than a reminder</td></tr>
+              <tr><th scope="row">App Limits</th><td>A daily allowance for selected apps or categories</td><td>The allowance may not match a specific bedtime or morning window</td></tr>
+              <tr><th scope="row">Always Allowed</th><td>Keeping essential apps and contacts accessible</td><td>Too many exceptions can reopen the original loop</td></tr>
+              <tr><th scope="row">Screen Time passcode</th><td>Requiring a separate code before settings change</td><td>Recovery and account control still matter</td></tr>
+              <tr><th scope="row">Focus</th><td>Silencing notifications and simplifying screens</td><td>Focus does not block an app from opening</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Make the rule easier to keep</h2>
+        <h3>Use a schedule that matches the real problem</h3>
+        <p>If unwanted scrolling happens from eleven until midnight, a block beginning at nine may create unnecessary conflict. A precise rule has fewer reasons to be disabled.</p>
+        <h3>Keep the passcode separate</h3>
+        <p>A Screen Time passcode should add a meaningful pause. Reusing an obvious code turns the extra step into muscle memory.</p>
+        <h3>Remove browser and notification fallbacks</h3>
+        <p>If you block a feed app but continue through its website or notifications, the rule has not covered the actual loop. Review the paths you use in practice.</p>
+        <h3>Make changes outside the active period</h3>
+        <p>Review the schedule during the day, when the immediate urge is absent. Avoid redesigning the rule from bed because one blocked app suddenly feels urgent.</p>
+
+        <h2>What Screen Time cannot promise</h2>
+        <p>A person using their own iPhone may control the device passcode, Apple Account, Screen Time recovery, installed apps, and system settings. Software behavior can also change across iOS releases. For those reasons, describe a setup as harder to bypass, not impossible to bypass.</p>
+        <p>Family controls are a different trust model. A parent or guardian managing a child through Family Sharing can retain the passcode and receive certain passcode use information on supported system versions. That is not the same as an adult trying to create friction for their own future decision.</p>
+
+        <h2>Where Twilock Strict Mode differs</h2>
+        <p>Twilock organizes blocking around a Night or Morning window instead of a general daily limit. Strict Mode, available with Pro, protects an active window from impulsive edits and prevents Twilock from being deleted during the session. It is designed to give an earlier decision more weight during a specific period.</p>
+        <p>Strict Mode still includes a recovery path for genuine need. Twilock does not claim to be impossible to bypass, parental control software, or an emergency service. Test the normal window first, leave essentials outside the shield, and add Strict Mode only after the timing and app selection are correct.</p>
+        <p>For a broader product comparison, see our <a href="/best-strict-app-blockers-iphone/">guide to strict app blockers for iPhone</a>. If the problem happens mainly in bed, use the <a href="/stop-doomscrolling-at-night-iphone/">nighttime doomscrolling guide</a>.</p>
+
+        <h2>A safe test before you rely on the rule</h2>
+        <ol>
+          <li>Start the schedule while you are awake and not under time pressure.</li>
+          <li>Confirm calls and messages from important contacts can reach you.</li>
+          <li>Open Maps, authentication, health, transportation, and payment tools you may need.</li>
+          <li>Try the normal exit and recovery path so you understand it before a genuine need.</li>
+          <li>Let the schedule run for several days before adding stronger commitment.</li>
+        </ol>
+
+        <h2>Frequently asked questions</h2>
+        <div class="faq-list">
+          <details><summary>Why can I ignore an iPhone Screen Time limit?</summary><div>Some limits act as reminders unless the relevant blocking option is enabled. For Downtime, turn on Block at Downtime and consider locking Screen Time settings with a passcode.</div></details>
+          <details><summary>Can I use a different passcode for Screen Time?</summary><div>Yes. Apple lets you create a four digit Screen Time passcode that must be entered before changing the selected settings.</div></details>
+          <details><summary>Can someone else hold my Screen Time passcode?</summary><div>A trusted person can retain the code if you choose that accountability model. Agree on recovery and emergency access first, and never block tools needed for safety.</div></details>
+          <details><summary>Is any iPhone app blocker impossible to bypass?</summary><div>Do not rely on that claim. Device ownership, account recovery, permissions, system settings, and iOS changes all affect what a user can ultimately change.</div></details>
+          <details><summary>Does Twilock replace Apple Screen Time?</summary><div>No. Twilock uses Apple’s Screen Time frameworks to apply shields during its focused Night and Morning windows.</div></details>
+        </div>
+
+        <h2>Sources</h2>
+        <ul class="source-list">
+          <li><a href="https://support.apple.com/guide/iphone/set-schedules-with-screen-time-iphb0c7313c9/ios">Apple guide to Screen Time schedules</a> for Downtime, Block at Downtime, App Limits, and Always Allowed.</li>
+          <li><a href="https://support.apple.com/guide/iphone/create-manage-track-a-screen-time-passcode-iph272b4c4bd/ios">Apple guide to Screen Time passcodes</a> for locking, changing, recovery, and family management.</li>
+          <li><a href="https://support.apple.com/guide/iphone/set-up-a-focus-iphd6288a67f/ios">Apple guide to Focus</a> for the distinction between notification controls and app access.</li>
+          <li><a href="${appStoreUrl}">Twilock on the App Store</a> for current features, compatibility, and purchases.</li>
+        </ul>
+      </article>
+      ${articleAside("Twilock adds focused Night and Morning windows when a general Screen Time limit is not the mental model you need.")}
+    </div>`,
+  schema: [articleSchema(harderScreenTimeRoute, "How to Make iPhone Screen Time Harder to Bypass", "An honest guide to strengthening Apple Screen Time with blocking, a separate passcode, careful exceptions, and realistic limits.", newGuideIsoDate), breadcrumbSchema(harderScreenTimeRoute, "Make Screen Time harder to bypass")],
+});
+
+const morningPhoneGuideRoute = "stop-checking-phone-first-thing-morning";
+pages.push({
+  route: morningPhoneGuideRoute,
+  title: "How to Stop Checking Your Phone First Thing in the Morning",
+  description: "Stop checking your phone first thing in the morning with a simple iPhone setup, fewer cues, a replacement routine, and a protected morning window.",
+  type: "article",
+  lastmod: newGuideIsoDate,
+  body: `
+    <header class="page-hero">
+      <div class="reading-shell">
+        ${breadcrumbs("Stop checking your phone first thing")}
+        <span class="eyebrow">Practical morning guide</span>
+        <h1>How to stop checking your phone first thing in the morning</h1>
+        <p class="page-deck">You do not need a perfect morning routine. You need a small first action that happens before notifications, messages, and feeds decide what deserves your attention.</p>
+        <div class="page-meta"><span>By Hussain Taheri</span><span>Published ${newGuideDate}</span><span>8 minute read</span></div>
+      </div>
+    </header>
+    <div class="shell article-layout">
+      <article class="article-body">
+        <div class="direct-answer"><p><strong>Direct answer:</strong> Protect the first thirty minutes after waking, keep the phone outside immediate reach, decide what is allowed before the morning begins, and replace the first check with one physical action. Use Focus to silence prompts and a scheduled block if opening the feed is automatic.</p></div>
+
+        <h2>Decide what counts as checking</h2>
+        <p>Using an alarm, checking an urgent message, or opening a transportation app is different from entering an open ended feed. A useful morning rule names the apps and actions you want to delay instead of treating every phone use as failure.</p>
+        <p>For three mornings, notice the first app you open and what happens next. If the clock leads to Messages, then a notification leads to a social feed, the notification is the cue. If the feed is opened without any prompt, app placement and access are the stronger targets.</p>
+
+        <h2>Choose a small protected window</h2>
+        <p>Start with thirty minutes or the time between waking and one dependable milestone such as getting dressed, finishing breakfast, or leaving home. A clear endpoint makes the rule easier to understand.</p>
+        <div class="callout"><p>Your morning boundary should delay optional feeds, not urgent communication or essential tools. Keep calls, messages from important people, health, weather, maps, authentication, and transportation available when your life requires them.</p></div>
+
+        <h2>Prepare the night before</h2>
+        <ol>
+          <li><strong>Move the phone.</strong> Charge it far enough away that waking does not automatically place it in your hand.</li>
+          <li><strong>Choose the first physical action.</strong> Open the curtains, drink water, wash your face, stretch, or step outside the bedroom.</li>
+          <li><strong>Write down the first task.</strong> Use paper or place one simple reminder where you will see it.</li>
+          <li><strong>Silence feed notifications.</strong> A morning rule is easier when nothing invites you into the app.</li>
+          <li><strong>Schedule the boundary.</strong> Configure it before bed so no decision is required while you are waking up.</li>
+        </ol>
+
+        <h2>Use Focus to create a quieter first screen</h2>
+        <p>Apple Focus can silence notifications from selected people and apps, use a simpler Lock Screen, switch to a chosen Home Screen page, and turn on automatically at a scheduled time. Create a morning Focus that shows only tools you genuinely want available.</p>
+        <ol>
+          <li>Open <strong>Settings</strong> and choose <strong>Focus</strong>.</li>
+          <li>Create a custom Focus named Morning or use a suitable existing Focus.</li>
+          <li>Allow important people and essential apps.</li>
+          <li>Choose a Home Screen page without social, news, video, or shopping feeds.</li>
+          <li>Schedule it to cover the period after you usually wake.</li>
+        </ol>
+        <p>Focus lowers interruption and visual temptation, but it does not prevent an app from opening. Add an access boundary if the habit continues without notifications.</p>
+
+        <h2>Use Screen Time or a morning app blocker</h2>
+        <p>Apple Downtime can make most apps unavailable on a schedule while leaving apps and contacts in Always Allowed accessible. Turn on Block at Downtime when you want the schedule to block rather than merely remind.</p>
+        <p>Twilock offers a Morning window with Pro. You choose the apps or categories that pull you into the morning loop and schedule a window of up to two hours. Strict Mode, also on Pro, can protect the active window from impulsive edits after you have tested the normal schedule.</p>
+        <p>If you tend to change your own limits, read <a href="/make-iphone-screen-time-harder-to-bypass/">how to make Screen Time harder to bypass</a>. If the same loop happens at bedtime, use the <a href="/stop-doomscrolling-at-night-iphone/">nighttime doomscrolling guide</a>.</p>
+
+        <h2>Give the first action somewhere to go</h2>
+        <p>Removing a feed leaves an empty moment. Decide what fills it before the alarm goes off. The replacement should be easier than the habit you are trying to interrupt.</p>
+        <div class="verdict-grid">
+          <section class="verdict"><h3>If you need information</h3><ul><li>Show weather on a widget.</li><li>Write the schedule on paper.</li><li>Allow a calendar without allowing email.</li><li>Keep urgent contacts available.</li></ul></section>
+          <section class="verdict"><h3>If you need activation</h3><ul><li>Put water beside the alarm.</li><li>Open the curtains immediately.</li><li>Place clothing outside the bedroom.</li><li>Start a short audio routine.</li></ul></section>
+        </div>
+
+        <h2>A seven morning experiment</h2>
+        <div class="comparison-table-wrap" tabindex="0" role="region" aria-label="Seven morning phone plan">
+          <table class="comparison-table">
+            <caption>A small test that reveals the cue and the useful boundary</caption>
+            <thead><tr><th scope="col">Period</th><th scope="col">Action</th><th scope="col">What to notice</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Mornings 1 and 2</th><td>Delay only social and video feeds for thirty minutes.</td><td>Which app do you reach for first?</td></tr>
+              <tr><th scope="row">Mornings 3 and 4</th><td>Move the phone and perform one physical action before touching it.</td><td>Does distance break the automatic reach?</td></tr>
+              <tr><th scope="row">Mornings 5 and 6</th><td>Keep a quiet Focus and the same replacement action.</td><td>Which notifications still pull you in?</td></tr>
+              <tr><th scope="row">Morning 7</th><td>Choose the shortest boundary that consistently works.</td><td>Do you need blocking or only fewer cues?</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Common mistakes</h2>
+        <h3>Using the phone as both alarm and entertainment</h3>
+        <p>You do not need to buy another alarm immediately. First move the phone away and simplify what appears after you silence it. If that still fails, a separate alarm can remove the device from the first moment entirely.</p>
+        <h3>Blocking messages you genuinely need</h3>
+        <p>A rule that creates anxiety about family or work will not last. Allow essential contacts and delay only the feeds that create the unwanted loop.</p>
+        <h3>Making the first goal too long</h3>
+        <p>Two phone free hours may sound ideal and fail on the first weekday. Begin with thirty minutes, learn what breaks the rule, then extend it only if the smaller boundary is stable.</p>
+        <h3>Replacing scrolling with email</h3>
+        <p>Email can place you inside someone else’s priorities just as quickly as a social feed. Decide whether it belongs inside or outside your protected window.</p>
+
+        <h2>Frequently asked questions</h2>
+        <div class="faq-list">
+          <details><summary>How long should I avoid my phone after waking?</summary><div>Start with thirty minutes or one clear morning milestone. The smallest boundary you keep is more useful than a long rule you immediately remove.</div></details>
+          <details><summary>Can I keep using my iPhone as an alarm?</summary><div>Yes. Place it outside arm’s reach, simplify the screen that appears after the alarm, and protect only the feed apps. Try a separate alarm only if the phone still starts the loop.</div></details>
+          <details><summary>Does Focus stop apps from opening?</summary><div>No. Focus silences selected notifications and can simplify your screens. Use Screen Time or a blocker when you need an access boundary.</div></details>
+          <details><summary>Can Twilock block apps in the morning?</summary><div>Yes. The Morning window is included with Twilock Pro and can protect selected apps or categories for up to two hours.</div></details>
+          <details><summary>What if I need my phone for work?</summary><div>Allow the exact communication, calendar, authentication, transportation, and work tools you need. Delay optional feeds rather than treating every app the same.</div></details>
+        </div>
+
+        <h2>Sources</h2>
+        <ul class="source-list">
+          <li><a href="https://support.apple.com/guide/iphone/set-up-a-focus-iphd6288a67f/ios">Apple guide to Focus</a> for notification controls, custom screens, schedules, and filters.</li>
+          <li><a href="https://support.apple.com/guide/iphone/set-schedules-with-screen-time-iphb0c7313c9/ios">Apple guide to Screen Time schedules</a> for Downtime, Block at Downtime, and Always Allowed.</li>
+          <li><a href="${appStoreUrl}">Twilock on the App Store</a> for current features, compatibility, and purchases.</li>
+        </ul>
+      </article>
+      ${articleAside("Twilock Pro includes a Morning window for the apps you want to delay while the day is still yours.")}
+    </div>`,
+  schema: [articleSchema(morningPhoneGuideRoute, "How to Stop Checking Your Phone First Thing in the Morning", "A practical iPhone guide to delaying morning feeds with fewer cues, a replacement routine, Focus, Screen Time, and Twilock.", newGuideIsoDate), breadcrumbSchema(morningPhoneGuideRoute, "Stop checking your phone first thing")],
 });
 
 const productReview = ({ name, bestFor, summary, advantages, drawbacks, choose }) => `
@@ -1031,7 +1358,7 @@ const build = async () => {
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${routes.map((route) => `  <url><loc>${canonicalFor(route)}</loc><lastmod>${isoDate}</lastmod></url>`).join("\n")}
+${pages.map((page) => `  <url><loc>${canonicalFor(page.route)}</loc><lastmod>${page.lastmod || isoDate}</lastmod></url>`).join("\n")}
 </urlset>\n`;
   await writeDeploymentFile("sitemap.xml", sitemap);
   await writeDeploymentFile("robots.txt", `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`);

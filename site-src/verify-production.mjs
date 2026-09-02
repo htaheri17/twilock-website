@@ -23,7 +23,7 @@ if (!robots.includes("Allow: /")) failures.push("robots.txt: missing Allow: /");
 if (!robots.includes(`Sitemap: ${origin}/sitemap.xml`)) failures.push("robots.txt: sitemap URL does not match the production origin");
 
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-if (sitemapUrls.length !== 10) failures.push(`sitemap.xml: expected 10 canonical URLs, found ${sitemapUrls.length}`);
+if (sitemapUrls.length !== 13) failures.push(`sitemap.xml: expected 13 canonical URLs, found ${sitemapUrls.length}`);
 
 const internalUrls = new Set([`${origin}/`, `${origin}/robots.txt`, `${origin}/sitemap.xml`]);
 for (const url of sitemapUrls) {
