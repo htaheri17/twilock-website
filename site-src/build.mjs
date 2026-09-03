@@ -11,6 +11,8 @@ const checkedDate = "August 31, 2026";
 const isoDate = "2026-08-31";
 const newGuideDate = "September 1, 2026";
 const newGuideIsoDate = "2026-09-01";
+const seoGuideDate = "September 2, 2026";
+const seoGuideIsoDate = "2026-09-02";
 const appStoreRatingCheckedDate = "September 2, 2026";
 const visibleDashPattern = /[-‐‑‒–—]/g;
 
@@ -40,6 +42,8 @@ const minifyJavaScript = (value) => value.replace(/\s+/g, " ").trim();
 
 const routes = [
   "",
+  "how-to-block-apps-on-iphone",
+  "how-to-limit-screen-time-on-iphone",
   "twilock-vs-opal",
   "block-social-media-at-night-iphone",
   "stop-doomscrolling-at-night-iphone",
@@ -108,7 +112,7 @@ const nav = (route) => {
         <nav class="desktop-nav" aria-label="Primary navigation">
           ${link("/#how-it-works", "How it works")}
           ${link("/twilock-vs-opal/", "Compare", ["twilock-vs-opal"])}
-          ${link("/best-nighttime-app-blockers/", "Guides", ["block-social-media-at-night-iphone", "stop-doomscrolling-at-night-iphone", "make-iphone-screen-time-harder-to-bypass", "stop-checking-phone-first-thing-morning", "best-nighttime-app-blockers", "best-strict-app-blockers-iphone", "best-screen-time-apps-iphone"])}
+          ${link("/best-nighttime-app-blockers/", "Guides", ["how-to-block-apps-on-iphone", "how-to-limit-screen-time-on-iphone", "block-social-media-at-night-iphone", "stop-doomscrolling-at-night-iphone", "make-iphone-screen-time-harder-to-bypass", "stop-checking-phone-first-thing-morning", "best-nighttime-app-blockers", "best-strict-app-blockers-iphone", "best-screen-time-apps-iphone"])}
           ${link("/about/", "About", ["about"])}
           ${appStoreButton(true)}
         </nav>
@@ -117,6 +121,8 @@ const nav = (route) => {
           <nav class="mobile-panel" aria-label="Mobile navigation">
             <a href="/#how-it-works">How it works</a>
             <a href="/twilock-vs-opal/">Twilock vs Opal</a>
+            <a href="/how-to-block-apps-on-iphone/">Block apps on iPhone</a>
+            <a href="/how-to-limit-screen-time-on-iphone/">Limit screen time on iPhone</a>
             <a href="/best-nighttime-app-blockers/">Nighttime blocker guide</a>
             <a href="/block-social-media-at-night-iphone/">Block social media at night</a>
             <a href="/stop-doomscrolling-at-night-iphone/">Stop doomscrolling at night</a>
@@ -142,7 +148,7 @@ const footer = () => `
           <p>A focused iPhone screen-time blocker for the hours before sleep and after waking.</p>
         </div>
         <div class="footer-column"><h2>Product</h2><a href="/#how-it-works">How it works</a><a href="/#strict-mode">Strict Mode</a><a href="/#pricing">Pricing</a><a href="${appStoreUrl}">App Store</a></div>
-        <div class="footer-column"><h2>Learn</h2><a href="/block-social-media-at-night-iphone/">Block social media at night</a><a href="/stop-doomscrolling-at-night-iphone/">Stop doomscrolling at night</a><a href="/make-iphone-screen-time-harder-to-bypass/">Strengthen Screen Time</a><a href="/stop-checking-phone-first-thing-morning/">Protect your morning</a><a href="/best-nighttime-app-blockers/">Nighttime app blockers</a><a href="/best-screen-time-apps-iphone/">Screen time apps</a></div>
+        <div class="footer-column"><h2>Learn</h2><a href="/how-to-block-apps-on-iphone/">Block apps on iPhone</a><a href="/how-to-limit-screen-time-on-iphone/">Limit screen time on iPhone</a><a href="/block-social-media-at-night-iphone/">Block social media at night</a><a href="/stop-doomscrolling-at-night-iphone/">Stop doomscrolling at night</a><a href="/make-iphone-screen-time-harder-to-bypass/">Strengthen Screen Time</a><a href="/stop-checking-phone-first-thing-morning/">Protect your morning</a><a href="/best-nighttime-app-blockers/">Nighttime app blockers</a><a href="/best-screen-time-apps-iphone/">Screen time apps</a></div>
         <div class="footer-column"><h2>Company</h2><a href="/about/">About</a><a href="/support/">Support</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div>
       </div>
       <div class="footer-bottom"><span>© <span data-current-year>2026</span> Twilock. Built by Hussain Taheri.</span><span>Twilock is not affiliated with Apple or the products compared on this site.</span></div>
@@ -336,6 +342,8 @@ const homeBody = `
     <div class="shell">
       <div class="section-heading"><span class="kicker">Practical guides</span><h2 id="guides-title">Choose a blocker with your real failure mode in mind.</h2><p>These guides compare scope, strictness, price, and platform fit using current official sources.</p></div>
       <div class="editorial-cards">
+        <a class="editorial-card" href="/how-to-block-apps-on-iphone/"><div><span class="card-type">iPhone setup</span><h3>How to block apps on iPhone</h3><p>Choose between App Limits, Downtime, and a focused blocker based on when and why you need access to stop.</p></div><span class="read-link">See the methods →</span></a>
+        <a class="editorial-card" href="/how-to-limit-screen-time-on-iphone/"><div><span class="card-type">Practical plan</span><h3>How to limit screen time on iPhone</h3><p>Use your activity report to build smaller daily limits that protect useful access and are easier to keep.</p></div><span class="read-link">Build your plan →</span></a>
         <a class="editorial-card" href="/block-social-media-at-night-iphone/"><div><span class="card-type">Practical guide</span><h3>How to block social media at night on iPhone</h3><p>A setup that keeps essential apps available and avoids an overly ambitious first schedule.</p></div><span class="read-link">Read the guide →</span></a>
         <a class="editorial-card" href="/twilock-vs-opal/"><div><span class="card-type">Honest comparison</span><h3>Twilock vs Opal</h3><p>Focused night-and-morning protection versus a broader, cross-platform attention system.</p></div><span class="read-link">Compare the apps →</span></a>
         <a class="editorial-card" href="/best-strict-app-blockers-iphone/"><div><span class="card-type">Category guide</span><h3>Strict app blockers for iPhone</h3><p>What “strict” actually means across Twilock, Opal, Jomo, one sec, ScreenZen, and Freedom.</p></div><span class="read-link">See the comparison →</span></a>
@@ -395,6 +403,229 @@ const pages = [
     schema: [softwareSchema],
   },
 ];
+
+const blockAppsGuideRoute = "how-to-block-apps-on-iphone";
+pages.push({
+  route: blockAppsGuideRoute,
+  title: "How to Block Apps on iPhone: 3 Practical Methods",
+  description: "Learn how to block selected apps on iPhone with App Limits, Downtime, or a focused app blocker while keeping essential apps available.",
+  type: "article",
+  lastmod: seoGuideIsoDate,
+  body: `
+    <header class="page-hero">
+      <div class="reading-shell">
+        ${breadcrumbs("Block apps on iPhone")}
+        <span class="eyebrow">Practical iPhone guide</span>
+        <h1>Block the iPhone apps that keep pulling you back</h1>
+        <p class="page-deck">The right method depends on whether you want a daily allowance, a scheduled break, or a boundary that is harder to reverse when temptation arrives.</p>
+        <div class="page-meta"><span>By Hussain Taheri</span><span>Published ${seoGuideDate}</span><span>9 minute read</span></div>
+      </div>
+    </header>
+    <div class="shell article-layout">
+      <article class="article-body">
+        <div class="direct-answer"><p><strong>Direct answer:</strong> Open Settings, choose Screen Time, and turn on App and Website Activity. Use App Limits when you want a daily allowance for selected apps. Use Downtime when you want most apps unavailable during a schedule. Use a focused blocker when you need a clearer routine or stronger commitment. Always review essential access before making a block strict.</p></div>
+
+        <h2>Choose the method that matches your goal</h2>
+        <div class="comparison-table-wrap" tabindex="0" role="region" aria-label="Ways to block apps on iPhone">
+          <table class="comparison-table">
+            <caption>Three useful ways to control app access</caption>
+            <thead><tr><th scope="col">Your goal</th><th scope="col">Best starting method</th><th scope="col">What it does</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Limit time in one app</th><td>App Limits</td><td>Sets a daily allowance for selected apps or categories</td></tr>
+              <tr><th scope="row">Make most apps unavailable at set times</th><td>Downtime</td><td>Uses a recurring schedule with chosen apps always available</td></tr>
+              <tr><th scope="row">Protect a specific habit window</th><td>A focused blocker</td><td>Creates a purpose built routine around the apps and times you choose</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Method 1: block selected apps with App Limits</h2>
+        <p>App Limits is the simplest Apple setting when you want to control a few apps without changing the rest of your iPhone.</p>
+        <ol>
+          <li>Open <strong>Settings</strong> and choose <strong>Screen Time</strong>.</li>
+          <li>Choose <strong>App and Website Activity</strong> and turn it on if needed.</li>
+          <li>Choose <strong>App Limits</strong>, then choose <strong>Add Limit</strong>.</li>
+          <li>Open a category to select individual apps, or select a whole category.</li>
+          <li>Choose <strong>Next</strong> and set the daily allowance.</li>
+          <li>Use <strong>Customize Days</strong> if weekends need a different allowance.</li>
+          <li>Save the limit and test what happens when the allowance ends.</li>
+        </ol>
+        <p>If several apps share one combined allowance, remember that time used in any selected app can reduce the time remaining for the group. Separate limits are easier to understand when the apps serve different purposes.</p>
+
+        <h2>Method 2: schedule a broader block with Downtime</h2>
+        <p>Downtime is better when the issue happens during a predictable period such as bedtime, class, or a morning routine.</p>
+        <ol>
+          <li>Open <strong>Settings</strong>, choose <strong>Screen Time</strong>, then choose <strong>Downtime</strong>.</li>
+          <li>Choose <strong>Scheduled</strong>.</li>
+          <li>Select <strong>Every Day</strong> or customize each day.</li>
+          <li>Set the start and end times.</li>
+          <li>Turn on blocking during Downtime if you do not want the schedule to behave like an optional reminder.</li>
+          <li>Open <strong>Always Allowed</strong> and confirm that calls, messages, maps, health tools, transportation, and authentication remain available when needed.</li>
+        </ol>
+        <div class="callout"><p>Test a new Downtime schedule while you are awake and calm. Open every app you may genuinely need before relying on the schedule overnight or away from home.</p></div>
+
+        <h2>Method 3: use a focused app blocker</h2>
+        <p>A dedicated blocker can make the boundary easier to understand. Different apps solve different problems, so choose the smallest system that matches yours.</p>
+        <p>Twilock is designed for unwanted scrolling near sleep. Its free Night window shields the apps or categories you choose for up to two hours. Twilock Pro adds a Morning window and Strict Mode. It is not an all day blocker, website blocker, parental control service, or emergency tool.</p>
+        <ol>
+          <li>Choose only the apps that begin the unwanted loop.</li>
+          <li>Set a short window before the time you usually open them.</li>
+          <li>Run the schedule normally for several days.</li>
+          <li>Confirm that every essential app is outside the blocked selection.</li>
+          <li>Add stronger commitment only if changing the rule is the loophole that remains.</li>
+        </ol>
+        <p>If you need work sessions, website blocking, broad schedules, or several devices, read the <a href="/best-screen-time-apps-iphone/">screen time app comparison</a> before choosing a tool.</p>
+
+        <h2>Why an app may still open after you set a limit</h2>
+        <h3>The setting is acting as a reminder</h3>
+        <p>Apple notes that Screen Time limits can be ignored by default. Review the blocking setting for Downtime and consider locking Screen Time settings if an easy override defeats the purpose.</p>
+        <h3>The wrong app or category was selected</h3>
+        <p>Categories can contain more or fewer apps than expected. Open the category and verify the individual apps instead of assuming the group matches your intention.</p>
+        <h3>The schedule starts after the habit begins</h3>
+        <p>A block that begins at midnight cannot interrupt a scroll that usually starts at ten thirty. Start the boundary before the first automatic check.</p>
+        <h3>The rule is too broad to trust</h3>
+        <p>If one necessary app is blocked, removing the entire rule becomes reasonable. Narrow the selection before increasing strictness.</p>
+
+        <h2>A safe first setup</h2>
+        <ol>
+          <li>Select one or two distracting apps.</li>
+          <li>Choose a thirty minute allowance or schedule.</li>
+          <li>Keep essential communication and safety tools available.</li>
+          <li>Test the rule before making it difficult to change.</li>
+          <li>Review the result after three days and change only one weak point.</li>
+        </ol>
+        <p>This smaller setup gives you useful evidence. You will learn whether the issue is total time, a specific part of the day, an easy override, or simply seeing the app icon.</p>
+
+        <h2>Frequently asked questions</h2>
+        <div class="faq-list">
+          <details><summary>Can I completely block an app on iPhone?</summary><div>Downtime can make apps unavailable during a schedule, while App Limits control daily use. The exact strength depends on your Screen Time settings and whether you can change them. Test the setup before relying on it.</div></details>
+          <details><summary>Can I block only one app?</summary><div>Yes. In App Limits, open the relevant category and select the individual app. Dedicated blockers can also let you choose individual apps through Apple Screen Time controls.</div></details>
+          <details><summary>Can I block apps at certain times?</summary><div>Yes. Downtime supports a recurring schedule. Dedicated blockers can also provide scheduled windows with different levels of commitment.</div></details>
+          <details><summary>Can I keep Phone and Messages available?</summary><div>Yes. Review Always Allowed in Screen Time, or leave essential apps outside the selection in a dedicated blocker. Always test urgent access before making a rule strict.</div></details>
+          <details><summary>Does Twilock block apps all day?</summary><div>No. Twilock focuses on Night and Morning windows, each capped at two hours. Choose a broader tool if you need workday or all day schedules.</div></details>
+        </div>
+
+        <h2>Sources</h2>
+        <ul class="source-list">
+          <li><a href="https://support.apple.com/guide/iphone/set-schedules-with-screen-time-iphb0c7313c9/ios">Apple guide to Screen Time schedules</a> for Downtime, App Limits, and Always Allowed.</li>
+          <li><a href="https://support.apple.com/guide/iphone/get-started-with-screen-time-iphbfa595995/ios">Apple introduction to Screen Time</a> for activity reports and setup.</li>
+          <li><a href="${appStoreUrl}">Twilock on the App Store</a> for current features, compatibility, and purchases.</li>
+        </ul>
+      </article>
+      ${articleAside("Twilock provides a free Night window for selected apps, with a Morning window and Strict Mode on Pro.")}
+    </div>`,
+  schema: [articleSchema(blockAppsGuideRoute, "How to Block Apps on iPhone", "A practical guide to blocking selected iPhone apps with App Limits, Downtime, or a focused blocker while preserving essential access.", seoGuideIsoDate), breadcrumbSchema(blockAppsGuideRoute, "Block apps on iPhone")],
+});
+
+const limitScreenTimeGuideRoute = "how-to-limit-screen-time-on-iphone";
+pages.push({
+  route: limitScreenTimeGuideRoute,
+  title: "How to Limit Screen Time on iPhone Without Overdoing It",
+  description: "Use iPhone Screen Time reports, App Limits, Downtime, Focus, and a realistic seven day plan to reduce distracting use without blocking essentials.",
+  type: "article",
+  lastmod: seoGuideIsoDate,
+  body: `
+    <header class="page-hero">
+      <div class="reading-shell">
+        ${breadcrumbs("Limit screen time on iPhone")}
+        <span class="eyebrow">Practical screen time plan</span>
+        <h1>Limit iPhone screen time with a plan you can keep</h1>
+        <p class="page-deck">Start with the apps and moments that create the most unwanted time. A smaller limit that survives the week is more useful than a perfect system you remove tomorrow.</p>
+        <div class="page-meta"><span>By Hussain Taheri</span><span>Published ${seoGuideDate}</span><span>10 minute read</span></div>
+      </div>
+    </header>
+    <div class="shell article-layout">
+      <article class="article-body">
+        <div class="direct-answer"><p><strong>Direct answer:</strong> Turn on App and Website Activity in Settings, then use the Screen Time report to find the apps, pickups, and hours you want to change. Set one realistic App Limit, create Downtime only for a predictable problem period, reduce the notifications that start automatic checks, and review the result after seven days.</p></div>
+
+        <h2>Measure the part you actually want to change</h2>
+        <p>Total screen time mixes together navigation, music, school, work, communication, and scrolling. Reducing the total number without understanding it can punish useful activity while leaving the habit that bothers you untouched.</p>
+        <ol>
+          <li>Open <strong>Settings</strong> and choose <strong>Screen Time</strong>.</li>
+          <li>Turn on <strong>App and Website Activity</strong> if it is not already active.</li>
+          <li>Open the activity summary and review the last seven days.</li>
+          <li>Note the top distracting apps, the busiest hours, pickup patterns, and notification sources.</li>
+          <li>Choose one behavior to change, such as social feeds after ten or video during study time.</li>
+        </ol>
+        <div class="callout"><p>A clear target sounds like “reduce social feeds after ten” rather than “be on my phone less.” The clearer target tells you which setting to use.</p></div>
+
+        <h2>Use App Limits for daily allowances</h2>
+        <p>App Limits work best when the problem is how long you spend in an app across the day.</p>
+        <ol>
+          <li>Go to <strong>Settings</strong>, then <strong>Screen Time</strong>.</li>
+          <li>Choose <strong>App Limits</strong> and <strong>Add Limit</strong>.</li>
+          <li>Select an app or category.</li>
+          <li>Set a limit that is lower than current use but still realistic.</li>
+          <li>Customize days when your weekday and weekend needs differ.</li>
+        </ol>
+        <p>Do not cut a three hour pattern to ten minutes on the first day. A sudden limit can make the setting feel unreasonable, which makes ignoring or removing it easier to justify.</p>
+
+        <h2>Use Downtime for predictable periods</h2>
+        <p>Downtime is useful when distracting use clusters around bedtime, meals, class, or a morning routine. During Downtime, only calls, messages, and the apps you choose to allow remain available.</p>
+        <ol>
+          <li>Open <strong>Screen Time</strong> and choose <strong>Downtime</strong>.</li>
+          <li>Choose a daily schedule or customize each day.</li>
+          <li>Start the schedule before the unwanted behavior usually begins.</li>
+          <li>Review <strong>Always Allowed</strong> carefully.</li>
+          <li>Turn on blocking during Downtime if you want more than a reminder.</li>
+        </ol>
+        <p>For detailed instructions about selected apps, see <a href="/how-to-block-apps-on-iphone/">how to block apps on iPhone</a>. If nighttime social feeds are the specific problem, use the <a href="/block-social-media-at-night-iphone/">nighttime social media guide</a>.</p>
+
+        <h2>Use Focus to reduce invitations to check</h2>
+        <p>Focus manages interruptions and presentation. It can silence notifications, limit which people and apps can interrupt you, and show a simpler Home Screen or Lock Screen. It does not by itself stop an app from opening.</p>
+        <p>Pair Focus with an App Limit or Downtime when notifications begin the loop but access keeps it going. Remove distracting widgets and move feed apps away from the first Home Screen page so the phone asks less often.</p>
+
+        <h2>Add a focused blocker only when it fits the moment</h2>
+        <p>A dedicated blocker can be useful when Apple Screen Time feels too broad, too easy to change, or disconnected from the routine you want to protect.</p>
+        <p>Twilock is built for unwanted scrolling around sleep. The free tier includes a Night window. Pro adds a Morning window and Strict Mode. Each window is capped at two hours, so Twilock is not designed to control an entire workday. That narrow scope is useful when night and morning are the real problem, and limiting when they are not.</p>
+
+        <h2>A seven day screen time plan</h2>
+        <div class="comparison-table-wrap" tabindex="0" role="region" aria-label="Seven day iPhone screen time plan">
+          <table class="comparison-table">
+            <caption>Change one layer at a time</caption>
+            <thead><tr><th scope="col">Day</th><th scope="col">Action</th><th scope="col">What to learn</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Day 1</th><td>Review the activity report and choose one target.</td><td>Which app and time create the unwanted use?</td></tr>
+              <tr><th scope="row">Day 2</th><td>Silence nonessential notifications from the target apps.</td><td>How often did a notification begin the check?</td></tr>
+              <tr><th scope="row">Day 3</th><td>Create one realistic App Limit.</td><td>Was the allowance useful or arbitrary?</td></tr>
+              <tr><th scope="row">Day 4</th><td>Add Downtime only if the problem has a predictable window.</td><td>Did the schedule begin early enough?</td></tr>
+              <tr><th scope="row">Day 5</th><td>Review Always Allowed and test essential access.</td><td>Can you trust the rule when you need your phone?</td></tr>
+              <tr><th scope="row">Day 6</th><td>Keep every setting unchanged.</td><td>Which loophole remains after the novelty fades?</td></tr>
+              <tr><th scope="row">Day 7</th><td>Review the report and adjust one setting.</td><td>What is the smallest change that would help next week?</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Common mistakes</h2>
+        <h3>Using total screen time as the only goal</h3>
+        <p>The total may stay high because you used Maps, read, called family, or worked. Judge the behavior you chose, not only the headline number.</p>
+        <h3>Blocking tools you genuinely need</h3>
+        <p>A rule that blocks transportation, authentication, health, or urgent communication is difficult to trust. Keep essential access explicit.</p>
+        <h3>Changing every setting at once</h3>
+        <p>If notifications, limits, Downtime, app placement, and strict controls all change together, you will not know which part helped or failed.</p>
+        <h3>Moving the same habit to another screen</h3>
+        <p>If the behavior moves to an iPad, computer, or browser, decide whether you need device wide support instead of adding more iPhone rules.</p>
+
+        <h2>Frequently asked questions</h2>
+        <div class="faq-list">
+          <details><summary>What is a healthy amount of screen time?</summary><div>There is no single useful number for every adult because work, navigation, reading, communication, and entertainment differ. Focus on whether specific use is displacing sleep, responsibilities, relationships, or activities you value. Seek qualified help if use feels unmanageable or causes serious distress.</div></details>
+          <details><summary>Can iPhone limit one app each day?</summary><div>Yes. App Limits can set a daily allowance for an individual app. Open the category to select the exact app, then customize days if needed.</div></details>
+          <details><summary>Can I use different limits on weekends?</summary><div>Yes. App Limits and Downtime support customized days, so weekends can have different amounts or schedules.</div></details>
+          <details><summary>Does Focus reduce screen time?</summary><div>Focus can reduce notifications and visual cues, but it does not block an app from opening. Pair it with Screen Time or a dedicated blocker when access is the main problem.</div></details>
+          <details><summary>Should I use a strict blocker immediately?</summary><div>No. First test the apps, times, and emergency access. Add strictness only after the basic rule fits your life and easy overrides are the remaining problem.</div></details>
+        </div>
+
+        <h2>Sources</h2>
+        <ul class="source-list">
+          <li><a href="https://support.apple.com/guide/iphone/get-started-with-screen-time-iphbfa595995/ios">Apple introduction to Screen Time</a> for setup, activity reports, pickups, and notifications.</li>
+          <li><a href="https://support.apple.com/guide/iphone/set-schedules-with-screen-time-iphb0c7313c9/ios">Apple guide to Screen Time schedules</a> for Downtime, App Limits, and Always Allowed.</li>
+          <li><a href="https://support.apple.com/guide/iphone/set-up-a-focus-iphd6288a67f/ios">Apple guide to Focus</a> for notification controls and schedules.</li>
+          <li><a href="${appStoreUrl}">Twilock on the App Store</a> for current features, compatibility, and purchases.</li>
+        </ul>
+      </article>
+      ${articleAside("Twilock focuses on a free Night window, with a Morning window and Strict Mode available on Pro.")}
+    </div>`,
+  schema: [articleSchema(limitScreenTimeGuideRoute, "How to Limit Screen Time on iPhone", "A practical guide to using Screen Time reports, App Limits, Downtime, Focus, and a realistic seven day plan.", seoGuideIsoDate), breadcrumbSchema(limitScreenTimeGuideRoute, "Limit screen time on iPhone")],
+});
 
 const twilockVsOpalRoute = "twilock-vs-opal";
 pages.push({
@@ -1380,7 +1611,7 @@ ${pages.map((page) => `  <url><loc>${canonicalFor(page.route)}</loc><lastmod>${p
 </urlset>\n`;
   await writeDeploymentFile("sitemap.xml", sitemap);
   await writeDeploymentFile("robots.txt", `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`);
-  await writeDeploymentFile("llms.txt", `# Twilock\n\n> Twilock is a focused iPhone screen time blocker for the hours before sleep and after waking.\n\n## Product\n\n- [Twilock homepage](${siteUrl}/): Product scope, privacy summary, pricing, and App Store access.\n- [Twilock versus Opal](${siteUrl}/twilock-vs-opal/): Source checked comparison of product scope, strictness, platforms, and price.\n- [About Twilock](${siteUrl}/about/): Founder, purpose, and product principles.\n- [Support](${siteUrl}/support/): Product help, purchases, account deletion, and contact options.\n\n## Practical guides\n\n- [Block social media at night on iPhone](${siteUrl}/block-social-media-at-night-iphone/)\n- [Stop doomscrolling at night on iPhone](${siteUrl}/stop-doomscrolling-at-night-iphone/)\n- [Make iPhone Screen Time harder to bypass](${siteUrl}/make-iphone-screen-time-harder-to-bypass/)\n- [Stop checking your phone first thing in the morning](${siteUrl}/stop-checking-phone-first-thing-morning/)\n\n## Comparisons\n\n- [Best nighttime app blockers for iPhone](${siteUrl}/best-nighttime-app-blockers/)\n- [Best strict app blockers for iPhone](${siteUrl}/best-strict-app-blockers-iphone/)\n- [Best screen time apps for iPhone](${siteUrl}/best-screen-time-apps-iphone/)\n\n## Policies\n\n- [Privacy policy](${siteUrl}/privacy/)\n- [Terms of use](${siteUrl}/terms/)\n\nAll product and comparison claims should be checked against the linked page and its dated sources.\n`);
+  await writeDeploymentFile("llms.txt", `# Twilock\n\n> Twilock is a focused iPhone screen time blocker for the hours before sleep and after waking.\n\n## Product\n\n- [Twilock homepage](${siteUrl}/): Product scope, privacy summary, pricing, and App Store access.\n- [Twilock versus Opal](${siteUrl}/twilock-vs-opal/): Source checked comparison of product scope, strictness, platforms, and price.\n- [About Twilock](${siteUrl}/about/): Founder, purpose, and product principles.\n- [Support](${siteUrl}/support/): Product help, purchases, account deletion, and contact options.\n\n## Practical guides\n\n- [Block apps on iPhone](${siteUrl}/how-to-block-apps-on-iphone/)\n- [Limit screen time on iPhone](${siteUrl}/how-to-limit-screen-time-on-iphone/)\n- [Block social media at night on iPhone](${siteUrl}/block-social-media-at-night-iphone/)\n- [Stop doomscrolling at night on iPhone](${siteUrl}/stop-doomscrolling-at-night-iphone/)\n- [Make iPhone Screen Time harder to bypass](${siteUrl}/make-iphone-screen-time-harder-to-bypass/)\n- [Stop checking your phone first thing in the morning](${siteUrl}/stop-checking-phone-first-thing-morning/)\n\n## Comparisons\n\n- [Best nighttime app blockers for iPhone](${siteUrl}/best-nighttime-app-blockers/)\n- [Best strict app blockers for iPhone](${siteUrl}/best-strict-app-blockers-iphone/)\n- [Best screen time apps for iPhone](${siteUrl}/best-screen-time-apps-iphone/)\n\n## Policies\n\n- [Privacy policy](${siteUrl}/privacy/)\n- [Terms of use](${siteUrl}/terms/)\n\nAll product and comparison claims should be checked against the linked page and its dated sources.\n`);
   await writeDeploymentFile("humans.txt", "Twilock is designed and built by Hussain Taheri.\nWebsite last verified: August 31, 2026.\n");
 
   const notFound = renderPage({
