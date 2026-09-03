@@ -10,6 +10,7 @@ const required = [
   "index.html",
   "how-to-block-apps-on-iphone/index.html",
   "how-to-limit-screen-time-on-iphone/index.html",
+  "app-limits-not-working-iphone/index.html",
   "twilock-vs-opal/index.html",
   "block-social-media-at-night-iphone/index.html",
   "stop-doomscrolling-at-night-iphone/index.html",
@@ -154,7 +155,7 @@ const sitemap = await readFile(path.join(projectDir, "sitemap.xml"), "utf8");
 for (const canonical of canonicals.keys()) {
   if (!sitemap.includes(`<loc>${canonical}</loc>`)) fail(`sitemap.xml: missing ${canonical}`);
 }
-if ((sitemap.match(/<url>/g) || []).length !== 15) fail("sitemap.xml: expected 15 URLs");
+if ((sitemap.match(/<url>/g) || []).length !== 16) fail("sitemap.xml: expected 16 URLs");
 
 const robots = await readFile(path.join(projectDir, "robots.txt"), "utf8");
 if (!robots.includes("Allow: /") || !robots.includes("Sitemap: https://twilock.com/sitemap.xml")) fail("robots.txt: crawl or sitemap directive is incorrect");

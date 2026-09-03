@@ -13,6 +13,7 @@
 
 - [Block apps on iPhone](https://twilock.com/how-to-block-apps-on-iphone/)
 - [Limit screen time on iPhone](https://twilock.com/how-to-limit-screen-time-on-iphone/)
+- [Fix App Limits on iPhone](https://twilock.com/app-limits-not-working-iphone/)
 - [Block social media at night on iPhone](https://twilock.com/block-social-media-at-night-iphone/)
 - [Stop doomscrolling at night on iPhone](https://twilock.com/stop-doomscrolling-at-night-iphone/)
 - [Make iPhone Screen Time harder to bypass](https://twilock.com/make-iphone-screen-time-harder-to-bypass/)
