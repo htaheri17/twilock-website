@@ -25,7 +25,7 @@ if (!robots.includes(`Sitemap: ${origin}/sitemap.xml`)) failures.push("robots.tx
 if (!llms.startsWith("# Twilock\n")) failures.push("llms.txt: expected Twilock heading is missing");
 
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-if (sitemapUrls.length !== 13) failures.push(`sitemap.xml: expected 13 canonical URLs, found ${sitemapUrls.length}`);
+if (sitemapUrls.length !== 15) failures.push(`sitemap.xml: expected 15 canonical URLs, found ${sitemapUrls.length}`);
 
 const internalUrls = new Set([`${origin}/`, `${origin}/robots.txt`, `${origin}/sitemap.xml`]);
 for (const url of sitemapUrls) {
