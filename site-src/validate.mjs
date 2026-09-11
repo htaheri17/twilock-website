@@ -30,7 +30,7 @@ const required = [
   "site.webmanifest",
   "assets/site.css",
   "assets/site.js",
-  "assets/twilock-icon.png",
+  "assets/twilock-icon-2026.png",
 ];
 
 const failures = [];
@@ -94,7 +94,7 @@ for (const relative of htmlFiles) {
   for (const match of html.matchAll(/<img\b([^>]+)>/g)) {
     const attrs = match[1];
     const src = attrs.match(/src="([^"]+)"/)?.[1];
-    if (src !== "/assets/twilock-icon.png") fail(`${label}: unapproved image source ${src || "missing"}`);
+    if (src !== "/assets/twilock-icon-2026.png") fail(`${label}: unapproved image source ${src || "missing"}`);
     if (!/\bwidth="\d+"/.test(attrs) || !/\bheight="\d+"/.test(attrs)) fail(`${label}: image missing intrinsic dimensions`);
     if (!/\balt="[^"]*"/.test(attrs)) fail(`${label}: image missing alt text`);
   }
