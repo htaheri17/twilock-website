@@ -1593,13 +1593,13 @@ pages.push({
         ${breadcrumbs("Privacy Policy")}
         <span class="eyebrow">Legal</span>
         <h1>How Twilock protects your privacy</h1>
-        <p class="page-deck">Last updated: August 8, 2026</p>
+        <p class="page-deck">Last updated: September 10, 2026</p>
       </div>
     </header>
     <div class="shell article-layout">
       <article class="article-body">
         <p>Twilock ("we," "us," or "the app") helps you stop doomscrolling during your chosen night and morning windows. We built Twilock to protect your attention, and we take the same care with your privacy. This policy explains what data the app handles, why, and the choices you have.</p>
-        <div class="direct-answer"><p><strong>Our core principle:</strong> your Screen Time and app usage data never leaves your device. We do not sell your data, we do not use it for advertising, and we do not share it with data brokers.</p></div>
+        <div class="direct-answer"><p><strong>Our core principle:</strong> your Screen Time and app usage data never leaves your device. We do not sell your data, use your Screen Time data for advertising, or share it with data brokers.</p></div>
 
         <section><h2>Data that stays only on your device</h2><ul>
           <li><strong>Screen Time &amp; app usage data.</strong> Twilock uses Apple's Family Controls / Screen Time framework to shield the apps you select during your no scroll windows. This usage data is processed entirely on your device and is <strong>never uploaded to us or anyone else</strong>. We cannot see which apps you use or how long you use them.</li>
@@ -1615,16 +1615,19 @@ pages.push({
 
         <section><h2>Product analytics</h2><p>We use PostHog to understand how the app is used overall, for example how many people complete onboarding, which screens are visited, whether a purchase was made, and when streak features are used, such as a badge being earned, a Streak Freeze consumed, Streak Repair used, a Snooze Token redeemed, Strict Mode turned on or off, or a window postponed. These events do not include which apps you shield, your Screen Time or app usage data, your check ins, or your no scroll window settings, all of which stay on your device as described above. Analytics events are tied to an anonymous identifier rather than your name or email, and we do not use them for advertising or share them with advertisers or data brokers.</p></section>
 
-        <section><h2>Purchases</h2><p>Subscriptions and the lifetime purchase are processed by <strong>Apple</strong>. We use <strong>RevenueCat</strong> to verify your purchase and manage your subscription status, this involves RevenueCat processing your purchase/transaction history to confirm your entitlement. We do not receive or store your payment card details; Apple handles all billing.</p></section>
+        <section><h2>Advertising attribution and your tracking choice</h2><p>Twilock does not display third party ads. We use the Meta SDK and RevenueCat attribution to understand whether our own App Promotion advertising leads to installs, trials, or purchases. After onboarding, Apple may show its App Tracking Transparency prompt. Only if you choose <strong>Allow</strong>, Twilock may send device identifiers such as IDFA (when available), IDFV, IP address, and a Meta anonymous identifier to RevenueCat and Meta so those companies can match an install or purchase to an advertising campaign. Apple defines this kind of advertising measurement as tracking across apps and websites.</p><p>If you choose <strong>Ask App Not to Track</strong>, these attribution identifiers are not collected for this purpose and no Twilock feature is removed. You can change the permission later in your device's Privacy &amp; Security settings. Your Screen Time data, selected apps, app usage, no scroll windows, and check ins are never included in advertising attribution.</p></section>
 
-        <section><h2>What we do NOT do</h2><ul><li>We do not sell or rent your personal data.</li><li>We do not use your Screen Time or usage data for advertising or advertising measurement, and we do not share it with any data broker.</li><li>We do not track you across other apps or websites.</li></ul></section>
+        <section><h2>Purchases</h2><p>Subscriptions and the lifetime purchase are processed by <strong>Apple</strong>. We use <strong>RevenueCat</strong> to verify your purchase and manage your subscription status, this involves RevenueCat processing your purchase/transaction history to confirm your entitlement. If you allow tracking, RevenueCat also processes the attribution identifiers described above. We do not receive or store your payment card details; Apple handles all billing.</p></section>
+
+        <section><h2>What we do NOT do</h2><ul><li>We do not sell or rent your personal data.</li><li>We do not use your Screen Time or usage data for advertising or advertising measurement, and we do not share it with any data broker.</li><li>We do not display third party ads.</li><li>We do not collect advertising attribution identifiers unless you allow tracking through Apple's prompt.</li></ul></section>
 
         <section><h2>Third party services</h2><ul>
           <li><strong>Apple:</strong> Sign in with Apple, Screen Time / Family Controls, and in app purchases. See Apple's Privacy Policy.</li>
           <li><strong>Google:</strong> Sign in with Google, if you choose that option. Google receives your request to authenticate and returns an identity token confirming who you are; see Google's Privacy Policy.</li>
           <li><strong>Supabase:</strong> stores your account, profile, progress (including your day by day no scroll history), and friend connections for the social features.</li>
-          <li><strong>RevenueCat:</strong> manages your subscription status.</li>
+          <li><strong>RevenueCat:</strong> manages your subscription status and, only when you allow tracking, processes device identifiers for advertising attribution.</li>
           <li><strong>PostHog:</strong> processes anonymous product analytics events, such as app opens and onboarding completion, to help us understand usage and improve the app.</li>
+          <li><strong>Meta:</strong> only when you allow tracking, receives advertising attribution identifiers and purchase events so we can measure our own App Promotion campaigns.</li>
         </ul></section>
 
         <section><h2>Data retention &amp; deletion</h2><p>You can delete your account and all associated server side data at any time from <strong>Settings → Delete Account</strong> inside the app. This permanently removes your profile, progress, and friend connections from our servers. Data stored only on your device is removed when you delete the app.</p></section>
@@ -1639,7 +1642,7 @@ pages.push({
       </article>
       <aside class="article-aside"><div><h2>Need help?</h2><p>For product support, bug reports, or account-deletion help, visit Twilock Support.</p></div><a class="text-link" href="/support/">Open support</a></aside>
     </div>`,
-  schema: [breadcrumbSchema("privacy", "Privacy Policy"), { "@type": "WebPage", name: "Twilock Privacy Policy", url: `${siteUrl}/privacy/`, dateModified: "2026-08-08" }],
+  schema: [breadcrumbSchema("privacy", "Privacy Policy"), { "@type": "WebPage", name: "Twilock Privacy Policy", url: `${siteUrl}/privacy/`, dateModified: "2026-09-10" }],
 });
 
 pages.push({
