@@ -31,6 +31,7 @@ const required = [
   "assets/site.css",
   "assets/site.js",
   "assets/twilock-icon-2026.png",
+  "assets/twilock-favicon.png",
 ];
 
 const failures = [];

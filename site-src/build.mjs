@@ -189,7 +189,7 @@ const renderPage = ({ route, title, description, body, type = "website", schema 
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="apple-itunes-app" content="app-id=6786474238">
   <link rel="canonical" href="${canonical}">
-  <link rel="icon" href="/assets/twilock-icon-2026.png" type="image/png">
+  <link rel="icon" href="/assets/twilock-favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/twilock-icon-2026.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="stylesheet" href="/assets/site.css">
@@ -1572,7 +1572,7 @@ pages.push({
           <h3>I need access during Strict Mode</h3>
           <p>Use the recovery path shown inside Twilock. Support cannot remotely bypass an active iPhone Screen Time shield.</p>
           <h3>Privacy questions</h3>
-          <p>Read the <a href="/privacy/">Twilock Privacy Policy</a>. Questions about privacy or your data can also be sent to <a href="mailto:hussaint786@icloud.com">hussaint786@icloud.com</a>, the address in the published policy.</p>
+          <p>Read the <a href="/privacy/">Twilock Privacy Policy</a>. Questions about privacy or your data can also be sent to <a href="mailto:twilockapp@gmail.com">twilockapp@gmail.com</a>, the address in the published policy.</p>
           <h3>Billing and refunds</h3>
           <p>Apple processes Twilock purchases. Use <a href="https://reportaproblem.apple.com/">Apple’s Report a Problem service</a> for refund requests.</p>
           <div class="final-cta"><span class="kicker">Still stuck?</span><h2>Email Twilock support.</h2><p>Tell us what happened and we will help you work through it.</p><a class="app-store-button" href="mailto:twilockapp@gmail.com"><span class="store-copy"><small>Contact</small><strong>twilockapp@gmail.com</strong></span></a></div>
@@ -1636,7 +1636,7 @@ pages.push({
 
         <section><h2>Changes to this policy</h2><p>We may update this policy from time to time. Material changes will be reflected here with an updated date.</p></section>
 
-        <section><h2>Contact</h2><p>Questions about this policy or your data? Contact us at <a href="mailto:hussaint786@icloud.com">hussaint786@icloud.com</a>.</p></section>
+        <section><h2>Contact</h2><p>Questions about this policy or your data? Contact us at <a href="mailto:twilockapp@gmail.com">twilockapp@gmail.com</a>.</p></section>
 
         <p class="quiet">Twilock is operated by Hussain Taheri. This document reflects Twilock's actual data practices as of the date above. It is not legal advice; if you have specific compliance obligations (e.g. GDPR, CCPA) beyond what's described here, have it reviewed by counsel.</p>
       </article>
@@ -1704,6 +1704,7 @@ const build = async () => {
   await writeDeploymentFile("assets/site.js", `${js}\n`);
   await mkdir(path.join(distDir, "assets"), { recursive: true });
   await copyFile(path.join(projectDir, "assets/twilock-icon-2026.png"), path.join(distDir, "assets/twilock-icon-2026.png"));
+  await copyFile(path.join(projectDir, "assets/twilock-favicon.png"), path.join(distDir, "assets/twilock-favicon.png"));
 
   const manifest = {
     name: "Twilock: Screen Time Blocker",
