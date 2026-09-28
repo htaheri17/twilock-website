@@ -1535,7 +1535,7 @@ pages.push({
         </div>
 
         <h2>Built in Gainesville, used wherever the night scroll begins</h2>
-        <p>Hussain studies computer science at the University of Florida and builds Twilock independently. Product questions, bug reports, and honest feedback are welcome at <a href="mailto:twilockapp@gmail.com">twilockapp@gmail.com</a>.</p>
+        <p>Hussain studies computer science at the University of Florida and builds Twilock independently. Product questions, bug reports, and honest feedback are welcome at <a href="mailto:support@twilock.com">support@twilock.com</a>.</p>
         <div class="callout"><p>If Twilock is too narrow for your needs, our comparison guides say so. The point is to help you choose a boundary you can live with—not to turn every screen-time problem into a Twilock-shaped one.</p></div>
       </article>
       ${articleAside("Twilock is an independent iPhone app built around one clear job: protect the hours before sleep and after waking.")}
@@ -1553,7 +1553,7 @@ pages.push({
         ${breadcrumbs("Support")}
         <span class="eyebrow">Twilock support</span>
         <h1>Help when the shield or schedule does not behave as expected.</h1>
-        <p class="page-deck">Email <a href="mailto:twilockapp@gmail.com">twilockapp@gmail.com</a> for help, bug reports, or feedback. We aim to reply within a few days.</p>
+        <p class="page-deck">Email <a href="mailto:support@twilock.com">support@twilock.com</a> for help, bug reports, or feedback. We aim to reply within a few days.</p>
       </div>
     </header>
     <div class="reading-shell">
@@ -1572,14 +1572,14 @@ pages.push({
           <h3>I need access during Strict Mode</h3>
           <p>Use the recovery path shown inside Twilock. Support cannot remotely bypass an active iPhone Screen Time shield.</p>
           <h3>Privacy questions</h3>
-          <p>Read the <a href="/privacy/">Twilock Privacy Policy</a>. Questions about privacy or your data can also be sent to <a href="mailto:twilockapp@gmail.com">twilockapp@gmail.com</a>, the address in the published policy.</p>
+          <p>Read the <a href="/privacy/">Twilock Privacy Policy</a>. Questions about privacy or your data can also be sent to <a href="mailto:support@twilock.com">support@twilock.com</a>, the address in the published policy.</p>
           <h3>Billing and refunds</h3>
           <p>Apple processes Twilock purchases. Use <a href="https://reportaproblem.apple.com/">Apple’s Report a Problem service</a> for refund requests.</p>
-          <div class="final-cta"><span class="kicker">Still stuck?</span><h2>Email Twilock support.</h2><p>Tell us what happened and we will help you work through it.</p><a class="app-store-button" href="mailto:twilockapp@gmail.com"><span class="store-copy"><small>Contact</small><strong>twilockapp@gmail.com</strong></span></a></div>
+          <div class="final-cta"><span class="kicker">Still stuck?</span><h2>Email Twilock support.</h2><p>Tell us what happened and we will help you work through it.</p><a class="app-store-button" href="mailto:support@twilock.com"><span class="store-copy"><small>Contact</small><strong>support@twilock.com</strong></span></a></div>
         </div>
       </section>
     </div>`,
-  schema: [breadcrumbSchema("support", "Support"), { "@type": "ContactPage", name: "Twilock Support", url: `${siteUrl}/support/`, mainEntity: { "@type": "Organization", name: "Twilock", email: "twilockapp@gmail.com" } }],
+  schema: [breadcrumbSchema("support", "Support"), { "@type": "ContactPage", name: "Twilock Support", url: `${siteUrl}/support/`, mainEntity: { "@type": "Organization", name: "Twilock", email: "support@twilock.com" } }],
 });
 
 pages.push({
@@ -1636,7 +1636,7 @@ pages.push({
 
         <section><h2>Changes to this policy</h2><p>We may update this policy from time to time. Material changes will be reflected here with an updated date.</p></section>
 
-        <section><h2>Contact</h2><p>Questions about this policy or your data? Contact us at <a href="mailto:twilockapp@gmail.com">twilockapp@gmail.com</a>.</p></section>
+        <section><h2>Contact</h2><p>Questions about this policy or your data? Contact us at <a href="mailto:support@twilock.com">support@twilock.com</a>.</p></section>
 
         <p class="quiet">Twilock is operated by Hussain Taheri. This document reflects Twilock's actual data practices as of the date above. It is not legal advice; if you have specific compliance obligations (e.g. GDPR, CCPA) beyond what's described here, have it reviewed by counsel.</p>
       </article>
@@ -1669,7 +1669,7 @@ pages.push({
         <section><h2>Managing a subscription</h2><p>Apple processes Twilock purchases. Manage or cancel a subscription from iPhone Settings → your name → Subscriptions. Canceling stops future renewal but does not normally reverse the current billing period. Use <a href="https://reportaproblem.apple.com/">Apple’s Report a Problem service</a> for refund requests because Twilock does not receive or control your payment card details.</p></section>
         <section><h2>Restoring access</h2><p>If a prior purchase is not recognized, use Restore Purchases inside Twilock while signed in to the Apple Account that made the purchase. For billing, refund, or account-history questions, use Apple’s support tools. For a Twilock feature or entitlement that still does not appear after restoration, contact Twilock support.</p></section>
         <section><h2>Privacy</h2><p>The <a href="/privacy/">Twilock Privacy Policy</a> describes the data the app handles, what stays on device, optional account and social data, analytics, purchases, retention, and deletion.</p></section>
-        <section><h2>Contact</h2><p>Questions about Twilock can be sent to <a href="mailto:twilockapp@gmail.com">twilockapp@gmail.com</a>.</p></section>
+        <section><h2>Contact</h2><p>Questions about Twilock can be sent to <a href="mailto:support@twilock.com">support@twilock.com</a>.</p></section>
       </article>
       <aside class="article-aside"><div><h2>Read the exact EULA</h2><p>The controlling agreement is hosted and maintained by Apple.</p></div><a class="text-link" href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Open Apple’s EULA</a></aside>
     </div>`,
