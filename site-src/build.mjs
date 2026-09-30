@@ -222,7 +222,7 @@ const homeBody = `
     <div class="shell hero-grid">
       <div>
         <span class="eyebrow">App blocker for iPhone</span>
-        <h1>An app blocker for iPhone that protects your night and morning</h1>
+        <h1>An app blocker that protects your night and morning</h1>
         <p class="hero-copy">Twilock shields distracting apps before sleep and after waking. Choose your apps, set two focused windows, and reduce distractions with Strict Mode when your earlier decision needs to hold.</p>
         <div class="hero-actions">
           ${appStoreButton()}
