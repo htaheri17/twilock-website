@@ -134,6 +134,41 @@
   progressBar.setAttribute("aria-hidden", "true");
   document.body.appendChild(progressBar);
 
+  const stepsList = document.querySelector(".steps");
+  let beam = null;
+  if (stepsList) {
+    beam = document.createElement("div");
+    beam.className = "steps-beam";
+    beam.setAttribute("aria-hidden", "true");
+    stepsList.appendChild(beam);
+  }
+
+  document.querySelectorAll(".faq-list details").forEach((item) => {
+    const summary = item.querySelector("summary");
+    const body = item.querySelector("summary + *");
+    if (!summary || !body) return;
+    summary.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (item.dataset.animating) return;
+      item.dataset.animating = "1";
+      if (!item.open) {
+        item.open = true;
+        const height = body.scrollHeight;
+        body.animate([{ height: "0px", opacity: 0 }, { height: `${height}px`, opacity: 1 }], { duration: 480, easing: "cubic-bezier(0.2, 0.7, 0.2, 1)" }).onfinish = () => {
+          delete item.dataset.animating;
+        };
+      } else {
+        item.classList.add("is-closing");
+        const height = body.scrollHeight;
+        body.animate([{ height: `${height}px`, opacity: 1 }, { height: "0px", opacity: 0 }], { duration: 380, easing: "cubic-bezier(0.4, 0, 0.2, 1)" }).onfinish = () => {
+          item.open = false;
+          item.classList.remove("is-closing");
+          delete item.dataset.animating;
+        };
+      }
+    });
+  });
+
   const ambient = document.createElement("div");
   ambient.className = "ambient";
   ambient.setAttribute("aria-hidden", "true");
@@ -194,6 +229,16 @@
       element.style.translate = `0 ${(offsets[index] * -depth).toFixed(1)}px`;
     });
 
+    if (stepsList && beam) {
+      const rect = stepsList.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, (viewport * 0.6 - rect.top) / rect.height));
+      beam.style.transform = `scaleY(${progress.toFixed(4)})`;
+      const reach = progress * rect.height;
+      stepsList.querySelectorAll(".step").forEach((step) => {
+        step.classList.toggle("is-lit", step.offsetTop + 100 <= reach);
+      });
+    }
+
     if (orbs.length === 3) {
       orbs[0].style.translate = `${(Math.sin(y / 900) * 140).toFixed(1)}px ${(y * -0.12 % 900).toFixed(1)}px`;
       orbs[1].style.translate = `${(Math.cos(y / 700) * -160).toFixed(1)}px ${(Math.sin(y / 1100) * 180).toFixed(1)}px`;
@@ -211,7 +256,7 @@
   frame();
 
   if (canHover) {
-    document.querySelectorAll(".editorial-card, .pricing-card, .step, .difference-item").forEach((card) => {
+    document.querySelectorAll(".editorial-card, .pricing-card, .difference-item").forEach((card) => {
       card.addEventListener("pointermove", (event) => {
         const rect = card.getBoundingClientRect();
         const x = event.clientX - rect.left;
