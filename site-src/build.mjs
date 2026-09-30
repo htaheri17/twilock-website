@@ -21,7 +21,6 @@ const seoGuideDate = "September 2, 2026";
 const seoGuideIsoDate = "2026-09-02";
 const semrushGuideDate = "September 3, 2026";
 const semrushGuideIsoDate = "2026-09-03";
-const appStoreRatingCheckedDate = "September 2, 2026";
 const visibleDashPattern = /[-‐‑‒–—]/g;
 
 const cleanUserCopy = (value) => value.replace(visibleDashPattern, " ").replace(/ {2,}/g, " ");
@@ -248,7 +247,6 @@ const homeBody = `
     <span><strong>Focused scope</strong> · Up to two hours at night, plus a morning window on Pro</span>
     <span><strong>Private core</strong> · Screen Time and app-usage data stay on your device</span>
     <span><strong>Built for commitment</strong> · Strict Mode is a Pro feature</span>
-    <span><strong>Early App Store rating</strong> · 5.0 from 1 rating, checked ${appStoreRatingCheckedDate}</span>
   </div>
 
   <section class="section" aria-labelledby="problem-title">
@@ -401,7 +399,6 @@ const softwareSchema = {
   softwareVersion: "1.0.1",
   author: { "@type": "Person", name: "Hussain Taheri" },
   offers: { "@type": "Offer", price: 0, priceCurrency: "USD", description: "Free download with optional in-app purchases" },
-  aggregateRating: { "@type": "AggregateRating", ratingValue: 5, ratingCount: 1, bestRating: 5, worstRating: 1 },
 };
 
 const pages = [

@@ -148,8 +148,8 @@ const home = await readFile(path.join(projectDir, "index.html"), "utf8");
 const homeSchemaText = home.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
 const homeSchema = homeSchemaText ? JSON.parse(homeSchemaText) : null;
 const softwareApp = homeSchema?.["@graph"]?.find((item) => item["@type"] === "SoftwareApplication");
-if (!softwareApp?.offers || !softwareApp?.aggregateRating) {
-  fail("index.html: SoftwareApplication requires visible offer and verified rating data");
+if (!softwareApp?.offers) {
+  fail("index.html: SoftwareApplication requires visible offer data");
 }
 
 const sitemap = await readFile(path.join(projectDir, "sitemap.xml"), "utf8");
