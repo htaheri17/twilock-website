@@ -116,11 +116,14 @@
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
       const element = entry.target;
-      element.classList.add("is-in");
-      observer.unobserve(element);
-      if (element.matches(".problem-point")) tickClock(element.querySelector(".time"));
+      if (entry.isIntersecting) {
+        if (element.classList.contains("is-in")) return;
+        element.classList.add("is-in");
+        if (element.matches(".problem-point")) tickClock(element.querySelector(".time"));
+      } else if (entry.boundingClientRect.top > 0) {
+        element.classList.remove("is-in");
+      }
     });
   }, { rootMargin: "0px 0px -8% 0px", threshold: 0 });
 
@@ -131,7 +134,25 @@
   progressBar.setAttribute("aria-hidden", "true");
   document.body.appendChild(progressBar);
 
-  const drifters = Array.from(document.querySelectorAll(".panel-luno, .final-luno"));
+  const ambient = document.createElement("div");
+  ambient.className = "ambient";
+  ambient.setAttribute("aria-hidden", "true");
+  ambient.innerHTML = "<span></span><span></span><span></span>";
+  document.body.prepend(ambient);
+  const orbs = ambient.querySelectorAll("span");
+
+  const layers = [
+    [".panel-luno, .final-luno", 0.1],
+    [".step-number, .difference-index, .privacy-point-number, .problem-point .time", 0.07],
+    [".section-heading .kicker, .section-heading p, .strict-copy > p, .founder-copy", 0.035],
+    [".section-heading h2, .strict-copy h2, .privacy-summary-copy h2, .founder-band h2, .final-cta h2", 0.055],
+    [".timeline-dot", 0.04],
+    [".hero-copy, .hero-actions", -0.06],
+  ];
+  const drifters = [];
+  layers.forEach(([selector, depth]) => {
+    document.querySelectorAll(selector).forEach((element) => drifters.push({ element, depth }));
+  });
 
   let lastY = window.scrollY;
   let ticking = false;
@@ -163,12 +184,22 @@
       words.forEach((word, index) => word.classList.toggle("lit", index < lit));
     });
 
-    drifters.forEach((element) => {
+    const offsets = drifters.map(({ element }) => {
       const rect = element.getBoundingClientRect();
-      if (rect.bottom < -200 || rect.top > viewport + 200) return;
-      const offset = rect.top + rect.height / 2 - viewport / 2;
-      element.style.translate = `0 ${(offset * -0.09).toFixed(1)}px`;
+      if (rect.bottom < -300 || rect.top > viewport + 300) return null;
+      return rect.top + rect.height / 2 - viewport / 2;
     });
+    drifters.forEach(({ element, depth }, index) => {
+      if (offsets[index] === null) return;
+      element.style.translate = `0 ${(offsets[index] * -depth).toFixed(1)}px`;
+    });
+
+    if (orbs.length === 3) {
+      orbs[0].style.translate = `${(Math.sin(y / 900) * 140).toFixed(1)}px ${(y * -0.12 % 900).toFixed(1)}px`;
+      orbs[1].style.translate = `${(Math.cos(y / 700) * -160).toFixed(1)}px ${(Math.sin(y / 1100) * 180).toFixed(1)}px`;
+      orbs[2].style.translate = `${(Math.sin(y / 1300) * 220).toFixed(1)}px ${(Math.cos(y / 800) * 120).toFixed(1)}px`;
+      orbs[2].style.scale = (1 + Math.sin(y / 1000) * 0.18).toFixed(3);
+    }
   };
   const onScroll = () => {
     if (ticking) return;

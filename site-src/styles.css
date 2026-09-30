@@ -2143,19 +2143,21 @@ p {
 
   .js [data-reveal="lift"] {
     opacity: 0;
-    translate: 0 30px;
-    filter: blur(10px);
+    translate: 0 44px;
+    filter: blur(12px);
   }
 
   .js [data-reveal="card"] {
     opacity: 0;
-    translate: 0 40px;
+    translate: 0 64px;
+    scale: 0.96;
+    filter: blur(6px);
   }
 
   .js [data-reveal="panel"] {
     opacity: 0;
-    translate: 0 48px;
-    scale: 0.97;
+    translate: 0 80px;
+    scale: 0.92;
   }
 
   .js [data-reveal="dot"] {
@@ -2642,5 +2644,72 @@ p {
     opacity: 1 !important;
     translate: none !important;
     filter: none !important;
+  }
+}
+
+/* ---------- continuous scroll motion ---------- */
+
+.ambient {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .ambient {
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+    display: block;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .ambient span {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    transition: translate 600ms cubic-bezier(0.2, 0.7, 0.2, 1), scale 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .ambient span:nth-child(1) {
+    top: 12%;
+    left: -8%;
+    width: 560px;
+    height: 560px;
+    background: rgba(120, 133, 240, 0.16);
+  }
+
+  .ambient span:nth-child(2) {
+    top: 45%;
+    right: -10%;
+    width: 520px;
+    height: 520px;
+    background: rgba(26, 217, 191, 0.06);
+  }
+
+  .ambient span:nth-child(3) {
+    bottom: -18%;
+    left: 30%;
+    width: 640px;
+    height: 460px;
+    background: rgba(138, 156, 245, 0.1);
+  }
+
+  .step-number,
+  .difference-index,
+  .privacy-point-number,
+  .problem-point .time,
+  .section-heading .kicker,
+  .section-heading p,
+  .section-heading h2,
+  .strict-copy > p,
+  .strict-copy h2,
+  .privacy-summary-copy h2,
+  .founder-band h2,
+  .founder-copy,
+  .final-cta h2,
+  .timeline-dot,
+  .hero-copy,
+  .hero-actions {
+    transition: translate 260ms cubic-bezier(0.2, 0.7, 0.2, 1);
   }
 }
