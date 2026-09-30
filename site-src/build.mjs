@@ -194,7 +194,7 @@ const renderPage = ({ route, title, description, body, type = "website", schema 
   <link rel="apple-touch-icon" href="/assets/twilock-icon-2026.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/space-grotesk-700.woff2" as="font" type="font/woff2" crossorigin>
-  <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__twMotion)document.documentElement.classList.remove("js")},3000)</script>
+  <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__twMotion)document.documentElement.classList.remove("js")},3000);window.__twWords=function(){var h=document.querySelector(".hero h1");if(!h)return;var p=function(){var b=h.getBoundingClientRect();h.querySelectorAll(".word").forEach(function(s){var r=s.getBoundingClientRect();s.style.backgroundSize=b.width+"px 100%";s.style.backgroundPosition=(b.left-r.left)+"px 0"})};p();window.addEventListener("resize",p);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(p)}</script>
   <link rel="stylesheet" href="/assets/site.css">
   <meta property="og:type" content="${type}">
   <meta property="og:site_name" content="Twilock">
@@ -223,7 +223,7 @@ const homeBody = `
     <div class="shell hero-grid">
       <div>
         <span class="eyebrow">App blocker for iPhone</span>
-        <h1>An app blocker that protects your night and morning</h1>
+        <h1>${"An app blocker that protects your night and morning".split(" ").map((word, index) => `<span class="word" style="--i:${index}">${word}</span>`).join(" ")}</h1><script>window.__twWords&&__twWords()</script>
         <p class="hero-copy">Twilock shields distracting apps before sleep and after waking. Choose your apps, set two focused windows, and reduce distractions with Strict Mode when your earlier decision needs to hold.</p>
         <div class="hero-actions">
           ${appStoreButton()}

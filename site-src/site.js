@@ -43,32 +43,6 @@
     return;
   }
 
-  const heading = document.querySelector(".hero h1");
-  if (heading) {
-    const words = heading.textContent.trim().split(/\s+/);
-    heading.textContent = "";
-    words.forEach((word, index) => {
-      const span = document.createElement("span");
-      span.className = "word";
-      span.style.setProperty("--i", String(index));
-      span.textContent = word;
-      heading.appendChild(span);
-      if (index < words.length - 1) heading.appendChild(document.createTextNode(" "));
-    });
-    const paintWords = () => {
-      const box = heading.getBoundingClientRect();
-      heading.querySelectorAll(".word").forEach((span) => {
-        const rect = span.getBoundingClientRect();
-        span.style.backgroundSize = `${box.width}px 100%`;
-        span.style.backgroundPosition = `${box.left - rect.left}px 0`;
-      });
-    };
-    paintWords();
-    heading.classList.add("is-split");
-    window.addEventListener("resize", paintWords);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(paintWords);
-  }
-
   const tickClock = (node) => {
     if (!node) return;
     const target = node.textContent.trim();
