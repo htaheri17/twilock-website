@@ -620,15 +620,6 @@ p {
     inset 0 40px 80px rgba(120, 133, 240, 0.1);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .hero-luno {
-    animation: luno-rise 1500ms cubic-bezier(0.2, 0.7, 0.2, 1) 150ms both;
-  }
-
-  .hero-luno::before {
-    animation: luno-glow 2200ms ease 400ms both;
-  }
-}
 
 @keyframes luno-rise {
   from {
@@ -2042,4 +2033,394 @@ p {
 
 .page-hero .hero-actions {
   justify-content: flex-start;
+}
+
+/* ---------- motion ----------
+   Progressive: the .js class is set by an inline head script and removed
+   again if site.js never runs. Everything is static under Reduce Motion. */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* header */
+  .nav-row {
+    transition: background 300ms ease, box-shadow 300ms ease, border-color 300ms ease, transform 300ms ease;
+  }
+
+  .site-header.is-scrolled .nav-row {
+    border-color: var(--line-strong);
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.65), 0 0 0 1px var(--accent-a08);
+    transform: scale(0.985);
+  }
+
+  /* hero intro */
+  .js .hero .eyebrow {
+    animation: rise-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) 80ms both;
+  }
+
+  .js .hero h1:not(.is-split) {
+    opacity: 0;
+  }
+
+  .js .hero h1.is-split {
+    background: none;
+  }
+
+  .hero h1 .word {
+    display: inline-block;
+    padding-bottom: 0.08em;
+    background-image: var(--moonlight);
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: word-in 1000ms cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--i, 0) * 75ms - -220ms) both;
+  }
+
+  .js .hero .hero-copy {
+    animation: rise-in 1000ms cubic-bezier(0.2, 0.7, 0.2, 1) 820ms both;
+  }
+
+  .js .hero .hero-actions {
+    animation: rise-in 1000ms cubic-bezier(0.2, 0.7, 0.2, 1) 960ms both;
+  }
+
+  .hero::before {
+    translate: 0 calc(var(--p, 0) * 80px);
+    animation: stars-drift 70s linear infinite alternate, stars-twinkle 7s ease-in-out infinite alternate;
+  }
+
+  .hero-luno {
+    translate: 0 calc(var(--p, 0) * -110px);
+    animation: luno-rise 1600ms cubic-bezier(0.2, 0.7, 0.2, 1) 700ms both;
+  }
+
+  .hero-luno::before {
+    scale: calc(1 - var(--p, 0) * -0.35);
+    animation: luno-glow 2400ms ease 900ms both;
+  }
+
+  .hero-luno img {
+    animation: luno-float 6s ease-in-out 2400ms infinite;
+  }
+
+  .horizon {
+    animation: horizon-in 1800ms cubic-bezier(0.2, 0.7, 0.2, 1) 400ms both;
+  }
+
+  /* article page intro */
+  .js .page-hero .reading-shell > *,
+  .js .page-hero .shell > * {
+    animation: rise-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .js .page-hero .reading-shell > :nth-child(2),
+  .js .page-hero .shell > :nth-child(2) {
+    animation-delay: 90ms;
+  }
+
+  .js .page-hero .reading-shell > :nth-child(3),
+  .js .page-hero .shell > :nth-child(3) {
+    animation-delay: 180ms;
+  }
+
+  .js .page-hero .reading-shell > :nth-child(4),
+  .js .page-hero .shell > :nth-child(4) {
+    animation-delay: 270ms;
+  }
+
+  .js .page-hero .reading-shell > :nth-child(n+5),
+  .js .page-hero .shell > :nth-child(n+5) {
+    animation-delay: 360ms;
+  }
+
+  .notfound-luno {
+    animation: luno-float 6s ease-in-out 1s infinite;
+  }
+
+  /* scroll reveals */
+  .js [data-reveal] {
+    transition-property: opacity, translate, scale, filter, transform, box-shadow;
+    transition-duration: 1000ms, 1000ms, 1000ms, 1000ms, 180ms, 180ms;
+    transition-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: calc(var(--i, 0) * 90ms), calc(var(--i, 0) * 90ms), calc(var(--i, 0) * 90ms), calc(var(--i, 0) * 90ms), 0ms, 0ms;
+  }
+
+  .js [data-reveal="lift"] {
+    opacity: 0;
+    translate: 0 30px;
+    filter: blur(10px);
+  }
+
+  .js [data-reveal="card"] {
+    opacity: 0;
+    translate: 0 40px;
+  }
+
+  .js [data-reveal="panel"] {
+    opacity: 0;
+    translate: 0 48px;
+    scale: 0.97;
+  }
+
+  .js [data-reveal="dot"] {
+    opacity: 0;
+    translate: 0 14px;
+    transition-delay: calc(var(--i, 0) * 220ms - -400ms);
+  }
+
+  .js [data-reveal].is-in {
+    opacity: 1;
+    translate: none;
+    scale: none;
+    filter: none;
+  }
+
+  /* problem times glow as they land */
+  .js .problem-point.is-in .time {
+    animation: time-glow 1600ms ease 200ms both;
+  }
+
+  /* timeline draws night to dawn */
+  .js .timeline::before {
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 1800ms cubic-bezier(0.6, 0, 0.2, 1) 300ms;
+  }
+
+  .js .timeline.is-in::before {
+    transform: scaleX(1);
+  }
+
+  .js .timeline .timeline-dot {
+    scale: 0.4;
+    transition: scale 600ms cubic-bezier(0.3, 1.6, 0.5, 1);
+    transition-delay: calc(var(--i, 0) * 220ms - -500ms);
+  }
+
+  .js .timeline-point.is-in .timeline-dot {
+    scale: 1;
+  }
+
+  /* strict mode: Luno crosses his arms */
+  .js .commitment-panel.is-in .panel-luno {
+    animation: luno-pop 900ms cubic-bezier(0.3, 1.5, 0.5, 1) 250ms both;
+  }
+
+  /* final call to action: Luno sleeps */
+  .final-cta.is-in .final-luno,
+  html:not(.js) .final-luno {
+    animation: luno-breathe 4.6s ease-in-out 800ms infinite;
+  }
+
+  .final-cta::before {
+    animation: glow-pulse 6s ease-in-out infinite alternate;
+  }
+
+  /* pointer spotlight on cards */
+  .editorial-card,
+  .pricing-card,
+  .step,
+  .difference-item {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .editorial-card::after,
+  .pricing-card::after,
+  .step::after,
+  .difference-item::after {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 0%), rgba(120, 133, 240, 0.16), rgba(120, 133, 240, 0) 60%);
+    opacity: 0;
+    transition: opacity 300ms ease;
+    pointer-events: none;
+    content: "";
+  }
+
+  .editorial-card:hover::after,
+  .pricing-card:hover::after,
+  .step:hover::after,
+  .difference-item:hover::after {
+    opacity: 1;
+  }
+
+  /* button shine */
+  .app-store-button {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .app-store-button::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -60%;
+    width: 50%;
+    transform: skewX(-20deg);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0));
+    opacity: 0;
+    pointer-events: none;
+    content: "";
+  }
+
+  .app-store-button:hover::after {
+    animation: shine 900ms ease;
+  }
+
+  .faq-list details[open] > div {
+    animation: rise-in 500ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (max-width: 800px) {
+  .js .timeline::before {
+    transform: scaleY(0);
+    transform-origin: center top;
+  }
+
+  .js .timeline.is-in::before {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes word-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.45em);
+    filter: blur(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes horizon-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(80px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes luno-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(-2deg);
+  }
+}
+
+@keyframes luno-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) rotate(-10deg);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.08) rotate(3deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes luno-breathe {
+  0%,
+  100% {
+    transform: scale(1) translateY(0);
+  }
+
+  50% {
+    transform: scale(1.04) translateY(-3px);
+  }
+}
+
+@keyframes glow-pulse {
+  from {
+    opacity: 0.7;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes stars-drift {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-40px);
+  }
+}
+
+@keyframes stars-twinkle {
+  from {
+    opacity: 0.35;
+  }
+
+  to {
+    opacity: 0.7;
+  }
+}
+
+@keyframes time-glow {
+  0% {
+    filter: brightness(1.8);
+  }
+
+  100% {
+    filter: brightness(1);
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -60%;
+    opacity: 1;
+  }
+
+  100% {
+    left: 120%;
+    opacity: 1;
+  }
+}
+
+@media print {
+  [data-reveal],
+  .hero h1 .word {
+    opacity: 1 !important;
+    translate: none !important;
+    scale: none !important;
+    filter: none !important;
+  }
 }
