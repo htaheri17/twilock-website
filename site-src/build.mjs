@@ -1,4 +1,4 @@
-import { copyFile, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -99,6 +99,7 @@ const disclosure = () => `
 
 const articleAside = (copy = "Twilock focuses on the two windows around sleep, with Strict Mode when you want your earlier choice to hold.") => `
   <aside class="article-aside" aria-label="About Twilock">
+    <img class="aside-luno" src="/assets/luno/holdinglock.webp" width="515" height="640" alt="" loading="lazy">
     <div>
       <h2>Protect tonight.</h2>
       <p>${copy}</p>
@@ -185,13 +186,14 @@ const renderPage = ({ route, title, description, body, type = "website", schema 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${cleanTitle}</title>
   <meta name="description" content="${cleanDescription}">
-  <meta name="theme-color" content="#050817">
+  <meta name="theme-color" content="#000000">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="apple-itunes-app" content="app-id=6786474238">
   <link rel="canonical" href="${canonical}">
   <link rel="icon" href="/assets/twilock-favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/twilock-icon-2026.png">
   <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/space-grotesk-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/site.css">
   <meta property="og:type" content="${type}">
   <meta property="og:site_name" content="Twilock">
@@ -227,8 +229,9 @@ const homeBody = `
           <p class="hero-note">Free to download<br>Designed for iPhone · iOS 16+</p>
         </div>
       </div>
-      <div class="hero-visual" aria-label="Twilock app icon">
-        <div class="hero-icon-wrap"><img class="hero-icon" src="/assets/twilock-icon-2026.png" width="1024" height="1024" alt="Twilock moon and lock app icon" fetchpriority="high"></div>
+      <div class="hero-visual">
+        <div class="hero-luno"><img src="/assets/luno/holdinglock.webp" width="515" height="640" alt="Luno, the Twilock moon, holding a lock" fetchpriority="high"></div>
+        <div class="horizon" aria-hidden="true"></div>
       </div>
     </div>
   </section>
@@ -294,13 +297,7 @@ const homeBody = `
         <p class="price-fineprint">Strict Mode is a commitment tool, not parental-control software or an emergency service. Leave essential apps outside your blocked set.</p>
       </div>
       <div class="commitment-panel">
-        <div class="lock-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" focusable="false">
-            <rect x="5" y="10" width="14" height="10" rx="3"></rect>
-            <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
-            <circle cx="12" cy="15" r="1.5"></circle>
-          </svg>
-        </div>
+        <img class="panel-luno" src="/assets/luno/firm.webp" width="514" height="640" alt="" loading="lazy">
         <blockquote>“I made this rule while I was thinking clearly. Keep it.”</blockquote>
         <p>That is the whole idea: your earlier decision gets more weight than the impulse that arrives later.</p>
       </div>
@@ -381,7 +378,7 @@ const homeBody = `
   </section>
 
   <section class="section-tight">
-    <div class="shell final-cta"><span class="kicker">Tonight is enough</span><h2>Set one boundary before the scroll begins.</h2><p>Choose the apps, choose the window, and give your earlier decision a fair chance to win.</p>${appStoreButton()}</div>
+    <div class="shell final-cta"><img class="final-luno" src="/assets/luno/sleeping.webp" width="521" height="640" alt="" loading="lazy"><span class="kicker">Tonight is enough</span><h2>Set one boundary before the scroll begins.</h2><p>Choose the apps, choose the window, and give your earlier decision a fair chance to win.</p>${appStoreButton()}</div>
   </section>`;
 
 const softwareSchema = {
@@ -1705,6 +1702,12 @@ const build = async () => {
   await mkdir(path.join(distDir, "assets"), { recursive: true });
   await copyFile(path.join(projectDir, "assets/twilock-icon-2026.png"), path.join(distDir, "assets/twilock-icon-2026.png"));
   await copyFile(path.join(projectDir, "assets/twilock-favicon.png"), path.join(distDir, "assets/twilock-favicon.png"));
+  for (const folder of ["luno", "fonts"]) {
+    await mkdir(path.join(distDir, "assets", folder), { recursive: true });
+    for (const file of await readdir(path.join(projectDir, "assets", folder))) {
+      await copyFile(path.join(projectDir, "assets", folder, file), path.join(distDir, "assets", folder, file));
+    }
+  }
 
   const manifest = {
     name: "Twilock: Screen Time Blocker",
@@ -1712,8 +1715,8 @@ const build = async () => {
     description: "Protect the hours before sleep and after waking.",
     start_url: "/",
     display: "browser",
-    background_color: "#050817",
-    theme_color: "#050817",
+    background_color: "#000000",
+    theme_color: "#000000",
     icons: [{ src: "/assets/twilock-icon-2026.png", sizes: "1024x1024", type: "image/png", purpose: "any maskable" }],
   };
   await writeDeploymentFile("site.webmanifest", `${JSON.stringify(manifest, null, 2)}\n`);
@@ -1731,7 +1734,7 @@ ${pages.map((page) => `  <url><loc>${canonicalFor(page.route)}</loc><lastmod>${p
     route: "404",
     title: "Page Not Found — Twilock",
     description: "The requested Twilock page could not be found.",
-    body: `<section class="page-hero"><div class="reading-shell"><span class="eyebrow">404</span><h1>This page drifted past its window.</h1><p class="page-deck">The link may be old or mistyped. Head back to Twilock or browse the current guides.</p><div class="hero-actions"><a class="app-store-button" href="/"><span class="store-copy"><small>Return to</small><strong>Twilock home</strong></span></a><a class="text-link" href="/best-nighttime-app-blockers/">Browse guides</a></div></div></section>`,
+    body: `<section class="page-hero"><div class="reading-shell"><img class="notfound-luno" src="/assets/luno/thinking.webp" width="534" height="640" alt="" loading="lazy"><span class="eyebrow">404</span><h1>This page drifted past its window.</h1><p class="page-deck">The link may be old or mistyped. Head back to Twilock or browse the current guides.</p><div class="hero-actions"><a class="app-store-button" href="/"><span class="store-copy"><small>Return to</small><strong>Twilock home</strong></span></a><a class="text-link" href="/best-nighttime-app-blockers/">Browse guides</a></div></div></section>`,
     schema: [],
   }).replace('content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"', 'content="noindex,follow"');
   await writeDeploymentFile("404.html", notFound);

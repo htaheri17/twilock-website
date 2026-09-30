@@ -4,8 +4,8 @@
   "description": "Protect the hours before sleep and after waking.",
   "start_url": "/",
   "display": "browser",
-  "background_color": "#050817",
-  "theme_color": "#050817",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "icons": [
     {
       "src": "/assets/twilock-icon-2026.png",
