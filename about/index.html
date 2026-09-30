@@ -13,7 +13,7 @@
   <link rel="apple-touch-icon" href="/assets/twilock-icon-2026.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/space-grotesk-700.woff2" as="font" type="font/woff2" crossorigin>
-  <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__twMotion)document.documentElement.classList.remove("js")},3000);window.__twWords=function(){var h=document.querySelector(".hero h1");if(!h)return;var p=function(){var b=h.getBoundingClientRect();h.querySelectorAll(".word").forEach(function(s){var r=s.getBoundingClientRect();s.style.backgroundSize=b.width+"px 100%";s.style.backgroundPosition=(b.left-r.left)+"px 0"})};p();window.addEventListener("resize",p);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(p)}</script>
+  <script>(function(){var d=document.documentElement;d.classList.add("js");try{if(sessionStorage.getItem("twSeen"))d.classList.add("seen");sessionStorage.setItem("twSeen","1")}catch(e){d.classList.add("seen")}setTimeout(function(){if(!window.__twMotion)d.classList.remove("js")},3000);window.__twWords=function(h){h=h||document.querySelector(".hero h1");if(!h)return;var p=function(){var b=h.getBoundingClientRect();h.querySelectorAll(".word").forEach(function(s){var r=s.getBoundingClientRect();s.style.backgroundSize=b.width+"px 100%";s.style.backgroundPosition=(b.left-r.left)+"px 0"})};p();window.addEventListener("resize",p);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(p)}})()</script>
   <link rel="stylesheet" href="/assets/site.css">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Twilock">
@@ -33,7 +33,8 @@
 </head>
 <body class="">
   
-  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="intro" aria-hidden="true"><img src="/assets/twilock-icon-2026.png" width="1024" height="1024" alt=""></div>
+ <a class="skip-link" href="#main-content">Skip to content</a>
  
  <header class="site-header">
  <div class="shell nav-row">

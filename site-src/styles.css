@@ -2054,7 +2054,7 @@ p {
 
   /* hero intro */
   .js .hero .eyebrow {
-    animation: rise-in 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation: rise-in 700ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--intro) both;
   }
 
   .js .hero h1 {
@@ -2069,15 +2069,15 @@ p {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: word-in 800ms cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--i, 0) * 55ms - -60ms) both;
+    animation: word-in 800ms cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--hero-start) - var(--i, 0) * -55ms) both;
   }
 
   .js .hero .hero-copy {
-    animation: rise-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) 450ms both;
+    animation: rise-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--hero-start) - -390ms) both;
   }
 
   .js .hero .hero-actions {
-    animation: rise-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) 580ms both;
+    animation: rise-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--hero-start) - -520ms) both;
   }
 
   .hero::before {
@@ -2087,46 +2087,46 @@ p {
 
   .hero-luno {
     translate: 0 calc(var(--p, 0) * -110px);
-    animation: luno-rise 1500ms cubic-bezier(0.2, 0.7, 0.2, 1) 350ms both;
+    animation: luno-rise 1500ms cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--hero-start) - -290ms) both;
   }
 
   .hero-luno::before {
     scale: calc(1 - var(--p, 0) * -0.35);
-    animation: luno-glow 2200ms ease 500ms both;
+    animation: luno-glow 2200ms ease calc(var(--hero-start) - -440ms) both;
   }
 
   .hero-luno img {
-    animation: luno-float 6s ease-in-out 1900ms infinite;
+    animation: luno-float 6s ease-in-out calc(var(--hero-start) - -1840ms) infinite;
   }
 
   .horizon {
-    animation: horizon-in 1600ms cubic-bezier(0.2, 0.7, 0.2, 1) 200ms both;
+    animation: horizon-in 1600ms cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--hero-start) - -140ms) both;
   }
 
   /* article page intro */
   .js .page-hero .reading-shell > *,
   .js .page-hero .shell > * {
-    animation: rise-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation: rise-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--intro) both;
   }
 
   .js .page-hero .reading-shell > :nth-child(2),
   .js .page-hero .shell > :nth-child(2) {
-    animation-delay: 90ms;
+    animation-delay: calc(var(--intro) - -90ms);
   }
 
   .js .page-hero .reading-shell > :nth-child(3),
   .js .page-hero .shell > :nth-child(3) {
-    animation-delay: 180ms;
+    animation-delay: calc(var(--intro) - -180ms);
   }
 
   .js .page-hero .reading-shell > :nth-child(4),
   .js .page-hero .shell > :nth-child(4) {
-    animation-delay: 270ms;
+    animation-delay: calc(var(--intro) - -270ms);
   }
 
   .js .page-hero .reading-shell > :nth-child(n+5),
   .js .page-hero .shell > :nth-child(n+5) {
-    animation-delay: 360ms;
+    animation-delay: calc(var(--intro) - -360ms);
   }
 
   .notfound-luno {
@@ -2417,6 +2417,230 @@ p {
     opacity: 1 !important;
     translate: none !important;
     scale: none !important;
+    filter: none !important;
+  }
+}
+
+/* ---------- premium layer: intro, page transitions, scroll storytelling ---------- */
+
+:root {
+  --intro: 640ms;
+  --hero-start: 700ms;
+}
+
+.seen {
+  --intro: 0ms;
+  --hero-start: 60ms;
+}
+
+.intro,
+.scroll-progress {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* first open: the app icon wakes up, then the night opens */
+  .js:not(.seen) .intro {
+    position: fixed;
+    z-index: 400;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(120, 133, 240, 0.22), rgba(120, 133, 240, 0) 38%),
+      var(--bg-bottom);
+    pointer-events: none;
+    animation: intro-out 560ms cubic-bezier(0.7, 0, 0.2, 1) 520ms forwards;
+  }
+
+  .intro img {
+    width: 76px;
+    height: 76px;
+    border-radius: 18px;
+    box-shadow: 0 0 0 1px var(--line-strong), 0 18px 60px rgba(120, 133, 240, 0.55);
+    animation: intro-icon 620ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  /* reading progress */
+  .js .scroll-progress {
+    position: fixed;
+    z-index: 160;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: block;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: left center;
+    background: linear-gradient(90deg, var(--accent), var(--link-strong));
+    box-shadow: 0 0 12px var(--accent-a55);
+    pointer-events: none;
+  }
+
+  /* nav tucks away while reading, returns when scrolling up */
+  .site-header {
+    transition: translate 450ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .site-header.is-hidden {
+    translate: 0 -140%;
+  }
+
+  /* headings build word by word */
+  .js .split .word {
+    display: inline-block;
+    opacity: 0;
+    translate: 0 0.5em;
+    filter: blur(10px);
+    transition: opacity 800ms cubic-bezier(0.2, 0.7, 0.2, 1), translate 800ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 800ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: calc(var(--i, 0) * 45ms - -120ms);
+  }
+
+  .js .is-in .split .word,
+  .js .split.is-in .word {
+    opacity: 1;
+    translate: none;
+    filter: none;
+  }
+
+  .js .split-grad {
+    background: none;
+  }
+
+  .js .split-grad .word {
+    padding-bottom: 0.06em;
+    background-image: var(--moonlight);
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* statements light up as you read them */
+  .js .fill .word {
+    opacity: 0.2;
+    transition: opacity 350ms ease;
+  }
+
+  .js .fill .word.lit {
+    opacity: 1;
+  }
+
+  /* cards tilt toward the pointer */
+  .js .editorial-card:hover {
+    transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-4px);
+  }
+
+  .js .pricing-card:hover,
+  .js .step:hover,
+  .js .difference-item:hover {
+    transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  }
+
+  .step,
+  .difference-item,
+  .pricing-card {
+    transition: transform 220ms ease, box-shadow 220ms ease;
+  }
+
+  /* magnetic buttons */
+  .app-store-button {
+    transition: transform 160ms ease, box-shadow 160ms ease, translate 380ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  /* Pro card: slow moonlight around its edge */
+  .pricing-card.pro {
+    background:
+      var(--hot-fill) padding-box,
+      linear-gradient(var(--bg-bottom), var(--bg-bottom)) padding-box,
+      conic-gradient(from var(--edge-angle), rgba(120, 133, 240, 0.7), rgba(255, 255, 255, 0.1) 25%, rgba(26, 217, 191, 0.35) 50%, rgba(255, 255, 255, 0.1) 75%, rgba(120, 133, 240, 0.7)) border-box;
+    animation: edge-spin 9s linear infinite;
+  }
+
+  /* decorative Luno drifts with the scroll */
+  .panel-luno,
+  .final-luno {
+    transition: translate 120ms linear;
+  }
+
+  /* smooth page to page transitions (Chrome, Edge, Safari 18.2+) */
+  @view-transition {
+    navigation: auto;
+  }
+
+  .site-header {
+    view-transition-name: site-header;
+  }
+
+  ::view-transition-old(root) {
+    animation: page-out 260ms cubic-bezier(0.4, 0, 1, 1) both;
+  }
+
+  ::view-transition-new(root) {
+    animation: page-in 520ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+}
+
+@property --edge-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes edge-spin {
+  to {
+    --edge-angle: 360deg;
+  }
+}
+
+@keyframes intro-icon {
+  from {
+    opacity: 0;
+    transform: scale(0.7) rotate(-12deg);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes intro-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+    transform: scale(0.985);
+    filter: blur(6px);
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(6px);
+  }
+}
+
+@media print {
+  .intro,
+  .scroll-progress {
+    display: none !important;
+  }
+
+  .split .word,
+  .fill .word {
+    opacity: 1 !important;
+    translate: none !important;
     filter: none !important;
   }
 }
