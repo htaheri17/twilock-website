@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { copyFile, mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -6,6 +7,11 @@ const sourceDir = path.dirname(fileURLToPath(import.meta.url));
 const projectDir = path.resolve(sourceDir, "..");
 const distDir = path.join(projectDir, "dist");
 const siteUrl = (process.env.SITE_URL || "https://twilock.com").replace(/\/$/, "");
+const assetVersion = createHash("sha256")
+  .update(await readFile(path.join(sourceDir, "styles.css")))
+  .update(await readFile(path.join(sourceDir, "site.js")))
+  .digest("hex")
+  .slice(0, 10);
 const appStoreUrl = "https://apps.apple.com/us/app/twilock-screen-time-blocker/id6786474238";
 const checkedDate = "August 31, 2026";
 const isoDate = "2026-08-31";
@@ -196,7 +202,7 @@ const renderPage = ({ route, title, description, body, type = "website", schema 
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/space-grotesk-700.woff2" as="font" type="font/woff2" crossorigin>
   <script>(function(){var d=document.documentElement;d.classList.add("js");try{if(sessionStorage.getItem("twSeen"))d.classList.add("seen");sessionStorage.setItem("twSeen","1")}catch(e){d.classList.add("seen")}setTimeout(function(){if(!window.__twMotion)d.classList.remove("js")},3000);window.__twWords=function(h){h=h||document.querySelector(".hero h1");if(!h)return;var p=function(){var b=h.getBoundingClientRect();h.querySelectorAll(".word").forEach(function(s){var r=s.getBoundingClientRect();s.style.backgroundSize=b.width+"px 100%";s.style.backgroundPosition=(b.left-r.left)+"px 0"})};p();window.addEventListener("resize",p);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(p)}})()</script>
-  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="/assets/site.css?v=${assetVersion}">
   <meta property="og:type" content="${type}">
   <meta property="og:site_name" content="Twilock">
   <meta property="og:title" content="${cleanTitle}">
@@ -211,7 +217,7 @@ const renderPage = ({ route, title, description, body, type = "website", schema 
   <meta name="twitter:description" content="${cleanDescription}">
   <meta name="twitter:image" content="${siteUrl}/assets/twilock-icon-2026.png">
   <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": cleanSchemaCopy(graph) })}</script>
-  <script defer src="/assets/site.js"></script>
+  <script defer src="/assets/site.js?v=${assetVersion}"></script>
 </head>
 <body class="${bodyClass}">
   ${visiblePage}
