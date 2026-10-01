@@ -1278,6 +1278,21 @@ pages.push({
           </table>
         </div>
 
+        <h2>How to choose a bedtime app blocker</h2>
+        <p>Choose by the hours you need to protect and the way you usually get around your own rule. A bedtime schedule, a longer overnight block, and a pause before opening an app solve different problems.</p>
+
+        <h3>Does the block cover the hours you need?</h3>
+        <p>If scrolling starts before bed, schedule the block before your first habitual check. Twilock’s free Night window covers up to two hours. If you need protection throughout the night, choose a tool whose schedule covers that full period.</p>
+
+        <h3>What happens when you try to override it?</h3>
+        <p>If you routinely edit the schedule or delete the blocker, compare those exact behaviors before paying for a strict mode. Check the recovery path too. Our <a href="/best-strict-app-blockers-iphone/">strict app blocker guide</a> explains the differences; no consumer setup should be described as impossible to bypass.</p>
+
+        <h3>Can you keep essential apps available?</h3>
+        <p>Leave the apps you genuinely need outside your blocked selection. With Apple Screen Time, review Always Allowed. Test a short schedule while you are awake before relying on it overnight. See our <a href="/block-social-media-at-night-iphone/">nighttime social media setup guide</a> for the steps.</p>
+
+        <h3>Can you try the bedtime routine for free?</h3>
+        <p>Twilock’s Night window is free; Morning and continued Strict Mode require Pro. If a focused bedtime window fits your problem, <a href="${appStoreUrl}">try Twilock’s free Night window</a>: choose the distracting apps, set your window, and test it before deciding whether you need stronger commitment.</p>
+
         <h2>1. Twilock — best for a focused night-and-morning routine</h2>
         ${productReview({name:"Twilock",bestFor:"people whose scrolling clusters around sleep",summary:"Twilock makes Night and Morning the core schedule instead of treating bedtime as one possible rule. The Night window and core streak features are free; Pro adds Morning, Strict Mode, Streak Repair, and deeper insights.",advantages:"Fast setup, clear two-window model, lower current U.S. pricing, and Screen Time/app-usage data that stay on device.",drawbacks:"iPhone only, each window is capped at two hours, and the morning window plus Strict Mode require Pro.",choose:"you want a small system that is obvious every evening rather than a general productivity suite."})}
 
