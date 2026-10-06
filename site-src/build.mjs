@@ -1610,7 +1610,7 @@ pages.push({
         ${breadcrumbs("Privacy Policy")}
         <span class="eyebrow">Legal</span>
         <h1>How Twilock protects your privacy</h1>
-        <p class="page-deck">Last updated: September 10, 2026</p>
+        <p class="page-deck">Last updated: October 5, 2026</p>
       </div>
     </header>
     <div class="shell article-layout">
@@ -1649,7 +1649,7 @@ pages.push({
 
         <section><h2>Data retention &amp; deletion</h2><p>You can delete your account and all associated server side data at any time from <strong>Settings → Delete Account</strong> inside the app. This permanently removes your profile, progress, and friend connections from our servers. Data stored only on your device is removed when you delete the app.</p></section>
 
-        <section><h2>Children</h2><p>Twilock is rated 13+ and is not directed to children under 13. We do not knowingly collect personal information from children under 13.</p></section>
+        <section><h2>Age rating and children</h2><p>For Twilock's current age rating in your region, see the <a href="${appStoreUrl}">App Store listing</a>.</p><p>Twilock is not directed to children under 13. We do not knowingly collect personal information from children under 13.</p></section>
 
         <section><h2>Changes to this policy</h2><p>We may update this policy from time to time. Material changes will be reflected here with an updated date.</p></section>
 
@@ -1659,7 +1659,7 @@ pages.push({
       </article>
       <aside class="article-aside"><div><h2>Need help?</h2><p>For product support, bug reports, or account-deletion help, visit Twilock Support.</p></div><a class="text-link" href="/support/">Open support</a></aside>
     </div>`,
-  schema: [breadcrumbSchema("privacy", "Privacy Policy"), { "@type": "WebPage", name: "Twilock Privacy Policy", url: `${siteUrl}/privacy/`, dateModified: "2026-09-10" }],
+  schema: [breadcrumbSchema("privacy", "Privacy Policy"), { "@type": "WebPage", name: "Twilock Privacy Policy", url: `${siteUrl}/privacy/`, dateModified: "2026-10-05" }],
 });
 
 pages.push({
