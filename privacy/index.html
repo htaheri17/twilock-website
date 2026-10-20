@@ -28,7 +28,7 @@
   <meta name="twitter:title" content="Twilock Privacy Policy">
   <meta name="twitter:description" content="Twilock’s privacy policy explains on device Screen Time data, optional accounts and social features, analytics, purchases, retention, deletion, and contact details.">
   <meta name="twitter:image" content="https://twilock.com/assets/twilock-icon-2026.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://twilock.com/#website","url":"https://twilock.com/","name":"Twilock","description":"A focused iPhone screen time blocker for the hours before sleep and after waking."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Twilock","item":"https://twilock.com/"},{"@type":"ListItem","position":2,"name":"Privacy Policy","item":"https://twilock.com/privacy/"}]},{"@type":"WebPage","name":"Twilock Privacy Policy","url":"https://twilock.com/privacy/","dateModified":"2026-10-13"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://twilock.com/#website","url":"https://twilock.com/","name":"Twilock","description":"A focused iPhone screen time blocker for the hours before sleep and after waking."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Twilock","item":"https://twilock.com/"},{"@type":"ListItem","position":2,"name":"Privacy Policy","item":"https://twilock.com/privacy/"}]},{"@type":"WebPage","name":"Twilock Privacy Policy","url":"https://twilock.com/privacy/","dateModified":"2026-10-20"}]}</script>
   <script defer src="/assets/site.js?v=c30ffc04eb"></script>
 </head>
 <body class="legal-page">
@@ -83,7 +83,7 @@
  </nav>
  <span class="eyebrow">Legal</span>
  <h1>How Twilock protects your privacy</h1>
- <p class="page-deck">Last updated: October 13, 2026</p>
+ <p class="page-deck">Last updated: October 20, 2026</p>
  </div>
  </header>
  <div class="shell article-layout">
@@ -109,6 +109,8 @@
 
  <section><h2>Advertising measurement and your tracking choice</h2><p>Twilock does not display third party ads. We use Meta and RevenueCat to measure whether our own advertising leads to installs, trials, or purchases. Apple may ask for permission to track your activity across other companies' apps and websites. Declining does not prevent purchasing or remove Twilock features. You can change your tracking permission in iPhone Settings → Privacy &amp; Security → Tracking.</p><p>When you allow tracking, the app can send advertising identifiers, including IDFA when available, IDFV, IP address, and a Meta matching identifier, to RevenueCat for advertising measurement. RevenueCat can pass transaction events and permitted matching information to Meta through our configured integration. The Meta SDK also sends app activation and registration events with advertiser tracking disabled when permission is absent. Your selected apps, raw Screen Time usage, routine settings, and check in answers are not sent for advertising measurement.</p><p>Separately, Apple Ads attribution uses Apple's AdServices service to report campaign information. RevenueCat and PostHog use that information to understand campaign performance. AdServices collection does not depend on allowing the tracking prompt.</p></section>
 
+ <section><h2>Trial and subscription measurement</h2><p>We also use Supabase to receive and verify signed Apple transaction proofs and to match verified transaction details with purchase events from RevenueCat. We record transaction and product identifiers, purchase times, purchase classifications, and your tracking consent status. This processing can occur without creating a Twilock social account.</p><p>When tracking is allowed, this service may also hold a Meta matching identifier and limited technical context, such as app version, operating system version, and locale, to send eligible trial and subscription events to Meta. Our advertising delivery service uses your tracking choice when deciding whether to forward those events. Declining tracking does not prevent purchasing or remove Twilock features. Your selected app identities and raw Screen Time usage are not sent for advertising measurement.</p></section>
+
  <section><h2>Purchases</h2><p>Apple processes purchases and subscriptions. We use RevenueCat to verify transaction history, manage access, restore eligible purchases, and understand subscription performance. RevenueCat also receives the persistent installation identifier and the permitted attribution information described above. Existing lifetime purchases remain supported. We do not receive payment card details.</p></section>
 
  <section><h2>What we do not do</h2><ul><li>We do not sell or rent your personal data.</li><li>We do not use your selected app identities or raw Screen Time usage for advertising or share them with data brokers.</li><li>We do not display third party ads.</li><li>We do not require tracking permission to purchase or use Twilock.</li></ul></section>
@@ -116,7 +118,7 @@
  <section><h2>Third party services</h2><ul>
  <li><strong>Apple:</strong> Sign in with Apple, Screen Time / Family Controls, purchases, and Apple Ads attribution.</li>
  <li><strong>Google:</strong> authenticates you if you choose Sign in with Google.</li>
- <li><strong>Supabase:</strong> stores optional account, profile, synced routine outcomes, and friend connections.</li>
+ <li><strong>Supabase:</strong> stores optional account, profile, synced routine outcomes, and friend connections; also processes verified transaction details and tracking consent records for trial and subscription measurement, including permitted matching information when tracking is allowed.</li>
  <li><strong>RevenueCat:</strong> processes purchase history and identifiers for access, analytics, and permitted advertising measurement.</li>
  <li><strong>PostHog:</strong> processes product events, crash reports, campaign analytics, and masked onboarding recordings associated with the installation identifier.</li>
  <li><strong>Meta:</strong> receives app activation and registration events and configured advertising attribution and transaction events, with tracking consent communicated by the app and purchase service.</li>
