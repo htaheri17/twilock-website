@@ -27,4 +27,6 @@ Follow [PORKBUN_DEPLOYMENT.md](./PORKBUN_DEPLOYMENT.md) to connect the repositor
 
 ## Verified public facts
 
-Product name, App Store URL, release/version information, supported iOS version, US in-app prices, privacy policy, support email, and feature split were checked on August 31, 2026 against Apple's live listing, the app's shipping source, and the existing Twilock policy/support repositories. Editorial pages link to each competitor's official source.
+Twilock product copy was checked on October 21, 2026 against the released App Store version 1.2.0 and the app source. Night and Morning routines last 15 to 120 minutes and support daily, weekday/weekend, or custom-day schedules. Every enabled routine uses Strict Mode. New users need a subscription or eligible trial; existing users retain permanent full access. US prices are $6.99 monthly or $39.99 annually. Eligible annual subscriptions include a 7 day trial. Existing Lifetime purchases remain supported, but the app offers new users monthly or annual subscriptions.
+
+The privacy policy preserves the policy published October 20, 2026. Competitor research retains its original August 31, 2026 verification date; those products were not retested in this copy update. Editorial pages link to their official sources.

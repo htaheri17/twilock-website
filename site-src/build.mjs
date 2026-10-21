@@ -12,8 +12,10 @@ const assetVersion = createHash("sha256")
   .update(await readFile(path.join(sourceDir, "site.js")))
   .digest("hex")
   .slice(0, 10);
-const appStoreUrl = "https://apps.apple.com/us/app/twilock-screen-time-blocker/id6786474238";
+const appStoreUrl = "https://apps.apple.com/us/app/twilock-screen-time-control/id6786474238";
 const checkedDate = "August 31, 2026";
+const productCheckedDate = "October 21, 2026";
+const productIsoDate = "2026-10-21";
 const isoDate = "2026-08-31";
 const newGuideDate = "September 1, 2026";
 const newGuideIsoDate = "2026-09-01";
@@ -86,7 +88,7 @@ const articleSchema = (route, headline, description, date = isoDate) => ({
   headline,
   description,
   datePublished: date,
-  dateModified: date,
+  dateModified: productIsoDate,
   mainEntityOfPage: canonicalFor(route),
   author: { "@type": "Person", name: "Hussain Taheri", url: `${siteUrl}/about/` },
   publisher: { "@type": "Organization", name: "Twilock", url: `${siteUrl}/` },
@@ -100,9 +102,10 @@ const breadcrumbs = (label) => `
 const disclosure = () => `
   <aside class="disclosure" aria-label="Publisher disclosure">
     <p><strong>Publisher disclosure:</strong> Twilock publishes this page. We compare products against their official pages and help documentation, include drawbacks, and link the sources so you can verify the details yourself.</p>
+    <p>Twilock product details updated ${productCheckedDate}. Competitor details were last reviewed ${checkedDate}; check each linked source for changes.</p>
   </aside>`;
 
-const articleAside = (copy = "Twilock focuses on the two windows around sleep, with Strict Mode when you want your earlier choice to hold.") => `
+const articleAside = (copy = "Twilock focuses on the two windows around sleep, with Strict Mode in every routine.") => `
   <aside class="article-aside" aria-label="About Twilock">
     <img class="aside-luno" src="/assets/luno/holdinglock.webp" width="515" height="640" alt="" loading="lazy">
     <div>
@@ -230,10 +233,10 @@ const homeBody = `
       <div>
         <span class="eyebrow">App blocker for iPhone</span>
         <h1>${"An app blocker that protects your night and morning".split(" ").map((word, index) => `<span class="word" style="--i:${index}">${word}</span>`).join(" ")}</h1><script>window.__twWords&&__twWords()</script>
-        <p class="hero-copy">Twilock shields distracting apps before sleep and after waking. Choose your apps, set two focused windows, and reduce distractions with Strict Mode when your earlier decision needs to hold.</p>
+        <p class="hero-copy">Twilock shields distracting apps before sleep and after waking. Choose your apps, schedule your Night and Morning windows, and let Strict Mode hold the boundary in every routine.</p>
         <div class="hero-actions">
           ${appStoreButton()}
-          <p class="hero-note">Full access for existing users<br>Subscriptions for new users · Designed for iPhone · iOS 16+</p>
+          <p class="hero-note">New users need a subscription or eligible trial<br>Existing users keep permanent full access · iPhone · iOS 16+</p>
         </div>
       </div>
       <div class="hero-visual">
@@ -246,7 +249,7 @@ const homeBody = `
   <div class="shell trust-row" aria-label="Product summary">
     <span><strong>Focused scope</strong> · Night and Morning routines, each up to two hours</span>
     <span><strong>Private core</strong> · Screen Time and app-usage data stay on your device</span>
-    <span><strong>Built for commitment</strong> · Strict Mode is included for every admitted user</span>
+    <span><strong>Built for commitment</strong> · Every routine uses Strict Mode</span>
   </div>
 
   <section class="section" aria-labelledby="problem-title">
@@ -268,8 +271,8 @@ const homeBody = `
       <div class="section-heading centered"><span class="kicker">How it works</span><h2 id="how-title">Three decisions, made before temptation.</h2><p>Twilock is deliberately smaller than an all-day productivity system. Set the boundary you actually need, then get on with your life.</p></div>
       <div class="steps">
         <article class="step"><span class="step-number">01</span><h3>Choose the apps</h3><p>Use Apple’s Screen Time picker to select the apps or categories that tend to steal your night.</p></article>
-        <article class="step"><span class="step-number">02</span><h3>Choose your windows</h3><p>Set Night and Morning routines of 15 to 120 minutes each. Both are included.</p></article>
-        <article class="step"><span class="step-number">03</span><h3>Let Twilock enforce them</h3><p>When a window starts, your chosen apps are shielded. Strict Mode adds stronger commitment when you need it.</p></article>
+        <article class="step"><span class="step-number">02</span><h3>Choose your windows</h3><p>Set Night and Morning windows of 15 to 120 minutes. Repeat every day, set different weekday and weekend times, or choose custom days.</p></article>
+        <article class="step"><span class="step-number">03</span><h3>Let Twilock enforce them</h3><p>When a window starts, your chosen apps are shielded. Every enabled routine uses Strict Mode, keeping its settings locked until the window ends.</p></article>
       </div>
     </div>
   </section>
@@ -298,8 +301,10 @@ const homeBody = `
       <div class="strict-copy">
         <span class="kicker">Strict Mode</span>
         <h2 id="strict-title">A promise that is harder to renegotiate at midnight.</h2>
-        <p>Normal blocking helps when you want a reminder. Strict Mode is for the nights when you already know a five-second settings change will win.</p>
-        <ul class="check-list"><li>Included with full access</li><li>Protects an active window from impulsive edits</li><li>Stops Twilock from being deleted mid-session</li><li>Always leaves a recovery path for genuine need</li></ul>
+        <p>Every Night and Morning routine uses Strict Mode. Your apps stay shielded and routine settings stay locked during an active window, so you can keep the decision you made earlier.</p>
+        <ul class="check-list"><li>Strict Mode in every enabled routine</li><li>Protects an active window from impulsive edits</li><li>Stops Twilock from being deleted mid-session</li><li>Ends at your scheduled time, with an optional timed early unlock</li></ul>
+        <p>Before a window starts, choose a 10 or 30 minute early unlock timer, or None to disable that option. A timer only helps when it finishes before the scheduled end. Ending one window early leaves future routines scheduled with Strict Mode.</p>
+        <p class="price-fineprint">Revoking Screen Time access in iPhone Settings can end protection.</p>
         <p class="price-fineprint">Strict Mode is a commitment tool, not parental-control software or an emergency service. Leave essential apps outside your blocked set.</p>
       </div>
       <div class="commitment-panel">
@@ -329,7 +334,7 @@ const homeBody = `
       <div class="difference-grid">
         <article class="difference-item"><span class="difference-index">01</span><div><h3>Two named windows</h3><p>Night and Morning make the job obvious. No elaborate rule system is required to protect the hours around sleep.</p></div></article>
         <article class="difference-item"><span class="difference-index">02</span><div><h3>Commitment without shame</h3><p>The product adds friction to a choice you already made; it does not pretend that distraction is a character flaw.</p></div></article>
-        <article class="difference-item"><span class="difference-index">03</span><div><h3>One complete app</h3><p>Every admitted user gets Night and Morning protection, Strict Mode, deeper Insights, Streak Repair, streaks, friends, and the weekly Snooze Token.</p></div></article>
+        <article class="difference-item"><span class="difference-index">03</span><div><h3>One complete app</h3><p>Night and Morning routines, Strict Mode, deeper Insights, Streak Repair, streaks, badges, and optional Friends are all included with access. There are no separate feature upgrades.</p></div></article>
         <article class="difference-item"><span class="difference-index">04</span><div><h3>Private Screen Time data</h3><p>The app cannot see which apps you picked or how long you use them; that Screen Time data stays on your device.</p></div></article>
       </div>
     </div>
@@ -337,11 +342,11 @@ const homeBody = `
 
   <section class="section" id="pricing" aria-labelledby="pricing-title">
     <div class="shell">
-      <div class="section-heading"><span class="kicker">Pricing</span><h2 id="pricing-title">One complete app. Choose how you subscribe.</h2><p>Prepared for the full-access release on October 7, 2026. Subscriptions apply to new users; existing users keep permanent full access. Apple shows the actual localized price and eligibility.</p></div>
+      <div class="section-heading"><span class="kicker">Pricing</span><h2 id="pricing-title">One complete app. Choose how you subscribe.</h2><p>New users need a monthly or annual subscription, or an eligible trial. Existing users keep permanent full access. Both plans include the complete app. US prices shown; Apple confirms your local price and trial eligibility before purchase.</p></div>
       <div class="pricing-grid">
-        <article class="pricing-card"><span class="plan-label">Twilock Annual</span><div class="price-line"><strong>$39.99</strong><span>per year · US target</span></div><p>7-day free trial for eligible users. Then the full annual charge shown by Apple, renewing automatically until cancelled.</p><ul class="check-list"><li>Unlimited Night and Morning protection</li><li>Unlimited Strict Mode</li><li>Deeper Insights</li><li>Streak Repair within 72 hours, once every 30 days</li></ul>${appStoreButton()}</article>
-        <article class="pricing-card pro"><span class="plan-label">Twilock Monthly</span><div class="price-line"><strong>$6.99</strong><span>per month · US target</span></div><p>No trial. All the same features.</p><p class="price-fineprint">The US monthly change is scheduled for October 8, 2026. Apple may still show $4.99 before it takes effect. Existing $4.99 subscribers keep their renewal price. The actual localized price and eligibility shown by Apple apply.</p>${appStoreButton()}</article>
-        <p class="price-fineprint">Subscriptions apply to new users. Every existing user keeps permanent full access. Existing subscriptions continue renewing unless cancelled in Apple subscription settings. Cancelling does not remove an existing user’s permanent access.</p>
+        <article class="pricing-card"><span class="plan-label">Twilock Annual</span><div class="price-line"><strong>$39.99</strong><span>per year · USD</span></div><p>7-day free trial for eligible users. Then the full annual charge shown by Apple, renewing automatically until cancelled.</p><ul class="check-list"><li>Night and Morning routines</li><li>Strict Mode in every routine</li><li>Deeper Insights</li><li>Streak Repair within 72 hours, once every 30 days</li></ul>${appStoreButton()}</article>
+        <article class="pricing-card pro"><span class="plan-label">Twilock Monthly</span><div class="price-line"><strong>$6.99</strong><span>per month · USD</span></div><p>No trial. All the same features.</p><p class="price-fineprint">Billed monthly and renews automatically until cancelled. Your actual localized price appears in the app before purchase.</p>${appStoreButton()}</article>
+        <p class="price-fineprint">Existing users keep permanent full access, including supported Lifetime purchases and redemptions. Existing subscriptions keep renewing unless cancelled in Apple subscription settings. Cancelling does not remove an existing user’s permanent access. New users can choose a monthly or annual subscription; there is no new Lifetime offer in the app.</p>
       </div>
     </div>
   </section>
@@ -375,9 +380,11 @@ const homeBody = `
       <div class="section-heading"><span class="kicker">FAQ</span><h2 id="faq-title">Before you set your first window.</h2></div>
       <div class="faq-list">
         <details><summary>What does Twilock block?</summary><div>Twilock uses Apple’s Screen Time framework to shield the apps or app categories you choose during your scheduled Night or Morning window.</div></details>
-        <details><summary>Is Twilock free?</summary><div>Subscriptions apply to new users. Existing users keep permanent full access to every feature, even after cancelling a subscription. Existing subscriptions continue renewing unless cancelled.</div></details>
+        <details><summary>Is Twilock free?</summary><div>Twilock is free to download. New users need a monthly or annual subscription, or an eligible trial, to use the app after setup. Existing users keep permanent full access to every feature, even after cancelling a subscription. Existing subscriptions continue renewing unless cancelled.</div></details>
         <details><summary>Can I block apps all day?</summary><div>Twilock is intentionally not an all-day blocker. Each Night or Morning window is capped at two hours. If you need workday rules, usage budgets, or cross-device blocking, a broader tool may fit better.</div></details>
-        <details><summary>Can Strict Mode be turned off during a window?</summary><div>Strict Mode is designed to stop impulsive edits and prevent deletion of Twilock during an active session. It still includes a recovery path for genuine need.</div></details>
+        <details><summary>Does every routine use Strict Mode?</summary><div>Yes. Every enabled Night and Morning routine uses Strict Mode. You can schedule or pause a routine outside an active window, but there is no separate regular blocking mode.</div></details>
+        <details><summary>Can I end a window early?</summary><div>Before a window starts, choose a 10 or 30 minute early unlock timer, or None to disable timed early unlock. The window always ends at its scheduled time, so a timer that would finish later does not provide an earlier exit. Ending one window early does not cancel future routines. Revoking Screen Time access in iPhone Settings can end protection.</div></details>
+        <details><summary>Can weekday and weekend schedules differ?</summary><div>Yes. Night and Morning windows can repeat every day, use separate weekday and weekend times, or run on custom days. Each window lasts 15 to 120 minutes.</div></details>
         <details><summary>Does Twilock upload my Screen Time data?</summary><div>No. Your chosen apps and raw Screen Time or app-usage data stay on your device. Optional account and social features use limited server-side data as described in the <a href="/privacy/">privacy policy</a>.</div></details>
         <details><summary>What iPhone version do I need?</summary><div>The current App Store listing requires iOS 16.0 or later.</div></details>
       </div>
@@ -390,23 +397,26 @@ const homeBody = `
 
 const softwareSchema = {
   "@type": "SoftwareApplication",
-  name: "Twilock: Screen Time Blocker",
+  name: "Twilock: Screen Time Control",
   operatingSystem: "iOS 16.0 or later",
   applicationCategory: "UtilitiesApplication",
   description: "An iPhone screen-time blocker focused on the periods before sleep and after waking.",
   url: `${siteUrl}/`,
   installUrl: appStoreUrl,
   image: `${siteUrl}/assets/twilock-icon-2026.png`,
-  softwareVersion: "1.0.1",
+  softwareVersion: "1.2.0",
   author: { "@type": "Person", name: "Hussain Taheri" },
-  offers: { "@type": "Offer", price: 39.99, priceCurrency: "USD", description: "Annual subscription for new users; existing users retain permanent full access" },
+  offers: [
+    { "@type": "Offer", name: "Twilock Annual", price: 39.99, priceCurrency: "USD", description: "Annual subscription; 7 day trial for eligible users. Existing users retain permanent full access." },
+    { "@type": "Offer", name: "Twilock Monthly", price: 6.99, priceCurrency: "USD", description: "Monthly subscription, no free trial. Includes the complete app." },
+  ],
 };
 
 const pages = [
   {
     route: "",
     title: "Twilock App Blocker for iPhone | Night and Morning Focus",
-    description: "Twilock is an app blocker for iPhone that shields distracting apps before sleep and after waking with focused windows and optional Strict Mode.",
+    description: "Twilock is an app blocker for iPhone that shields distracting apps before sleep and after waking with flexible Night and Morning schedules and Strict Mode in every routine.",
     lastmod: semrushGuideIsoDate,
     body: homeBody,
     schema: [softwareSchema],
@@ -522,7 +532,7 @@ pages.push({
           <li><a href="${appStoreUrl}">Twilock on the App Store</a> for current features, compatibility, and purchases.</li>
         </ul>
       </article>
-      ${articleAside("Twilock includes Night and Morning protection and unlimited Strict Mode. New users need verified access; existing users keep permanent full access.")}
+      ${articleAside("Twilock includes Night and Morning protection and unlimited Strict Mode. New users need a subscription or eligible trial; existing users keep permanent full access.")}
     </div>`,
   schema: [articleSchema(blockAppsGuideRoute, "How to Block Apps on iPhone", "A practical guide to blocking selected iPhone apps with App Limits, Downtime, or a focused blocker while preserving essential access.", seoGuideIsoDate), breadcrumbSchema(blockAppsGuideRoute, "Block apps on iPhone")],
 });
@@ -588,7 +598,7 @@ pages.push({
 
         <h2>Add a focused blocker only when it fits the moment</h2>
         <p>A dedicated blocker can be useful when Apple Screen Time feels too broad, too easy to change, or disconnected from the routine you want to protect.</p>
-        <p>Twilock is built for unwanted scrolling around sleep. Every admitted user gets Night and Morning protection and unlimited Strict Mode. Existing users keep permanent full access; subscriptions apply to new users. Each window is capped at two hours, so Twilock is not designed to control an entire workday. That narrow scope is useful when night and morning are the real problem, and limiting when they are not.</p>
+        <p>Twilock is built for unwanted scrolling around sleep. Everyone with access gets Night and Morning protection and unlimited Strict Mode. Existing users keep permanent full access; subscriptions apply to new users. Each window is capped at two hours, so Twilock is not designed to control an entire workday. That narrow scope is useful when night and morning are the real problem, and limiting when they are not.</p>
 
         <h2>A seven day screen time plan</h2>
         <div class="comparison-table-wrap" tabindex="0" role="region" aria-label="Seven day iPhone screen time plan">
@@ -634,7 +644,7 @@ pages.push({
           <li><a href="${appStoreUrl}">Twilock on the App Store</a> for current features, compatibility, and purchases.</li>
         </ul>
       </article>
-      ${articleAside("Twilock includes Night and Morning routines and unlimited Strict Mode for every admitted user.")}
+      ${articleAside("Twilock includes Night and Morning routines and unlimited Strict Mode for everyone with access.")}
     </div>`,
   schema: [articleSchema(limitScreenTimeGuideRoute, "How to Limit Screen Time on iPhone", "A practical guide to using Screen Time reports, App Limits, Downtime, Focus, and a realistic seven day plan.", seoGuideIsoDate), breadcrumbSchema(limitScreenTimeGuideRoute, "Limit screen time on iPhone")],
 });
@@ -711,7 +721,7 @@ pages.push({
 
         <h2>When a focused blocker may fit better</h2>
         <p>Screen Time is useful for broad daily limits and family controls. A dedicated blocker can be clearer when the problem is a specific habit window.</p>
-        <p>Twilock includes Night and Morning protection and unlimited Strict Mode for every admitted user. Each window is capped at two hours, so Twilock is designed for unwanted scrolling around sleep rather than all day limits, website blocking, or parental control.</p>
+        <p>Twilock includes Night and Morning protection and unlimited Strict Mode for everyone with access. Each window is capped at two hours, so Twilock is designed for unwanted scrolling around sleep rather than all day limits, website blocking, or parental control.</p>
         <p>For setup instructions, read <a href="/how-to-block-apps-on-iphone/">how to block apps on iPhone</a>. For a broader plan, read <a href="/how-to-limit-screen-time-on-iphone/">how to limit screen time on iPhone</a>.</p>
 
         <h2>Frequently asked questions</h2>
@@ -749,7 +759,7 @@ pages.push({
         <span class="eyebrow">Honest comparison</span>
         <h1>Twilock vs Opal: narrow nighttime focus or an all-day system?</h1>
         <p class="page-deck">Both apps can block distracting iPhone apps. The real difference is scope: Twilock is built around Night and Morning windows, while Opal is a broader attention platform with flexible rules, timers, and cross-platform support.</p>
-        <div class="page-meta"><span>By Hussain Taheri</span><span>Updated ${checkedDate}</span><span>8 minute read</span></div>
+        <div class="page-meta"><span>By Hussain Taheri</span><span>Updated ${productCheckedDate}</span><span>8 minute read</span></div>
       </div>
     </header>
     <div class="shell article-layout">
@@ -760,14 +770,14 @@ pages.push({
         <h2>Twilock and Opal at a glance</h2>
         <div class="comparison-table-wrap" tabindex="0" role="region" aria-label="Twilock and Opal comparison table">
           <table class="comparison-table">
-            <caption>Features and U.S. list pricing checked ${checkedDate}</caption>
+            <caption>Twilock checked ${productCheckedDate}; Opal last reviewed ${checkedDate}</caption>
             <thead><tr><th scope="col">Category</th><th scope="col">Twilock</th><th scope="col">Opal</th></tr></thead>
             <tbody>
               <tr><th scope="row">Primary job</th><td>Protect Night and Morning windows</td><td>Manage focus and app access across the day</td></tr>
               <tr><th scope="row">Platforms</th><td>iPhone</td><td>iPhone, Mac, and Android</td></tr>
-              <tr><th scope="row">Free tier</th><td>Permanent full access for existing users; subscriptions for new users</td><td>Free plan with limited rules and basic blocking</td></tr>
-              <tr><th scope="row">Recurring schedules</th><td class="yes">Yes — Night and Morning</td><td class="yes">Yes — flexible Rules and Schedules</td></tr>
-              <tr><th scope="row">Strict option</th><td>Included Strict Mode; protects the active window and prevents deleting Twilock mid-session</td><td>Hard Mode / No Unblocks on Pro; one Emergency Pass per week</td></tr>
+              <tr><th scope="row">Access</th><td>New users need a subscription or eligible trial; existing users keep permanent full access</td><td>Free plan with limited rules and basic blocking</td></tr>
+              <tr><th scope="row">Recurring schedules</th><td class="yes">Night and Morning: daily, weekdays and weekends, or custom days</td><td class="yes">Yes — flexible Rules and Schedules</td></tr>
+              <tr><th scope="row">Strict option</th><td>Strict Mode in every routine; locks active settings and prevents deleting Twilock mid-session</td><td>Hard Mode / No Unblocks on Pro; one Emergency Pass per week</td></tr>
               <tr><th scope="row">Allow-only mode</th><td>No</td><td class="yes">Yes on Pro</td></tr>
               <tr><th scope="row">Window length</th><td>Up to two hours per Night or Morning window</td><td>Flexible schedules, sessions, limits, and timers</td></tr>
               <tr><th scope="row">Progress</th><td>Streaks, badges, reclaimed time, and optional check-ins</td><td>Opal Score, history, and Focus Gems</td></tr>
@@ -785,18 +795,18 @@ pages.push({
 
         <h2>How strict blocking compares</h2>
         <h3>Twilock Strict Mode</h3>
-        <p>Twilock’s current App Store listing says Strict Mode stops you deleting Twilock mid-session while still leaving a way out. Strict Mode is included with full access, without a separate feature tier or three-night limit. It is designed around a scheduled Night or Morning window rather than arbitrary all-day rules.</p>
+        <p>Every enabled Twilock routine uses Strict Mode, locking routine settings and preventing deletion of Twilock during an active window. Choose a timed early unlock before a window starts, or None to disable that option. Protection ends at the scheduled time; revoking Screen Time access in iOS can also end it. There is no separate feature tier or three-night allowance.</p>
         <h3>Opal Hard Mode</h3>
         <p>Opal’s official schedule guide describes Hard Mode as “No Unblocks”: you cannot unblock or leave early during the Rule. Opal also provides one Emergency Pass per week, which cancels current rules for one hour. Hard Mode and unlimited Rules are Pro features.</p>
         <p>If you want a strict bedtime boundary with a very small setup surface, Twilock is the clearer fit. If you need strict sessions, schedules, time limits, open limits, or an allow-only “brick phone” configuration, Opal has substantially more range.</p>
 
         <h2>Free plans and pricing</h2>
-        <p>Twilock provides every feature to every admitted user. New users require a verified subscription, eligible subscription trial, or honored entitlement. All existing users retain permanent full access.</p>
-        <p>Opal offers a free tier with limits on rules and history. Its current website lists Pro at $19.99 monthly, $99.99 billed annually, or $399 as a one-time purchase. Twilock targets US $39.99 annually and $6.99 monthly for new users. The monthly change is scheduled for October 8, 2026; Apple may still show $4.99 beforehand. Existing $4.99 renewals are preserved. Confirm the actual localized price in the app.</p>
+        <p>Twilock provides every feature to everyone with access. New users need a subscription or eligible trial; supported existing purchases are honored. All existing users retain permanent full access.</p>
+        <p>Opal offers a free tier with limits on rules and history. Its current website lists Pro at $19.99 monthly, $99.99 billed annually, or $399 as a one-time purchase. Twilock’s US prices are $39.99 annually or $6.99 monthly for new users. Eligible annual subscriptions include a 7 day trial; monthly has no free trial. Confirm your actual localized price and eligibility before purchase.</p>
 
         <h2>Advantages and drawbacks</h2>
         <div class="pros-cons-grid">
-          <section class="pros-cons"><h3>Twilock</h3><ul><li><strong>Advantage:</strong> a faster mental model for bedtime and morning protection.</li><li><strong>Advantage:</strong> lower current U.S. list prices.</li><li><strong>Advantage:</strong> Existing users keep permanent full access.</li><li><strong>Drawback:</strong> iPhone only.</li><li><strong>Drawback:</strong> two-hour cap and no general workday rule engine.</li><li><strong>Drawback:</strong> New users require verified access.</li></ul></section>
+          <section class="pros-cons"><h3>Twilock</h3><ul><li><strong>Advantage:</strong> a faster mental model for bedtime and morning protection.</li><li><strong>Advantage:</strong> lower current U.S. list prices.</li><li><strong>Advantage:</strong> Existing users keep permanent full access.</li><li><strong>Drawback:</strong> iPhone only.</li><li><strong>Drawback:</strong> two-hour cap and no general workday rule engine.</li><li><strong>Drawback:</strong> New users need a subscription or eligible trial.</li></ul></section>
           <section class="pros-cons"><h3>Opal</h3><ul><li><strong>Advantage:</strong> much broader rule types and flexible schedules.</li><li><strong>Advantage:</strong> iPhone, Mac, and Android support.</li><li><strong>Advantage:</strong> Allow Only, time limits, open limits, and longer-term history.</li><li><strong>Drawback:</strong> more configuration than a bedtime-only use case needs.</li><li><strong>Drawback:</strong> strict controls and unlimited rules require Pro.</li><li><strong>Drawback:</strong> higher current list prices.</li></ul></section>
         </div>
 
@@ -807,7 +817,7 @@ pages.push({
         </div>
 
         <h2>Methodology</h2>
-        <div class="methodology"><p>We compared each product’s public feature set, current official pricing, schedule model, strict-mode behavior, platform support, and free-tier limits. Twilock details reflect the prepared full-access release; competitor facts retain their original verification date. Opal facts were checked against Opal’s pricing page and current help center. We did not use review averages or vendor-reported outcome statistics to decide the recommendation.</p></div>
+        <div class="methodology"><p>We compared each product’s public feature set, current official pricing, schedule model, strict-mode behavior, platform support, and free-tier limits. Twilock details were checked against the released app on ${productCheckedDate}; competitor facts retain their original verification date. Opal facts were checked against Opal’s pricing page and current help center. We did not use review averages or vendor-reported outcome statistics to decide the recommendation.</p></div>
 
         <h2>Sources</h2>
         <ul class="source-list">
@@ -820,9 +830,9 @@ pages.push({
         <h2>Frequently asked questions</h2>
         <div class="faq-list">
           <details><summary>Is Twilock better than Opal?</summary><div>Not overall. Twilock is the more focused choice for a narrow night-and-morning use case. Opal is the more capable choice when you need broad rules, multiple platforms, or many blocking modes.</div></details>
-          <details><summary>Which app is cheaper?</summary><div>At the U.S. list prices checked ${checkedDate}, Twilock’s annual target is $39.99 and monthly target is $6.99. No lifetime plan is offered to new users. Prices and promotions can change.</div></details>
+          <details><summary>Which app is cheaper?</summary><div>Twilock’s US prices checked ${productCheckedDate} are $39.99 per year or $6.99 per month. The Opal prices above were last reviewed ${checkedDate}. Twilock does not offer a new Lifetime plan in the app. Confirm current local prices before choosing.</div></details>
           <details><summary>Can both apps block social media at night?</summary><div>Yes. Twilock makes Night a first-class window. Opal can create a scheduled Rule for the same period.</div></details>
-          <details><summary>Which has stronger emergency access?</summary><div>They take different approaches. Opal documents one Emergency Pass per week for Hard Mode. Twilock documents that Strict Mode always leaves a recovery path. Review each app’s current in-product explanation before committing.</div></details>
+          <details><summary>Which has stronger emergency access?</summary><div>They take different approaches. Opal documents one Emergency Pass per week for Hard Mode. Twilock offers a timed early unlock configured before a window starts, and None disables that option. The scheduled end still applies. Revoking Screen Time access in iOS can end Twilock protection. Review the exact settings before committing.</div></details>
         </div>
       </article>
       ${articleAside()}
@@ -844,7 +854,7 @@ pages.push({
         <span class="eyebrow">Practical iPhone guide</span>
         <h1>How to block social media at night on iPhone without losing essential access</h1>
         <p class="page-deck">Start with the smallest schedule you will keep. Protect the apps that actually pull you in, leave essential tools available, and decide your escape rule before the block begins.</p>
-        <div class="page-meta"><span>By Hussain Taheri</span><span>Updated ${checkedDate}</span><span>7 minute read</span></div>
+        <div class="page-meta"><span>By Hussain Taheri</span><span>Updated ${productCheckedDate}</span><span>7 minute read</span></div>
       </div>
     </header>
     <div class="shell article-layout">
@@ -911,7 +921,7 @@ pages.push({
         <h2>Sources</h2>
         <ul class="source-list"><li><a href="https://support.apple.com/en-us/108806">Apple: Use Screen Time on iPhone and iPad</a> — current Downtime, App Limits, and Always Allowed guidance.</li><li><a href="${appStoreUrl}">Twilock on the App Store</a> — current feature scope, compatibility, and pricing.</li></ul>
       </article>
-      ${articleAside("Twilock gives nighttime blocking a simple home: one Night window, the apps you choose, and optional Strict Mode included.")}
+      ${articleAside("Twilock gives nighttime blocking a simple home: one Night window, the apps you choose, and Strict Mode in every routine.")}
     </div>`,
   schema: [articleSchema(nightGuideRoute, "How to Block Social Media at Night on iPhone", "A practical guide to scheduling nighttime social-media blocks on iPhone while keeping essential apps available."), breadcrumbSchema(nightGuideRoute, "Block social media at night")],
 });
@@ -978,7 +988,7 @@ pages.push({
 
         <h2>When a nighttime app blocker makes sense</h2>
         <p>A dedicated blocker can make the schedule easier to understand or harder to reverse. Twilock is built around a Night window of up to two hours. You choose apps or categories with Apple’s private Screen Time picker, then Twilock applies a shield during the scheduled window.</p>
-        <p>Night and Morning protection are included with full access. Strict Mode is included for every admitted user designed to protect an active window from impulsive edits and prevent deleting Twilock during the session. It still leaves a recovery path for genuine need. Twilock is not an emergency service or parental control system, and it should not be described as impossible to bypass.</p>
+        <p>Night and Morning protection are included with access to the complete app. Every enabled routine uses Strict Mode to protect active settings and prevent deleting Twilock during the session. Configure a timed early unlock before the window starts, or choose None to disable it. The scheduled end always applies; revoking Screen Time access in iOS can end protection. Twilock is not an emergency service or parental control system, and it should not be described as impossible to bypass.</p>
 
         <h2>A seven night rollout</h2>
         <div class="comparison-table-wrap" tabindex="0" role="region" aria-label="Seven night doomscrolling plan">
@@ -1021,7 +1031,7 @@ pages.push({
           <li><a href="${appStoreUrl}">Twilock on the App Store</a> for current features, compatibility, and purchases.</li>
         </ul>
       </article>
-      ${articleAside("Twilock gives your nighttime boundary a clear home with Night and Morning routines and optional Strict Mode included.")}
+      ${articleAside("Twilock gives your nighttime boundary a clear home with Night and Morning routines and Strict Mode in every routine.")}
     </div>`,
   schema: [articleSchema(doomscrollingGuideRoute, "How to Stop Doomscrolling at Night on iPhone", "A practical guide to reducing nighttime scrolling with fewer cues, a focused schedule, Apple Screen Time, and Twilock.", newGuideIsoDate), breadcrumbSchema(doomscrollingGuideRoute, "Stop doomscrolling at night")],
 });
@@ -1092,8 +1102,8 @@ pages.push({
         <p>Family controls are a different trust model. A parent or guardian managing a child through Family Sharing can retain the passcode and receive certain passcode use information on supported system versions. That is not the same as an adult trying to create friction for their own future decision.</p>
 
         <h2>Where Twilock Strict Mode differs</h2>
-        <p>Twilock organizes blocking around a Night or Morning window instead of a general daily limit. Strict Mode, included with full access, protects an active window from impulsive edits and prevents Twilock from being deleted during the session. It is designed to give an earlier decision more weight during a specific period.</p>
-        <p>Strict Mode still includes a recovery path for genuine need. Twilock does not claim to be impossible to bypass, parental control software, or an emergency service. Test the normal window first, leave essentials outside the shield, and add Strict Mode only after the timing and app selection are correct.</p>
+        <p>Twilock organizes blocking around a Night or Morning window instead of a general daily limit. Strict Mode, included with access to the complete app, protects an active window from impulsive edits and prevents Twilock from being deleted during the session. It is designed to give an earlier decision more weight during a specific period.</p>
+        <p>Every Twilock routine uses Strict Mode. Before a window starts, configure its early unlock timer or choose None to disable timed early unlock. Test a short window with essential apps excluded. Protection ends at the scheduled time; revoking Screen Time access in iOS can end it. Twilock does not claim to be impossible to bypass, parental control software, or an emergency service.</p>
         <p>For a broader product comparison, see our <a href="/best-strict-app-blockers-iphone/">guide to strict app blockers for iPhone</a>. If the problem happens mainly in bed, use the <a href="/stop-doomscrolling-at-night-iphone/">nighttime doomscrolling guide</a>.</p>
 
         <h2>A safe test before you rely on the rule</h2>
@@ -1101,8 +1111,8 @@ pages.push({
           <li>Start the schedule while you are awake and not under time pressure.</li>
           <li>Confirm calls and messages from important contacts can reach you.</li>
           <li>Open Maps, authentication, health, transportation, and payment tools you may need.</li>
-          <li>Try the normal exit and recovery path so you understand it before a genuine need.</li>
-          <li>Let the schedule run for several days before adding stronger commitment.</li>
+          <li>Understand the scheduled end and any early unlock or recovery controls before relying on a block.</li>
+          <li>Review the timing, app selection, and recovery settings after several days.</li>
         </ol>
 
         <h2>Frequently asked questions</h2>
@@ -1178,7 +1188,7 @@ pages.push({
 
         <h2>Use Screen Time or a morning app blocker</h2>
         <p>Apple Downtime can make most apps unavailable on a schedule while leaving apps and contacts in Always Allowed accessible. Turn on Block at Downtime when you want the schedule to block rather than merely remind.</p>
-        <p>Twilock includes a Morning window for every admitted user. You choose the apps or categories that pull you into the morning loop and schedule a window of up to two hours. Strict Mode, also included, can protect the active window from impulsive edits after you have tested the normal schedule.</p>
+        <p>Twilock includes Night and Morning routines with every subscription or supported existing access. Choose the apps or categories that pull you into the morning loop and set a 15 to 120 minute window. Repeat daily, use separate weekday and weekend times, or choose custom days. Every enabled routine uses Strict Mode. Before a window starts, configure its early unlock timer or choose None to disable that option.</p>
         <p>If you tend to change your own limits, read <a href="/make-iphone-screen-time-harder-to-bypass/">how to make Screen Time harder to bypass</a>. If the same loop happens at bedtime, use the <a href="/stop-doomscrolling-at-night-iphone/">nighttime doomscrolling guide</a>.</p>
 
         <h2>Give the first action somewhere to go</h2>
@@ -1255,7 +1265,7 @@ pages.push({
         <span class="eyebrow">2026 category comparison</span>
         <h1>The best nighttime app blockers for iPhone</h1>
         <p class="page-deck">There is no best blocker for everyone. The useful question is whether you need a simple bedtime schedule, free customization, stronger commitment, or one system across every device.</p>
-        <div class="page-meta"><span>By Hussain Taheri</span><span>Last checked ${checkedDate}</span><span>11 minute read</span></div>
+        <div class="page-meta"><span>By Hussain Taheri</span><span>Twilock updated ${productCheckedDate}</span><span>11 minute read</span></div>
       </div>
     </header>
     <div class="shell article-layout">
@@ -1266,10 +1276,10 @@ pages.push({
         <h2>Our picks by use case</h2>
         <div class="comparison-table-wrap" tabindex="0" role="region" aria-label="Nighttime app blockers comparison table">
           <table class="comparison-table">
-            <caption>Official features and pricing checked ${checkedDate}</caption>
+            <caption>Twilock checked ${productCheckedDate}; competitors last reviewed ${checkedDate}</caption>
             <thead><tr><th scope="col">App</th><th scope="col">Best for</th><th scope="col">Night schedule</th><th scope="col">Strict option</th><th scope="col">Current price signal</th></tr></thead>
             <tbody>
-              <tr><th scope="row">Twilock</th><td>Focused night and morning protection</td><td class="yes">Dedicated Night window</td><td>Unlimited Strict Mode included</td><td>New users: $39.99/year target; permanent access for existing users</td></tr>
+              <tr><th scope="row">Twilock</th><td>Focused night and morning protection</td><td class="yes">Dedicated Night window</td><td>Strict Mode in every routine included</td><td>New users: $39.99/year target; permanent access for existing users</td></tr>
               <tr><th scope="row">ScreenZen</th><td>A free, highly configurable blocker</td><td class="yes">Scheduled blocks</td><td>Lock mode / strict block</td><td>Free, donation-supported</td></tr>
               <tr><th scope="row">Opal</th><td>Broad automation and multiple platforms</td><td class="yes">Flexible Schedules</td><td>Hard Mode / No Unblocks on Pro</td><td>Free; Pro $99.99/year on web</td></tr>
               <tr><th scope="row">Jomo</th><td>Deep customization and varied unlock rules</td><td class="yes">Scheduled Sessions</td><td>Strict Mode on Plus</td><td>Free; Plus $29.99/year</td></tr>
@@ -1291,11 +1301,11 @@ pages.push({
         <h3>Can you keep essential apps available?</h3>
         <p>Leave the apps you genuinely need outside your blocked selection. With Apple Screen Time, review Always Allowed. Test a short schedule while you are awake before relying on it overnight. See our <a href="/block-social-media-at-night-iphone/">nighttime social media setup guide</a> for the steps.</p>
 
-        <h3>Can you try the bedtime routine for free?</h3>
-        <p>Twilock includes Night, Morning, and unlimited Strict Mode for every admitted user. Subscriptions apply to new users; existing users keep permanent full access. If a focused bedtime window fits your problem, <a href="${appStoreUrl}">explore Twilock’s Night and Morning routines</a>: choose the distracting apps, set your window, and test it before deciding whether you need stronger commitment.</p>
+        <h3>How can you try the bedtime routine?</h3>
+        <p>Twilock includes Night, Morning, and unlimited Strict Mode for everyone with access. Subscriptions apply to new users; existing users keep permanent full access. If a focused bedtime window fits your problem, <a href="${appStoreUrl}">explore Twilock’s Night and Morning routines</a>: choose the distracting apps, set a short window, and review Strict Mode and early unlock before activating protection. New users can try the app with an eligible annual subscription trial; eligibility is shown before purchase.</p>
 
         <h2>1. Twilock — best for a focused night-and-morning routine</h2>
-        ${productReview({name:"Twilock",bestFor:"people whose scrolling clusters around sleep",summary:"Twilock makes Night and Morning the core schedule instead of treating bedtime as one possible rule. Every admitted user gets Night, Morning, unlimited Strict Mode, Streak Repair, and deeper Insights.",advantages:"Fast setup, clear two-window model, lower current U.S. pricing, and Screen Time/app-usage data that stay on device.",drawbacks:"iPhone only, each window is capped at two hours, and new users require verified access.",choose:"you want a small system that is obvious every evening rather than a general productivity suite."})}
+        ${productReview({name:"Twilock",bestFor:"people whose scrolling clusters around sleep",summary:"Twilock makes Night and Morning the core schedule instead of treating bedtime as one possible rule. Everyone with access gets Night, Morning, unlimited Strict Mode, Streak Repair, and deeper Insights.",advantages:"Fast setup, clear two-window model, lower current U.S. pricing, and Screen Time/app-usage data that stay on device.",drawbacks:"iPhone only, each window is capped at two hours, and new users need a subscription or eligible trial.",choose:"you want a small system that is obvious every evening rather than a general productivity suite."})}
 
         <h2>2. ScreenZen — best free option</h2>
         ${productReview({name:"ScreenZen",bestFor:"free customization",summary:"ScreenZen combines scheduled blocks, limits, open delays, interventions, strict blocking, streaks, and multi-platform availability. Its official site describes the software as completely free and donation-supported.",advantages:"No subscription, many configuration options, app and website blocking, and support for iOS, macOS, Windows, and Android.",drawbacks:"The setup surface is more complex than a two-window routine, and its breadth can take time to tune.",choose:"cost is the deciding factor and you are willing to configure the behavior you want."})}
@@ -1333,7 +1343,7 @@ pages.push({
 
         <h2>Frequently asked questions</h2>
         <div class="faq-list">
-          <details><summary>What is the best free nighttime app blocker?</summary><div>ScreenZen offers the broadest free third-party feature set in this comparison. Apple Screen Time is the best built-in option. Existing Twilock users retain permanent full access; new users need verified access.</div></details>
+          <details><summary>What is the best free nighttime app blocker?</summary><div>ScreenZen offers the broadest free third-party feature set in this comparison. Apple Screen Time is the best built-in option. Existing Twilock users retain permanent full access; new users need a subscription or eligible trial.</div></details>
           <details><summary>Which blocker is hardest to bypass?</summary><div>“Strict” means different things across apps and iOS versions. Review the exact exit, emergency, uninstall, and Screen Time permission behavior before committing. Our <a href="/best-strict-app-blockers-iphone/">strict blocker guide</a> compares those differences.</div></details>
           <details><summary>Can these apps block websites as well as apps?</summary><div>Opal, Jomo, ScreenZen, one sec, Freedom, and Apple Screen Time offer website controls in at least some configurations. Twilock is positioned around the apps or categories selected with Apple’s Screen Time picker.</div></details>
           <details><summary>Do I need to pay for a bedtime schedule?</summary><div>No. Apple Screen Time and ScreenZen provide free ways to schedule nighttime protection. Twilock subscriptions apply to new users; existing users keep permanent full access.</div></details>
@@ -1357,7 +1367,7 @@ pages.push({
         <span class="eyebrow">Strict blocking, explained</span>
         <h1>The best strict app blockers for iPhone</h1>
         <p class="page-deck">A strict label is not enough. Compare what happens when you try to edit the rule, leave early, delete the app, disable Screen Time access, or handle a genuine exception.</p>
-        <div class="page-meta"><span>By Hussain Taheri</span><span>Last checked ${checkedDate}</span><span>12 minute read</span></div>
+        <div class="page-meta"><span>By Hussain Taheri</span><span>Twilock updated ${productCheckedDate}</span><span>12 minute read</span></div>
       </div>
     </header>
     <div class="shell article-layout">
@@ -1376,7 +1386,7 @@ pages.push({
             <caption>Behavior described by each product’s current official sources</caption>
             <thead><tr><th scope="col">App</th><th scope="col">Active-rule protection</th><th scope="col">Emergency path</th><th scope="col">Uninstall / permission protection</th><th scope="col">Plan</th></tr></thead>
             <tbody>
-              <tr><th scope="row">Twilock</th><td>Strict Mode protects active Night/Morning window</td><td>Recovery path remains available</td><td>Prevents deleting Twilock mid-session</td><td>Included with full access</td></tr>
+              <tr><th scope="row">Twilock</th><td>Strict Mode protects active Night/Morning window</td><td>Timed early unlock chosen beforehand, or None; scheduled end still applies</td><td>Prevents deleting Twilock mid-session; Screen Time access can be revoked in iOS</td><td>Included with access to the complete app</td></tr>
               <tr><th scope="row">Opal</th><td>Hard Mode can allow no unblocks or early exit</td><td>One Emergency Pass per week</td><td>Additional uninstall/Screen Time protections documented</td><td>Pro for No Unblocks</td></tr>
               <tr><th scope="row">Jomo</th><td>Strict Mode says rules cannot be deleted or bypassed</td><td>Depends on the Rule and unlock configuration</td><td>May require companion iOS/Shortcuts setup for Settings protection</td><td>Plus</td></tr>
               <tr><th scope="row">one sec</th><td>Strict Blocks cannot be paused or left early</td><td>Review each block before starting</td><td>Official iOS 26.4 guide documents Screen Time permission lock</td><td>Pro</td></tr>
@@ -1388,7 +1398,7 @@ pages.push({
         <p class="quiet">iOS capabilities and exact settings can change. Test a short block with essential apps excluded before committing to a long strict session.</p>
 
         <h2>1. Twilock — strict protection around sleep</h2>
-        ${productReview({name:"Twilock",bestFor:"strict Night and Morning windows",summary:"Twilock’s Strict Mode is included with full access and is tied to its focused schedule model. The live App Store listing says it stops you deleting Twilock mid-session while always leaving a way out.",advantages:"Very clear use case, minimal schedule complexity, active uninstall protection, and lower current U.S. pricing than several premium competitors.",drawbacks:"Only two window types, a two-hour cap per window, iPhone only, and new users require verified access.",choose:"your main bypass happens at bedtime or on waking and you do not want a general-purpose rule engine."})}
+        ${productReview({name:"Twilock",bestFor:"strict Night and Morning windows",summary:"Every Twilock Night and Morning routine uses Strict Mode. Active settings are locked and Twilock cannot be deleted during the window. A timed early unlock can be configured beforehand, or disabled with None. Protection ends at the scheduled time; revoking Screen Time access in iOS can end it.",advantages:"Very clear use case, minimal schedule complexity, active uninstall protection, and lower current U.S. pricing than several premium competitors.",drawbacks:"Only two window types, a two-hour cap per window, iPhone only, and new users need a subscription or eligible trial.",choose:"your main bypass happens at bedtime or on waking and you do not want a general-purpose rule engine."})}
 
         <h2>2. Opal — strictness inside a broad system</h2>
         ${productReview({name:"Opal",bestFor:"many strict rule types",summary:"Opal’s Pro Hard Mode can run with No Unblocks, preventing an early exit or edit. Its official help center documents one Emergency Pass each week, plus additional steps for uninstall and Screen Time protection.",advantages:"Clear emergency policy, flexible Schedules and Sessions, multiple rule types, Allow Only, and cross-platform support.",drawbacks:"Higher current web price, more setup, and some foolproof configurations require additional iOS settings.",choose:"you need strict rules for work, study, bedtime, app opens, and usage limits in one product."})}
@@ -1450,7 +1460,7 @@ pages.push({
         <span class="eyebrow">Broader iPhone roundup</span>
         <h1>The best screen-time apps for iPhone depend on what breaks your plan</h1>
         <p class="page-deck">Some people need a bedtime boundary. Others need a pause before opening an app, a hard work session, a free flexible limit, or parental controls. Match the tool to the failure mode.</p>
-        <div class="page-meta"><span>By Hussain Taheri</span><span>Last checked ${checkedDate}</span><span>13 minute read</span></div>
+        <div class="page-meta"><span>By Hussain Taheri</span><span>Twilock updated ${productCheckedDate}</span><span>13 minute read</span></div>
       </div>
     </header>
     <div class="shell article-layout">
@@ -1461,12 +1471,12 @@ pages.push({
         <h2>Best iPhone screen-time apps by job</h2>
         <div class="comparison-table-wrap" tabindex="0" role="region" aria-label="Best iPhone screen time apps table">
           <table class="comparison-table">
-            <caption>Use-case fit based on official sources checked ${checkedDate}</caption>
+            <caption>Twilock checked ${productCheckedDate}; competitors last reviewed ${checkedDate}</caption>
             <thead><tr><th scope="col">App</th><th scope="col">Best use</th><th scope="col">Free option</th><th scope="col">Strict control</th><th scope="col">Platforms</th></tr></thead>
             <tbody>
               <tr><th scope="row">Apple Screen Time</th><td>Built-in limits and family controls</td><td class="yes">Included</td><td>Passcode / family organizer</td><td>Apple devices</td></tr>
               <tr><th scope="row">ScreenZen</th><td>Free customization</td><td class="yes">Complete software is free</td><td>Strict blocks and lock mode</td><td>iOS, macOS, Windows, Android</td></tr>
-              <tr><th scope="row">Twilock</th><td>Night and Morning windows</td><td>Permanent full access for existing users</td><td>Unlimited Strict Mode included</td><td>iPhone</td></tr>
+              <tr><th scope="row">Twilock</th><td>Night and Morning windows</td><td>Permanent full access for existing users</td><td>Strict Mode in every routine included</td><td>iPhone</td></tr>
               <tr><th scope="row">one sec</th><td>Pause before opening apps</td><td>One app</td><td>Strict Block on Pro</td><td>iOS, Android, browser, Mac</td></tr>
               <tr><th scope="row">Opal</th><td>All-day rules and polish</td><td>Limited free plan</td><td>Hard Mode on Pro</td><td>iPhone, Mac, Android</td></tr>
               <tr><th scope="row">Jomo</th><td>Flexible rule and unlock design</td><td>Limited free plan</td><td>Strict Mode on Plus</td><td>iPhone, iPad, Mac</td></tr>
@@ -1541,7 +1551,7 @@ pages.push({
         <p>That led to two named windows, each capped at two hours, and a product that gets out of the way outside them.</p>
 
         <h2>Why Strict Mode?</h2>
-        <p>A block is not very useful if the same tired version of you who wants to scroll can remove it in seconds. Strict Mode gives more weight to the decision made earlier, while retaining a recovery path for genuine need.</p>
+        <p>A block is not very useful if the same tired version of you who wants to scroll can remove it in seconds. Every routine uses Strict Mode to give more weight to the decision made earlier. Choose a timed early unlock before a window starts, or None to disable that option; every window still has a scheduled end.</p>
         <p>The goal is not punishment. It is commitment: a little distance between impulse and action, applied only where you asked for it.</p>
 
         <h2>What Twilock values</h2>
@@ -1577,7 +1587,7 @@ pages.push({
     <div class="reading-shell">
       <div class="support-grid">
         <section class="support-card"><h2>Screen Time access</h2><p>Open iPhone Settings → Screen Time and confirm Twilock has access. Then check that your chosen apps are still selected and that the current time is inside your configured window.</p></section>
-        <section class="support-card"><h2>Cancel or change a subscription</h2><p>Apple manages subscriptions. Open iPhone Settings → your name → Subscriptions, choose Twilock, and update or cancel the plan there.</p></section>
+        <section class="support-card"><h2>Cancel or change your subscription</h2><p>Apple manages subscriptions. Open iPhone Settings → your name → Subscriptions, choose Twilock, and update or cancel the plan there.</p></section>
         <section class="support-card"><h2>Restore a purchase</h2><p>Open Twilock’s paywall on the device using the same Apple Account and choose Restore Purchases.</p></section>
         <section class="support-card"><h2>Delete your account</h2><p>Open Twilock → Settings → Delete Account. This permanently removes your profile, synced progress, and friend connections from Twilock’s servers.</p></section>
       </div>
@@ -1588,7 +1598,7 @@ pages.push({
           <h3>The shield is not appearing</h3>
           <ul><li>Confirm the selected window is currently active.</li><li>Confirm the affected app is still selected.</li><li>Check Screen Time access in iPhone Settings.</li><li>Open Twilock once after an iOS update or device restart.</li></ul>
           <h3>I need access during Strict Mode</h3>
-          <p>Use the recovery path shown inside Twilock. Support cannot remotely bypass an active iPhone Screen Time shield.</p>
+          <p>If you configured an early unlock timer before the window started, use the early unlock option shown inside Twilock and wait for the timer. Choosing None disables timed early unlock. The window still ends at its scheduled time. Revoking Screen Time access in iOS can end protection. Support cannot remotely bypass an active iPhone Screen Time shield.</p>
           <h3>Privacy questions</h3>
           <p>Read the <a href="/privacy/">Twilock Privacy Policy</a>. Questions about privacy or your data can also be sent to <a href="mailto:support@twilock.com">support@twilock.com</a>, the address in the published policy.</p>
           <h3>Billing and refunds</h3>
@@ -1611,7 +1621,7 @@ pages.push({
         ${breadcrumbs("Privacy Policy")}
         <span class="eyebrow">Legal</span>
         <h1>How Twilock protects your privacy</h1>
-        <p class="page-deck">Last updated: October 5, 2026</p>
+        <p class="page-deck">Last updated: October 20, 2026</p>
       </div>
     </header>
     <div class="shell article-layout">
@@ -1626,29 +1636,33 @@ pages.push({
         </ul></section>
 
         <section><h2>Data stored to power accounts &amp; the social features</h2><p>These features are optional. Onboarding offers sign in, but includes a "Skip" option, creating an account is only actually required if you want to use the Friends tab. If you do sign in, we store the minimum needed, via our backend provider, Supabase:</p><ul>
-          <li><strong>Account.</strong> You can sign in with Sign in with Apple, Sign in with Google, or email/password. Depending on the method, this gives us your email address (or, with Apple, a private relay address if you choose to hide your email from us) and a unique account identifier, which our authentication provider, Supabase, stores to keep you signed in. If Apple or Google shares your name on first sign in, we store an editable display name too. We never see your Apple ID password, your Google password, or (for email sign in) your password in plain text, Supabase stores only a salted hash of it.</li>
+          <li><strong>Account.</strong> You can sign in with Apple or Google. Depending on the method and your choices, we receive an email address (including an Apple private relay address), a unique account identifier, and a name that you can edit for your profile. Supabase stores this information to keep your account and social features working. We do not receive your Apple or Google password.</li>
           <li><strong>Profile &amp; progress.</strong> To show you on your friends' leaderboard, we store your display name, invite code, current streak, and longest streak. We also sync a day by day record of your no scroll windows, the date, which window (night or morning), the outcome (clean, frozen, or violated), and your device's time zone, so your streak and history stay consistent across devices. We do <strong>not</strong> store which apps you shield, your raw app usage data, your check ins, or your earned badges on our servers, those stay on your device only.</li>
           <li><strong>Friends.</strong> Friend connections and pending friend requests you create (via invite codes) are stored so the social and leaderboard features work.</li>
         </ul></section>
 
-        <section><h2>Product analytics</h2><p>We use PostHog to understand how the app is used overall, for example how many people complete onboarding, which screens are visited, whether a purchase was made, and when streak features are used, such as a badge being earned, a Streak Freeze consumed, Streak Repair used, a Snooze Token redeemed, Strict Mode turned on or off, or a window postponed. These events do not include which apps you shield, your Screen Time or app usage data, your check ins, or your no scroll window settings, all of which stay on your device as described above. Analytics events are tied to an anonymous identifier rather than your name or email, and we do not use them for advertising or share them with advertisers or data brokers.</p></section>
+        <section><h2>Product analytics and reliability</h2><p>We use PostHog to understand product use and investigate problems, including app opens, onboarding progress, screen visits, purchases, routine outcomes, and technical crash reports. These records use a persistent installation identifier rather than a name or email address as their analytics identity. The identifier is stored in the device's Keychain and is also used with RevenueCat and in signed-in history records. These records are pseudonymous, rather than anonymous, and can be associated with an optional account. Crash reports may be sent on a later launch.</p><p>Your selected app identities, raw Screen Time usage, and local check-in answers are not included in these analytics records.</p></section>
 
-        <section><h2>Advertising attribution and your tracking choice</h2><p>Twilock does not display third party ads. We use the Meta SDK and RevenueCat attribution to understand whether our own App Promotion advertising leads to installs, trials, or purchases. After onboarding, Apple may show its App Tracking Transparency prompt. Only if you choose <strong>Allow</strong>, Twilock may send device identifiers such as IDFA (when available), IDFV, IP address, and a Meta anonymous identifier to RevenueCat and Meta so those companies can match an install or purchase to an advertising campaign. Apple defines this kind of advertising measurement as tracking across apps and websites.</p><p>If you choose <strong>Ask App Not to Track</strong>, these attribution identifiers are not collected for this purpose and no Twilock feature is removed. You can change the permission later in your device's Privacy &amp; Security settings. Your Screen Time data, selected apps, app usage, no scroll windows, and check ins are never included in advertising attribution.</p></section>
+        <section><h2>Onboarding recordings</h2><p>During onboarding, we may use PostHog session replay to understand where setup fails or becomes confusing. The app masks text inputs, images, and system-hosted views, including Apple's app picker, and disables network telemetry in these recordings. Recording stops outside onboarding, including on the purchase screen. Other visible interface text and interactions can appear in a recording.</p></section>
 
-        <section><h2>Purchases</h2><p>Subscriptions and the lifetime purchase are processed by <strong>Apple</strong>. We use <strong>RevenueCat</strong> to verify your purchase and manage your subscription status, this involves RevenueCat processing your purchase/transaction history to confirm your entitlement. If you allow tracking, RevenueCat also processes the attribution identifiers described above. We do not receive or store your payment card details; Apple handles all billing.</p></section>
+        <section><h2>Advertising measurement and your tracking choice</h2><p>Twilock does not display third-party ads. We use Meta and RevenueCat to measure whether our own advertising leads to installs, trials, or purchases. Apple may ask for permission to track your activity across other companies' apps and websites. Declining does not prevent purchasing or remove Twilock features. You can change your tracking permission in iPhone Settings → Privacy &amp; Security → Tracking.</p><p>When you allow tracking, the app can send advertising identifiers, including IDFA when available, IDFV, IP address, and a Meta matching identifier, to RevenueCat for advertising measurement. RevenueCat can pass transaction events and permitted matching information to Meta through our configured integration. The Meta SDK also sends app activation and registration events with advertiser tracking disabled when permission is absent. Your selected apps, raw Screen Time usage, routine settings, and check-in answers are not sent for advertising measurement.</p><p>Separately, Apple Ads attribution uses Apple's AdServices service to report campaign information. RevenueCat and PostHog use that information to understand campaign performance. AdServices collection does not depend on allowing the tracking prompt.</p></section>
 
-        <section><h2>What we do NOT do</h2><ul><li>We do not sell or rent your personal data.</li><li>We do not use your Screen Time or usage data for advertising or advertising measurement, and we do not share it with any data broker.</li><li>We do not display third party ads.</li><li>We do not collect advertising attribution identifiers unless you allow tracking through Apple's prompt.</li></ul></section>
+        <section><h2>Trial and subscription measurement</h2><p>We also use Supabase to receive and verify signed Apple transaction proofs and to match verified transaction details with purchase events from RevenueCat. We record transaction and product identifiers, purchase times, purchase classifications, and your tracking consent status. This processing can occur without creating a Twilock social account.</p><p>When tracking is allowed, this service may also hold a Meta matching identifier and limited technical context, such as app version, operating system version, and locale, to send eligible trial and subscription events to Meta. Our advertising delivery service uses your tracking choice when deciding whether to forward those events. Declining tracking does not prevent purchasing or remove Twilock features. Your selected app identities and raw Screen Time usage are not sent for advertising measurement.</p></section>
 
-        <section><h2>Third party services</h2><ul>
-          <li><strong>Apple:</strong> Sign in with Apple, Screen Time / Family Controls, and in app purchases. See Apple's Privacy Policy.</li>
-          <li><strong>Google:</strong> Sign in with Google, if you choose that option. Google receives your request to authenticate and returns an identity token confirming who you are; see Google's Privacy Policy.</li>
-          <li><strong>Supabase:</strong> stores your account, profile, progress (including your day by day no scroll history), and friend connections for the social features.</li>
-          <li><strong>RevenueCat:</strong> manages your subscription status and, only when you allow tracking, processes device identifiers for advertising attribution.</li>
-          <li><strong>PostHog:</strong> processes anonymous product analytics events, such as app opens and onboarding completion, to help us understand usage and improve the app.</li>
-          <li><strong>Meta:</strong> only when you allow tracking, receives advertising attribution identifiers and purchase events so we can measure our own App Promotion campaigns.</li>
+        <section><h2>Purchases</h2><p>Apple processes purchases and subscriptions. We use RevenueCat to verify transaction history, manage access, restore eligible purchases, and understand subscription performance. RevenueCat also receives the persistent installation identifier and the permitted attribution information described above. Existing lifetime purchases remain supported. We do not receive payment card details.</p></section>
+
+        <section><h2>What we do not do</h2><ul><li>We do not sell or rent your personal data.</li><li>We do not use your selected app identities or raw Screen Time usage for advertising or share them with data brokers.</li><li>We do not display third-party ads.</li><li>We do not require tracking permission to purchase or use Twilock.</li></ul></section>
+
+        <section><h2>Third-party services</h2><ul>
+          <li><strong>Apple:</strong> Sign in with Apple, Screen Time / Family Controls, purchases, and Apple Ads attribution.</li>
+          <li><strong>Google:</strong> authenticates you if you choose Sign in with Google.</li>
+          <li><strong>Supabase:</strong> stores optional account, profile, synced routine outcomes, and friend connections; also processes verified transaction details and tracking consent records for trial and subscription measurement, including permitted matching information when tracking is allowed.</li>
+          <li><strong>RevenueCat:</strong> processes purchase history and identifiers for access, analytics, and permitted advertising measurement.</li>
+          <li><strong>PostHog:</strong> processes product events, crash reports, campaign analytics, and masked onboarding recordings associated with the installation identifier.</li>
+          <li><strong>Meta:</strong> receives app activation and registration events and configured advertising-attribution and transaction events, with tracking consent communicated by the app and purchase service.</li>
         </ul></section>
 
-        <section><h2>Data retention &amp; deletion</h2><p>You can delete your account and all associated server side data at any time from <strong>Settings → Delete Account</strong> inside the app. This permanently removes your profile, progress, and friend connections from our servers. Data stored only on your device is removed when you delete the app.</p></section>
+        <section><h2>Data retention and deletion</h2><p>You can delete your account from <strong>Settings → Delete Account</strong> inside Twilock. This removes the associated account, profile, synced progress, and friend connections from our account backend. Deleting an account does not cancel an Apple subscription; manage subscriptions through your App Store account.</p><p>Deleting the app removes its ordinary local storage, but Keychain-backed identifiers and Apple purchase records can remain after deletion or reinstallation. Account deletion does not automatically erase records held separately by purchase, analytics, or advertising services. Contact <a href="mailto:support@twilock.com">support@twilock.com</a> for help with a data request. Some purchase records may need to be retained for transaction, fraud-prevention, or legal purposes.</p></section>
 
         <section><h2>Age rating and children</h2><p>For Twilock's current age rating in your region, see the <a href="${appStoreUrl}">App Store listing</a>.</p><p>Twilock is not directed to children under 13. We do not knowingly collect personal information from children under 13.</p></section>
 
@@ -1656,11 +1670,11 @@ pages.push({
 
         <section><h2>Contact</h2><p>Questions about this policy or your data? Contact us at <a href="mailto:support@twilock.com">support@twilock.com</a>.</p></section>
 
-        <p class="quiet">Twilock is operated by Hussain Taheri. This document reflects Twilock's actual data practices as of the date above. It is not legal advice; if you have specific compliance obligations (e.g. GDPR, CCPA) beyond what's described here, have it reviewed by counsel.</p>
+        <p class="quiet">Twilock is operated by Hussain Taheri. This policy describes the app’s data practices as of the date above.</p>
       </article>
       <aside class="article-aside"><div><h2>Need help?</h2><p>For product support, bug reports, or account-deletion help, visit Twilock Support.</p></div><a class="text-link" href="/support/">Open support</a></aside>
     </div>`,
-  schema: [breadcrumbSchema("privacy", "Privacy Policy"), { "@type": "WebPage", name: "Twilock Privacy Policy", url: `${siteUrl}/privacy/`, dateModified: "2026-10-05" }],
+  schema: [breadcrumbSchema("privacy", "Privacy Policy"), { "@type": "WebPage", name: "Twilock Privacy Policy", url: `${siteUrl}/privacy/`, dateModified: "2026-10-20" }],
 });
 
 pages.push({
@@ -1693,6 +1707,10 @@ pages.push({
     </div>`,
   schema: [breadcrumbSchema("terms", "Terms of Use"), { "@type": "WebPage", name: "Twilock Terms of Use", url: `${siteUrl}/terms/` }],
 });
+
+for (const page of pages) {
+  if (page.route !== "privacy") page.lastmod = productIsoDate;
+}
 
 const routeSet = new Set(pages.map((page) => page.route));
 if (routeSet.size !== pages.length || routes.some((route) => !routeSet.has(route))) {
@@ -1731,7 +1749,7 @@ const build = async () => {
   }
 
   const manifest = {
-    name: "Twilock: Screen Time Blocker",
+    name: "Twilock: Screen Time Control",
     short_name: "Twilock",
     description: "Protect the hours before sleep and after waking.",
     start_url: "/",
@@ -1749,7 +1767,7 @@ ${pages.map((page) => `  <url><loc>${canonicalFor(page.route)}</loc><lastmod>${p
   await writeDeploymentFile("sitemap.xml", sitemap);
   await writeDeploymentFile("robots.txt", `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`);
   await writeDeploymentFile("llms.txt", `# Twilock\n\n> Twilock is a focused iPhone screen time blocker for the hours before sleep and after waking.\n\n## Product\n\n- [Twilock homepage](${siteUrl}/): Product scope, privacy summary, pricing, and App Store access.\n- [Twilock versus Opal](${siteUrl}/twilock-vs-opal/): Source checked comparison of product scope, strictness, platforms, and price.\n- [About Twilock](${siteUrl}/about/): Founder, purpose, and product principles.\n- [Support](${siteUrl}/support/): Product help, purchases, account deletion, and contact options.\n\n## Practical guides\n\n- [Block apps on iPhone](${siteUrl}/how-to-block-apps-on-iphone/)\n- [Limit screen time on iPhone](${siteUrl}/how-to-limit-screen-time-on-iphone/)\n- [Fix App Limits on iPhone](${siteUrl}/app-limits-not-working-iphone/)\n- [Block social media at night on iPhone](${siteUrl}/block-social-media-at-night-iphone/)\n- [Stop doomscrolling at night on iPhone](${siteUrl}/stop-doomscrolling-at-night-iphone/)\n- [Make iPhone Screen Time harder to bypass](${siteUrl}/make-iphone-screen-time-harder-to-bypass/)\n- [Stop checking your phone first thing in the morning](${siteUrl}/stop-checking-phone-first-thing-morning/)\n\n## Comparisons\n\n- [Best nighttime app blockers for iPhone](${siteUrl}/best-nighttime-app-blockers/)\n- [Best strict app blockers for iPhone](${siteUrl}/best-strict-app-blockers-iphone/)\n- [Best screen time apps for iPhone](${siteUrl}/best-screen-time-apps-iphone/)\n\n## Policies\n\n- [Privacy policy](${siteUrl}/privacy/)\n- [Terms of use](${siteUrl}/terms/)\n\nAll product and comparison claims should be checked against the linked page and its dated sources.\n`);
-  await writeDeploymentFile("humans.txt", "Twilock is designed and built by Hussain Taheri.\nWebsite last verified: August 31, 2026.\n");
+  await writeDeploymentFile("humans.txt", "Twilock is designed and built by Hussain Taheri.\nTwilock product details updated: October 21, 2026. Competitor sources last reviewed: August 31, 2026.\n");
 
   const notFound = renderPage({
     route: "404",
