@@ -1621,7 +1621,7 @@ pages.push({
         ${breadcrumbs("Privacy Policy")}
         <span class="eyebrow">Legal</span>
         <h1>How Twilock protects your privacy</h1>
-        <p class="page-deck">Last updated: October 23, 2026</p>
+        <p class="page-deck">Last updated: October 26, 2026</p>
       </div>
     </header>
     <div class="shell article-layout">
@@ -1631,7 +1631,7 @@ pages.push({
 
         <section><h2>Data that stays only on your device</h2><ul>
           <li><strong>Screen Time &amp; app usage data.</strong> Twilock uses Apple's Family Controls / Screen Time framework to shield the apps you select during your no scroll windows. This usage data is processed entirely on your device and is <strong>never uploaded to us or anyone else</strong>. We cannot see which apps you use or how long you use them.</li>
-          <li><strong>Your no scroll windows &amp; app selection.</strong> The times you set and the apps you choose to shield are stored locally on your device.</li>
+          <li><strong>Your app selection.</strong> The apps you choose to shield stay on your device. Routine times are stored locally and may also be used by the notification service described below to avoid sending during protected windows.</li>
           <li><strong>Self reported check ins.</strong> Any sleep, energy, or mood ratings you enter are stored on your device only and are not uploaded.</li>
         </ul></section>
 
@@ -1649,14 +1649,16 @@ pages.push({
 
         <section><h2>Trial and subscription measurement</h2><p>We also use Supabase to receive and verify signed Apple transaction proofs and to match verified transaction details with purchase events from RevenueCat. We record transaction and product identifiers, purchase times, purchase classifications, and your tracking consent status. This processing can occur without creating a Twilock social account.</p><p>When tracking is allowed, this service may also hold a Meta matching identifier and limited technical context, such as app version, operating system version, and locale, to send eligible trial and subscription events to Meta. Our advertising delivery service uses your tracking choice when deciding whether to forward those events. Declining tracking does not prevent purchasing or remove Twilock features. Your selected app identities and raw Screen Time usage are not sent for advertising measurement.</p></section>
 
+        <section><h2>Optional setup help and offers</h2><p>Twilock includes an optional “Setup help and occasional offers” choice, off by default and separate from reminders, morning recaps, and tracking permission. Marketing push notifications require both this choice and iOS notification permission. You can change the choice in Twilock Settings without disabling your reminders. When available, these messages are limited to two in seven days and avoid your reported protected windows.</p><p>Our notification service, hosted by Supabase, processes an installation identifier, Apple push token, app-integrity evidence from App Attest, notification and consent settings, language, time zone, protection-window days and times, recent app activity, setup/paywall status, experiment assignment, and verified subscription status. It can process registration and preference updates even when marketing is off, to record your choice and suppress messages. This does not include your selected app identities or raw Screen Time usage, and does not require a social account or a marketing email address.</p><p>Apple delivers push notifications through APNs. We record send attempts, Apple's acceptance or rejection, notification opens, and offer history. Apple's acceptance does not prove that a notification was delivered or read. Verified Apple and RevenueCat purchase evidence helps prevent duplicate recovery messages and determine offer eligibility. Subscription and refund verification also supports accurate financial reporting independently of marketing consent.</p><p>Turning marketing off stops local marketing display immediately and cancels queued marketing after the server acknowledges the change. If you are offline or the service is unavailable, the app shows the change as pending until synchronization succeeds. Deleting your Twilock account also requests revocation of the installation's marketing registration. Consent and offer history, and financial verification records, may remain where needed to honor your choice, prevent abuse, or maintain transaction records. Contact support@twilock.com for a data request.</p></section>
+
         <section><h2>Purchases</h2><p>Apple processes purchases and subscriptions. We use RevenueCat to verify transaction history, manage access, restore eligible purchases, and understand subscription performance. RevenueCat also receives the persistent installation identifier and the permitted attribution information described above. Existing lifetime purchases remain supported. We do not receive payment card details.</p></section>
 
         <section><h2>What we do not do</h2><ul><li>We do not sell or rent your personal data.</li><li>We do not use your selected app identities or raw Screen Time usage for advertising or share them with data brokers.</li><li>We do not display third-party ads.</li><li>We do not require tracking permission to purchase or use Twilock.</li></ul></section>
 
         <section><h2>Third-party services</h2><ul>
-          <li><strong>Apple:</strong> Sign in with Apple, Screen Time / Family Controls, purchases, and Apple Ads attribution.</li>
+          <li><strong>Apple:</strong> Sign in with Apple, Screen Time / Family Controls, purchases, Apple Ads attribution, App Attest integrity checks, and APNs push delivery.</li>
           <li><strong>Google:</strong> authenticates you if you choose Sign in with Google.</li>
-          <li><strong>Supabase:</strong> stores optional account, profile, synced routine outcomes, and friend connections; also processes verified transaction details and tracking consent records for trial and subscription measurement, including permitted matching information when tracking is allowed.</li>
+          <li><strong>Supabase:</strong> stores optional account, profile, synced routine outcomes, and friend connections; also processes verified transaction details and tracking consent records for trial and subscription measurement, including permitted matching information when tracking is allowed. The notification service also processes installation, consent, delivery, protection-window, offer, and verified subscription records as described above.</li>
           <li><strong>RevenueCat:</strong> processes purchase history and identifiers for access, analytics, and permitted advertising measurement.</li>
           <li><strong>PostHog:</strong> processes product events, crash reports, campaign analytics, and masked onboarding recordings associated with the installation identifier.</li>
           <li><strong>AppsFlyer:</strong> processes app-scoped identifiers, attribution and technical information, and RevenueCat transaction events for measurement. Your tracking choice controls advertising identifiers and individual advertising-partner sharing; internal processing and Apple's aggregate SKAdNetwork measurement can continue after tracking is declined.</li>
@@ -1676,7 +1678,7 @@ pages.push({
       </article>
       <aside class="article-aside"><div><h2>Need help?</h2><p>For product support, bug reports, or account-deletion help, visit Twilock Support.</p></div><a class="text-link" href="/support/">Open support</a></aside>
     </div>`,
-  schema: [breadcrumbSchema("privacy", "Privacy Policy"), { "@type": "WebPage", name: "Twilock Privacy Policy", url: `${siteUrl}/privacy/`, dateModified: "2026-10-20" }],
+  schema: [breadcrumbSchema("privacy", "Privacy Policy"), { "@type": "WebPage", name: "Twilock Privacy Policy", url: `${siteUrl}/privacy/`, dateModified: "2026-10-26" }],
 });
 
 pages.push({
