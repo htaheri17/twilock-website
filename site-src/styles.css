@@ -1,7 +1,6 @@
 /*
-  Twilock web theme. Every color comes from the iOS app:
-  FocusFlowTheme (Theme.swift), NocturnalTheme.swift, ClockSky.swift,
-  AccentColor and LaunchBackground asset colors. Opacity variants only.
+  Twilock Night Aurora web theme. Violet and teal follow the approved icon.
+  Existing semantic status colors retain their roles.
   Headings use Space Grotesk Bold, the app's heading face.
 */
 @font-face {
@@ -17,21 +16,21 @@
 
   /* backgrounds */
   --black: #000000;          /* FocusFlowTheme.background */
-  --bg-top: #050909;         /* NocturnalTheme.backgroundTop, LaunchBackground */
-  --bg-bottom: #000405;      /* NocturnalTheme.backgroundBottom */
-  --surface: #131418;        /* PermissionPrimingView surface */
-  --sky-night: #040611;      /* ClockSky */
-  --sky-blue: #12293b;       /* ClockSky */
+  --bg-top: #08050f;
+  --bg-bottom: #030107;
+  --surface: #17131d;
+  --sky-night: #0b0615;
+  --sky-violet: #2c183c;
   --sky-rose: #5c212e;       /* ClockSky */
   --sky-ember: #4d2414;      /* ClockSky */
 
   /* brand */
-  --accent: #7885f0;         /* FocusFlowTheme.accent */
-  --accent-soft: #8a9cf5;    /* AccentColor asset */
-  --button: #5c66bf;         /* primaryButtonFill */
-  --button-strong: #454fa1;  /* primaryButtonFill, high contrast */
-  --link: #99a3f7;           /* secondaryButtonText */
-  --link-strong: #c2c9ff;    /* secondaryButtonText, high contrast */
+  --accent: #b287f4;
+  --accent-soft: #c5a7f7;
+  --button: #7441b2;
+  --button-strong: #592b91;
+  --link: #cfacf9;
+  --link-strong: #e3d0ff;
 
   /* status */
   --teal: #1ad9bf;           /* NocturnalTheme.success */
@@ -45,20 +44,20 @@
 
   --line: rgba(255, 255, 255, 0.09);        /* cardBorder */
   --line-strong: rgba(255, 255, 255, 0.16);
-  --accent-a08: rgba(120, 133, 240, 0.08);
-  --accent-a12: rgba(120, 133, 240, 0.12);
-  --accent-a22: rgba(120, 133, 240, 0.22);
-  --accent-a28: rgba(120, 133, 240, 0.28);
-  --accent-a55: rgba(120, 133, 240, 0.55);
+  --accent-a08: rgba(178, 135, 244, 0.08);
+  --accent-a12: rgba(178, 135, 244, 0.12);
+  --accent-a22: rgba(178, 135, 244, 0.22);
+  --accent-a28: rgba(178, 135, 244, 0.28);
+  --accent-a55: rgba(178, 135, 244, 0.55);
 
   /* app card treatments (NocturnalTheme card and highlighted card) */
-  --card-fill: linear-gradient(145deg, rgba(120, 133, 240, 0.075), rgba(120, 133, 240, 0) 55%, rgba(255, 255, 255, 0.025));
-  --card-edge: linear-gradient(160deg, rgba(120, 133, 240, 0.22), rgba(255, 255, 255, 0.09));
+  --card-fill: linear-gradient(145deg, rgba(178, 135, 244, 0.075), rgba(178, 135, 244, 0) 55%, rgba(255, 255, 255, 0.025));
+  --card-edge: linear-gradient(160deg, rgba(178, 135, 244, 0.22), rgba(255, 255, 255, 0.09));
   --card-shadow: 0 8px 28px rgba(0, 0, 0, 0.17);
-  --hot-fill: linear-gradient(145deg, rgba(120, 133, 240, 0.18), rgba(255, 255, 255, 0.035) 55%, rgba(26, 217, 191, 0.07));
-  --hot-edge: linear-gradient(160deg, rgba(120, 133, 240, 0.55), rgba(255, 255, 255, 0.1));
-  --hot-shadow: 0 12px 48px rgba(120, 133, 240, 0.14);
-  --moonlight: linear-gradient(100deg, #ffffff 0%, #c2c9ff 52%, #8a9cf5 100%);
+  --hot-fill: linear-gradient(145deg, rgba(178, 135, 244, 0.18), rgba(255, 255, 255, 0.035) 55%, rgba(26, 217, 191, 0.07));
+  --hot-edge: linear-gradient(160deg, rgba(178, 135, 244, 0.55), rgba(255, 255, 255, 0.1));
+  --hot-shadow: 0 12px 48px rgba(178, 135, 244, 0.14);
+  --moonlight: linear-gradient(100deg, #ffffff 0%, #e3d0ff 52%, #c5a7f7 100%);
 
   /* type */
   --display: "Space Grotesk", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
@@ -105,7 +104,7 @@ body::before {
   left: 0;
   height: 1100px;
   background:
-    radial-gradient(ellipse 60% 55% at 50% 0%, rgba(120, 133, 240, 0.2), rgba(120, 133, 240, 0) 70%),
+    radial-gradient(ellipse 60% 55% at 50% 0%, rgba(178, 135, 244, 0.2), rgba(178, 135, 244, 0) 70%),
     linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
   pointer-events: none;
   content: "";
@@ -359,7 +358,7 @@ a {
 .app-store-button:hover {
   transform: translateY(-2px);
   color: var(--text);
-  box-shadow: 0 0 0 7px var(--accent-a12), 0 16px 40px rgba(120, 133, 240, 0.38);
+  box-shadow: 0 0 0 7px var(--accent-a12), 0 16px 40px rgba(178, 135, 244, 0.38);
 }
 
 .app-store-button .store-copy {
@@ -478,7 +477,7 @@ h3 {
 
 .hero h1,
 .final-cta h2 {
-  filter: drop-shadow(0 0 30px rgba(120, 133, 240, 0.32));
+  filter: drop-shadow(0 0 30px rgba(178, 135, 244, 0.32));
 }
 
 p {
@@ -500,10 +499,10 @@ p {
   background-image:
     radial-gradient(1px 1px at 11% 22%, #ffffff 50%, rgba(255, 255, 255, 0) 51%),
     radial-gradient(1px 1px at 24% 64%, #ffffff 50%, rgba(255, 255, 255, 0) 51%),
-    radial-gradient(1.5px 1.5px at 38% 9%, #c2c9ff 50%, rgba(194, 201, 255, 0) 51%),
+    radial-gradient(1.5px 1.5px at 38% 9%, #e3d0ff 50%, rgba(227, 208, 255, 0) 51%),
     radial-gradient(1px 1px at 63% 31%, #ffffff 50%, rgba(255, 255, 255, 0) 51%),
     radial-gradient(1.5px 1.5px at 77% 13%, #ffffff 50%, rgba(255, 255, 255, 0) 51%),
-    radial-gradient(1px 1px at 88% 51%, #c2c9ff 50%, rgba(194, 201, 255, 0) 51%),
+    radial-gradient(1px 1px at 88% 51%, #e3d0ff 50%, rgba(227, 208, 255, 0) 51%),
     radial-gradient(1px 1px at 94% 7%, #ffffff 50%, rgba(255, 255, 255, 0) 51%),
     radial-gradient(1px 1px at 5% 46%, #ffffff 50%, rgba(255, 255, 255, 0) 51%),
     radial-gradient(1px 1px at 70% 70%, #ffffff 50%, rgba(255, 255, 255, 0) 51%),
@@ -565,7 +564,7 @@ p {
   bottom: 0;
   left: -50vw;
   height: 110px;
-  background: linear-gradient(180deg, rgba(0, 4, 5, 0), var(--bg-bottom));
+  background: linear-gradient(180deg, rgba(3, 1, 7, 0), var(--bg-bottom));
   pointer-events: none;
   content: "";
 }
@@ -595,7 +594,7 @@ p {
   height: 500px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(120, 133, 240, 0.36), rgba(120, 133, 240, 0.08) 45%, rgba(120, 133, 240, 0) 70%);
+  background: radial-gradient(circle, rgba(178, 135, 244, 0.36), rgba(178, 135, 244, 0.08) 45%, rgba(178, 135, 244, 0) 70%);
   content: "";
 }
 
@@ -615,9 +614,9 @@ p {
   border-radius: 50%;
   background: var(--bg-bottom);
   box-shadow:
-    0 -1px 0 rgba(194, 201, 255, 0.6),
-    0 -24px 80px rgba(120, 133, 240, 0.42),
-    inset 0 40px 80px rgba(120, 133, 240, 0.1);
+    0 -1px 0 rgba(227, 208, 255, 0.6),
+    0 -24px 80px rgba(178, 135, 244, 0.42),
+    inset 0 40px 80px rgba(178, 135, 244, 0.1);
 }
 
 
@@ -780,7 +779,7 @@ p {
 .step-number {
   margin-bottom: auto;
   padding-bottom: 40px;
-  background: linear-gradient(180deg, #ffffff, #7885f0);
+  background: linear-gradient(180deg, #ffffff, #b287f4);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -934,7 +933,7 @@ p {
   border-radius: var(--radius-lg);
   background:
     radial-gradient(ellipse 45% 90% at 100% 100%, rgba(242, 166, 71, 0.16), rgba(242, 166, 71, 0) 70%),
-    linear-gradient(90deg, var(--sky-night) 0%, var(--sky-blue) 42%, var(--sky-rose) 78%, var(--sky-ember) 100%);
+    linear-gradient(90deg, var(--sky-night) 0%, var(--sky-violet) 42%, var(--sky-rose) 78%, var(--sky-ember) 100%);
   box-shadow: var(--card-shadow);
 }
 
@@ -1281,7 +1280,7 @@ p {
   height: 520px;
   transform: translateX(-50%);
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(120, 133, 240, 0.3), rgba(120, 133, 240, 0) 70%);
+  background: radial-gradient(ellipse, rgba(178, 135, 244, 0.3), rgba(178, 135, 244, 0) 70%);
   pointer-events: none;
   content: "";
 }
@@ -1852,7 +1851,7 @@ p {
     padding: 18px 22px;
     background:
       radial-gradient(ellipse 90% 45% at 100% 100%, rgba(242, 166, 71, 0.16), rgba(242, 166, 71, 0) 70%),
-      linear-gradient(180deg, var(--sky-night) 0%, var(--sky-blue) 42%, var(--sky-rose) 78%, var(--sky-ember) 100%);
+      linear-gradient(180deg, var(--sky-night) 0%, var(--sky-violet) 42%, var(--sky-rose) 78%, var(--sky-ember) 100%);
   }
 
   .timeline::before {
@@ -2221,7 +2220,7 @@ p {
     z-index: -1;
     inset: 0;
     border-radius: inherit;
-    background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 0%), rgba(120, 133, 240, 0.16), rgba(120, 133, 240, 0) 60%);
+    background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 0%), rgba(178, 135, 244, 0.16), rgba(178, 135, 244, 0) 60%);
     opacity: 0;
     transition: opacity 300ms ease;
     pointer-events: none;
@@ -2436,7 +2435,7 @@ p {
     display: grid;
     place-items: center;
     background:
-      radial-gradient(circle at 50% 50%, rgba(120, 133, 240, 0.22), rgba(120, 133, 240, 0) 38%),
+      radial-gradient(circle at 50% 50%, rgba(178, 135, 244, 0.22), rgba(178, 135, 244, 0) 38%),
       var(--bg-bottom);
     pointer-events: none;
     animation: intro-out 560ms cubic-bezier(0.7, 0, 0.2, 1) 520ms forwards;
@@ -2446,7 +2445,7 @@ p {
     width: 76px;
     height: 76px;
     border-radius: 18px;
-    box-shadow: 0 0 0 1px var(--line-strong), 0 18px 60px rgba(120, 133, 240, 0.55);
+    box-shadow: 0 0 0 1px var(--line-strong), 0 18px 60px rgba(178, 135, 244, 0.55);
     animation: intro-icon 620ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
   }
 
@@ -2542,7 +2541,7 @@ p {
     background:
       var(--hot-fill) padding-box,
       linear-gradient(var(--bg-bottom), var(--bg-bottom)) padding-box,
-      conic-gradient(from var(--edge-angle), rgba(120, 133, 240, 0.7), rgba(255, 255, 255, 0.1) 25%, rgba(26, 217, 191, 0.35) 50%, rgba(255, 255, 255, 0.1) 75%, rgba(120, 133, 240, 0.7)) border-box;
+      conic-gradient(from var(--edge-angle), rgba(178, 135, 244, 0.7), rgba(255, 255, 255, 0.1) 25%, rgba(26, 217, 191, 0.35) 50%, rgba(255, 255, 255, 0.1) 75%, rgba(178, 135, 244, 0.7)) border-box;
     animation: edge-spin 9s linear infinite;
   }
 
@@ -2670,7 +2669,7 @@ p {
     left: -8%;
     width: 560px;
     height: 560px;
-    background: rgba(120, 133, 240, 0.16);
+    background: rgba(178, 135, 244, 0.16);
   }
 
   .ambient span:nth-child(2) {
@@ -2686,7 +2685,7 @@ p {
     left: 30%;
     width: 640px;
     height: 460px;
-    background: rgba(138, 156, 245, 0.1);
+    background: rgba(197, 167, 247, 0.1);
   }
 
   .step-number,
@@ -2738,7 +2737,7 @@ p {
   left: 27px;
   width: 2px;
   border-radius: 2px;
-  background: linear-gradient(180deg, rgba(120, 133, 240, 0), var(--accent) 14%, var(--link-strong) 62%, var(--teal));
+  background: linear-gradient(180deg, rgba(178, 135, 244, 0), var(--accent) 14%, var(--link-strong) 62%, var(--teal));
   box-shadow: 0 0 16px var(--accent-a55);
   transform: scaleY(0);
   transform-origin: center top;

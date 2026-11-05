@@ -35,7 +35,8 @@ const cleanUserCopy = (value) => value.replace(visibleDashPattern, " ").replace(
 
 const cleanVisibleMarkup = (markup) => markup
   .replace(/>([^<]+)</g, (_, text) => `>${cleanUserCopy(text)}<`)
-  .replace(/\b(aria-label|alt|title)="([^"]*)"/g, (_, attribute, value) => `${attribute}="${cleanUserCopy(value)}"`);
+  .replace(/\b(aria-label|alt|title)="([^"]*)"/g, (_, attribute, value) => `${attribute}="${cleanUserCopy(value)}"`)
+  .replace(/(<a\b[^>]*href="mailto:[^"]+"[^>]*>[\s\S]*?<\/a>)/g, "<!--email_off-->$1<!--/email_off-->");
 
 const cleanSchemaCopy = (value) => {
   if (Array.isArray(value)) return value.map(cleanSchemaCopy);
