@@ -2640,6 +2640,14 @@ p {
   display: none;
 }
 
+/* Mobile Safari can show page content below the fixed layer, behind its toolbar. */
+@media (hover: none) and (pointer: coarse) {
+  .ambient {
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent);
+    mask-image: linear-gradient(to bottom, black 80%, transparent);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .js .ambient {
     position: fixed;
