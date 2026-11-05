@@ -52,6 +52,12 @@ for (const relative of required) {
   }
 }
 
+// Private invite links must survive either publishing path without entering the public sitemap.
+for (const file of ["i/index.html", ".well-known/apple-app-site-association"]) {
+  const rootFile = await readFile(path.join(projectDir, file), "utf8");
+  if (rootFile !== await readFile(path.join(distDir, file), "utf8")) fail(`${file}: publishing copies differ`);
+}
+
 const htmlFiles = required.filter((file) => file.endsWith(".html"));
 for (const relative of htmlFiles) {
   const filePath = path.join(projectDir, relative);

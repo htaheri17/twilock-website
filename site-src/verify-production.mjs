@@ -16,6 +16,24 @@ const check = async (url, label) => {
   }
 };
 
+const associationUrl = `${origin}/.well-known/apple-app-site-association`;
+const { response: association, body: associationBody } = await check(associationUrl, "friend invite association");
+if (association?.redirected || !/^application\/json(?:;|$)/i.test(association?.headers.get("content-type") || "")) {
+  failures.push("friend invite association: serve directly as application/json");
+}
+try {
+  const details = JSON.parse(associationBody).applinks.details;
+  const invite = details.some(rule => rule.appIDs?.includes("N48KSLV4SY.com.hussaintaheri.focusflow")
+    && rule.components?.some(component => component["/"] === "/i/" && component["?"]?.t === "????????-????-4???-????-????????????" && !component.exclude));
+  if (!invite) failures.push("friend invite association: missing Twilock invitation rule");
+} catch {
+  failures.push("friend invite association: invalid association JSON");
+}
+const { response: fallback, body: fallbackBody } = await check(`${origin}/i/?t=00000000-0000-4000-8000-000000000000`, "friend invite fallback");
+if (fallback?.redirected || !fallbackBody.includes('name="referrer" content="no-referrer"') || !fallbackBody.includes("Open your friend invite")) {
+  failures.push("friend invite fallback: expected the private invitation page directly at /i/");
+}
+
 const { body: sitemap } = await check(`${origin}/sitemap.xml`, "sitemap.xml");
 const { body: robots } = await check(`${origin}/robots.txt`, "robots.txt");
 const { body: llms } = await check(`${origin}/llms.txt`, "llms.txt");

@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["N48KSLV4SY.com.hussaintaheri.focusflow"],
+        "components": [
+          {
+            "/": "/i/",
+            "?": { "t": "????????-????-4???-????-????????????" },
+            "comment": "Personal friend invitations. Twilock validates the full token before showing an invite."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -26,6 +26,12 @@ Open each of these in a private browser window:
 
 Confirm that the browser shows HTTPS without a certificate warning, the App Store buttons open Twilock's live listing, and navigation works on both a phone and desktop browser.
 
+## Friend invites
+
+The share URL is `https://twilock.com/i/?t=<lowercase UUIDv4>`. Keep the trailing slash so the static host serves `i/index.html` directly. The invite page is shared by every token. It uses local assets and sends no requests to the friendship service.
+
+Include the hidden `.well-known/apple-app-site-association` file when uploading. Before enabling link sharing in the app, verify the live file returns HTTP 200 and `Content-Type: application/json` directly over HTTPS. If Porkbun serves a different MIME type for the extensionless file, configure the response header with the hosting provider. Verify the file also reaches Apple’s associated domains CDN. On an iPhone, test a link tapped in Messages with the entitled app installed and again with the app removed.
+
 ## Optional HSTS header
 
 The site redirects HTTP to HTTPS and serves a valid certificate. Semrush may still report that HSTS is missing because HSTS must be sent as an HTTP response header by the hosting server; it cannot be enabled in HTML. Porkbun's published Static Hosting documentation does not currently describe custom response headers. Ask Porkbun support whether they can add `Strict-Transport-Security: max-age=31536000; includeSubDomains` for both `twilock.com` and `www.twilock.com`. Do not submit the domain to the browser preload list until the header is live on every HTTPS response and every subdomain is ready for permanent HTTPS.

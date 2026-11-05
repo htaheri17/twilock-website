@@ -1734,6 +1734,12 @@ const build = async () => {
   // Update the generated site in place so a rebuild preserves those deployments.
   await mkdir(distDir, { recursive: true });
 
+  for (const file of ["i/index.html", ".well-known/apple-app-site-association"]) {
+    const destination = path.join(distDir, file);
+    await mkdir(path.dirname(destination), { recursive: true });
+    await copyFile(path.join(projectDir, file), destination);
+  }
+
   for (const page of pages) {
     const outputPath = page.route ? `${page.route}/index.html` : "index.html";
     await writeDeploymentFile(outputPath, renderPage(page));
