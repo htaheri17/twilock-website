@@ -182,8 +182,14 @@ const walkSize = async (directory) => {
   }
   return total;
 };
-const bytes = await walkSize(distDir);
-if (bytes > 40 * 1024 * 1024) fail(`dist exceeds Porkbun's 40 MB upload limit (${bytes} bytes)`);
+// The upload limit applies to the generated marketing site. Independently hosted
+// slideshow files are deployed through GitHub Connect and have their own lifecycle.
+let bytes = await walkSize(path.join(distDir, "assets"));
+for (const relative of required.filter((file) => !file.startsWith("assets/"))) {
+  bytes += (await stat(path.join(distDir, relative))).size;
+}
+bytes += (await stat(path.join(distDir, "humans.txt"))).size;
+if (bytes > 40 * 1024 * 1024) fail(`Generated marketing site exceeds Porkbun's 40 MB upload limit (${bytes} bytes)`);
 
 if (failures.length) {
   console.error(`Validation failed with ${failures.length} issue(s):`);

@@ -4,7 +4,7 @@ Production static marketing and SEO site for Twilock, designed for Porkbun Stati
 
 ## Deployment layout
 
-The repository root is the live static site so Porkbun GitHub Connect can publish it directly. Editable source lives in `site-src/`, and `dist/` is a second, upload-ready copy for Porkbun's editor or FTP workflow.
+The repository root is the live static site so Porkbun GitHub Connect can publish it directly. Editable source lives in `site-src/`, and `dist/` mirrors the generated site alongside independently maintained slideshow pages, media, and verification files. Builds update the generated site in place. The validator applies the 40 MB manual upload limit to the generated marketing site and its assets. Slideshow media is deployed through GitHub Connect.
 
 ## Build and check
 

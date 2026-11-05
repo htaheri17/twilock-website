@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { copyFile, mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -1730,7 +1730,8 @@ const writeDeploymentFile = async (relativePath, content) => {
 };
 
 const build = async () => {
-  await rm(distDir, { recursive: true, force: true });
+  // Other workflows maintain slideshow media, inbox pages, and verification files here.
+  // Update the generated site in place so a rebuild preserves those deployments.
   await mkdir(distDir, { recursive: true });
 
   for (const page of pages) {
