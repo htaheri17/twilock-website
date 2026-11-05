@@ -1752,6 +1752,7 @@ const build = async () => {
   await mkdir(path.join(distDir, "assets"), { recursive: true });
   await copyFile(path.join(projectDir, "assets/twilock-icon-2026.png"), path.join(distDir, "assets/twilock-icon-2026.png"));
   await copyFile(path.join(projectDir, "assets/twilock-favicon.png"), path.join(distDir, "assets/twilock-favicon.png"));
+  await copyFile(path.join(projectDir, "assets/twilock-invite-preview-blue-20261105.png"), path.join(distDir, "assets/twilock-invite-preview-blue-20261105.png"));
   for (const folder of ["luno", "fonts"]) {
     await mkdir(path.join(distDir, "assets", folder), { recursive: true });
     for (const file of await readdir(path.join(projectDir, "assets", folder))) {

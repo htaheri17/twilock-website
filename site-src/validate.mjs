@@ -32,6 +32,7 @@ const required = [
   "assets/site.js",
   "assets/twilock-icon-2026.png",
   "assets/twilock-favicon.png",
+  "assets/twilock-invite-preview-blue-20261105.png",
 ];
 
 const failures = [];
