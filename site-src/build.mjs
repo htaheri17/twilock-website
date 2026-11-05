@@ -12,6 +12,12 @@ const assetVersion = createHash("sha256")
   .update(await readFile(path.join(sourceDir, "site.js")))
   .digest("hex")
   .slice(0, 10);
+const iconVersion = createHash("sha256")
+  .update(await readFile(path.join(projectDir, "assets/twilock-icon-2026.png")))
+  .digest("hex")
+  .slice(0, 10);
+const appIconUrl = `/assets/twilock-icon-2026.png?v=${iconVersion}`;
+const faviconUrl = `/assets/twilock-favicon.png?v=${iconVersion}`;
 const appStoreUrl = "https://apps.apple.com/us/app/twilock-screen-time-control/id6786474238";
 const checkedDate = "August 31, 2026";
 const productCheckedDate = "October 21, 2026";
@@ -120,7 +126,7 @@ const nav = (route) => {
   return `
     <header class="site-header">
       <div class="shell nav-row">
-        <a class="brand" href="/" aria-label="Twilock home"><img src="/assets/twilock-icon-2026.png" width="34" height="34" alt=""><span>Twilock</span></a>
+        <a class="brand" href="/" aria-label="Twilock home"><img src="${appIconUrl}" width="34" height="34" alt=""><span>Twilock</span></a>
         <nav class="desktop-nav" aria-label="Primary navigation">
           ${link("/#how-it-works", "How it works")}
           ${link("/twilock-vs-opal/", "Compare", ["twilock-vs-opal"])}
@@ -157,7 +163,7 @@ const footer = () => `
     <div class="shell">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a class="brand" href="/"><img src="/assets/twilock-icon-2026.png" width="34" height="34" alt=""><span>Twilock</span></a>
+          <a class="brand" href="/"><img src="${appIconUrl}" width="34" height="34" alt=""><span>Twilock</span></a>
           <p>A focused iPhone screen-time blocker for the hours before sleep and after waking.</p>
         </div>
         <div class="footer-column"><h2>Product</h2><a href="/#how-it-works">How it works</a><a href="/#strict-mode">Strict Mode</a><a href="/#pricing">Pricing</a><a href="${appStoreUrl}">App Store</a></div>
@@ -183,7 +189,7 @@ const renderPage = ({ route, title, description, body, type = "website", schema 
     ...schema,
   ];
   const visiblePage = cleanVisibleMarkup(`
-  <div class="intro" aria-hidden="true"><img src="/assets/twilock-icon-2026.png" width="1024" height="1024" alt=""></div>
+  <div class="intro" aria-hidden="true"><img src="${appIconUrl}" width="1024" height="1024" alt=""></div>
   <a class="skip-link" href="#main-content">Skip to content</a>
   ${nav(route)}
   <main id="main-content">${body}</main>
@@ -199,8 +205,8 @@ const renderPage = ({ route, title, description, body, type = "website", schema 
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="apple-itunes-app" content="app-id=6786474238">
   <link rel="canonical" href="${canonical}">
-  <link rel="icon" href="/assets/twilock-favicon.png" type="image/png">
-  <link rel="apple-touch-icon" href="/assets/twilock-icon-2026.png">
+  <link rel="icon" href="${faviconUrl}" type="image/png">
+  <link rel="apple-touch-icon" href="${appIconUrl}">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/space-grotesk-700.woff2" as="font" type="font/woff2" crossorigin>
   <script>(function(){var d=document.documentElement;d.classList.add("js");try{if(sessionStorage.getItem("twSeen"))d.classList.add("seen");sessionStorage.setItem("twSeen","1")}catch(e){d.classList.add("seen")}setTimeout(function(){if(!window.__twMotion)d.classList.remove("js")},3000);window.__twWords=function(h){h=h||document.querySelector(".hero h1");if(!h)return;var p=function(){var b=h.getBoundingClientRect();h.querySelectorAll(".word").forEach(function(s){var r=s.getBoundingClientRect();s.style.backgroundSize=b.width+"px 100%";s.style.backgroundPosition=(b.left-r.left)+"px 0"})};p();window.addEventListener("resize",p);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(p)}})()</script>
@@ -210,14 +216,14 @@ const renderPage = ({ route, title, description, body, type = "website", schema 
   <meta property="og:title" content="${cleanTitle}">
   <meta property="og:description" content="${cleanDescription}">
   <meta property="og:url" content="${canonical}">
-  <meta property="og:image" content="${siteUrl}/assets/twilock-icon-2026.png">
+  <meta property="og:image" content="${siteUrl}${appIconUrl}">
   <meta property="og:image:width" content="1024">
   <meta property="og:image:height" content="1024">
   <meta property="og:image:alt" content="Twilock moon and lock app icon">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="${cleanTitle}">
   <meta name="twitter:description" content="${cleanDescription}">
-  <meta name="twitter:image" content="${siteUrl}/assets/twilock-icon-2026.png">
+  <meta name="twitter:image" content="${siteUrl}${appIconUrl}">
   <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": cleanSchemaCopy(graph) })}</script>
   <script defer src="/assets/site.js?v=${assetVersion}"></script>
 </head>
@@ -403,7 +409,7 @@ const softwareSchema = {
   description: "An iPhone screen-time blocker focused on the periods before sleep and after waking.",
   url: `${siteUrl}/`,
   installUrl: appStoreUrl,
-  image: `${siteUrl}/assets/twilock-icon-2026.png`,
+  image: `${siteUrl}${appIconUrl}`,
   softwareVersion: "1.2.0",
   author: { "@type": "Person", name: "Hussain Taheri" },
   offers: [
@@ -1768,7 +1774,7 @@ const build = async () => {
     display: "browser",
     background_color: "#000000",
     theme_color: "#000000",
-    icons: [{ src: "/assets/twilock-icon-2026.png", sizes: "1024x1024", type: "image/png", purpose: "any maskable" }],
+    icons: [{ src: appIconUrl, sizes: "1024x1024", type: "image/png", purpose: "any maskable" }],
   };
   await writeDeploymentFile("site.webmanifest", `${JSON.stringify(manifest, null, 2)}\n`);
 
