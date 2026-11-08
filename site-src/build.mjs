@@ -243,7 +243,6 @@ const homeBody = `
         <p class="hero-copy">Twilock shields distracting apps before sleep and after waking. Choose your apps, schedule your Night and Morning windows, and let Strict Mode hold the boundary in every routine.</p>
         <div class="hero-actions">
           ${appStoreButton()}
-          <p class="hero-note">New users need a subscription or eligible trial<br>Existing users keep permanent full access · iPhone · iOS 16+</p>
         </div>
       </div>
       <div class="hero-visual">
