@@ -348,11 +348,11 @@ const homeBody = `
 
   <section class="section" id="pricing" aria-labelledby="pricing-title">
     <div class="shell">
-      <div class="section-heading"><span class="kicker">Pricing</span><h2 id="pricing-title">One complete app. Choose how you subscribe.</h2><p>New users need a monthly or annual subscription, or an eligible trial. Existing users keep permanent full access. Both plans include the complete app. US prices shown; Apple confirms your local price and trial eligibility before purchase.</p></div>
+      <div class="section-heading"><span class="kicker">Pricing</span><h2 id="pricing-title">Twilock subscriptions</h2><p>Twilock is free to download. New users need a subscription for full access.</p></div>
       <div class="pricing-grid">
-        <article class="pricing-card"><span class="plan-label">Twilock Annual</span><div class="price-line"><strong>$39.99</strong><span>per year · USD</span></div><p>7-day free trial for eligible users. Then the full annual charge shown by Apple, renewing automatically until cancelled.</p><ul class="check-list"><li>Night and Morning routines</li><li>Strict Mode in every routine</li><li>Deeper Insights</li><li>Streak Repair within 72 hours, once every 30 days</li></ul>${appStoreButton()}</article>
-        <article class="pricing-card pro"><span class="plan-label">Twilock Monthly</span><div class="price-line"><strong>$6.99</strong><span>per month · USD</span></div><p>No trial. All the same features.</p><p class="price-fineprint">Billed monthly and renews automatically until cancelled. Your actual localized price appears in the app before purchase.</p>${appStoreButton()}</article>
-        <p class="price-fineprint">Existing users keep permanent full access, including supported Lifetime purchases and redemptions. Existing subscriptions keep renewing unless cancelled in Apple subscription settings. Cancelling does not remove an existing user’s permanent access. New users can choose a monthly or annual subscription; there is no new Lifetime offer in the app.</p>
+        <article class="pricing-card"><h3>What’s included</h3><ul class="check-list"><li>Night and Morning routines with Strict Mode</li><li>A separate daytime Focus window for work or study</li><li>Progress and streaks in Insights</li></ul></article>
+        <article class="pricing-card pro"><h3>Plans and pricing</h3><p>Available plans, prices, and any trial you qualify for appear before purchase. Check the billing period and renewal price in the app.</p>${appStoreButton()}</article>
+        <p class="price-fineprint">Manage or cancel your subscription in your App Store account. Eligible legacy users keep their existing access, including prior Lifetime purchases. Use Restore Purchases in the app to recover a purchase.</p>
       </div>
     </div>
   </section>
@@ -386,7 +386,7 @@ const homeBody = `
       <div class="section-heading"><span class="kicker">FAQ</span><h2 id="faq-title">Before you set your first window.</h2></div>
       <div class="faq-list">
         <details><summary>What does Twilock block?</summary><div>Twilock uses Apple’s Screen Time framework to shield the apps or app categories you choose during your scheduled Night or Morning window.</div></details>
-        <details><summary>Is Twilock free?</summary><div>Twilock is free to download. New users need a monthly or annual subscription, or an eligible trial, to use the app after setup. Existing users keep permanent full access to every feature, even after cancelling a subscription. Existing subscriptions continue renewing unless cancelled.</div></details>
+        <details><summary>Is Twilock free?</summary><div>Twilock is free to download. New users need a subscription for full access. You can see your available plans, prices and trial eligibility before purchase. Eligible legacy users keep their existing access.</div></details>
         <details><summary>Can I block apps all day?</summary><div>Twilock is intentionally not an all-day blocker. Each Night or Morning window is capped at two hours. If you need workday rules, usage budgets, or cross-device blocking, a broader tool may fit better.</div></details>
         <details><summary>Does every routine use Strict Mode?</summary><div>Yes. Every enabled Night and Morning routine uses Strict Mode. You can schedule or pause a routine outside an active window, but there is no separate regular blocking mode.</div></details>
         <details><summary>Can I end a window early?</summary><div>Before a window starts, choose a 10 or 30 minute early unlock timer, or None to disable timed early unlock. The window always ends at its scheduled time, so a timer that would finish later does not provide an earlier exit. Ending one window early does not cancel future routines. Revoking Screen Time access in iPhone Settings can end protection.</div></details>
@@ -413,8 +413,7 @@ const softwareSchema = {
   softwareVersion: "1.2.0",
   author: { "@type": "Person", name: "Hussain Taheri" },
   offers: [
-    { "@type": "Offer", name: "Twilock Annual", price: 39.99, priceCurrency: "USD", description: "Annual subscription; 7 day trial for eligible users. Existing users retain permanent full access." },
-    { "@type": "Offer", name: "Twilock Monthly", price: 6.99, priceCurrency: "USD", description: "Monthly subscription, no free trial. Includes the complete app." },
+    { "@type": "Offer", name: "Twilock download", price: 0, priceCurrency: "USD", description: "Free to download. New users need a subscription for full access. Available plans and prices appear in the app before purchase." },
   ],
 };
 
@@ -491,7 +490,7 @@ pages.push({
 
         <h2>Method 3: use a focused app blocker</h2>
         <p>A dedicated blocker can make the boundary easier to understand. Different apps solve different problems, so choose the smallest system that matches yours.</p>
-        <p>Twilock is designed for unwanted scrolling near sleep. Its Night window shields the apps or categories you choose for up to two hours. Morning protection and unlimited Strict Mode are included. Subscriptions apply to new users; existing users retain permanent full access. It is not an all day blocker, website blocker, parental control service, or emergency tool.</p>
+        <p>Twilock is designed for unwanted scrolling near sleep. Its Night window shields the apps or categories you choose for up to two hours. Morning protection and unlimited Strict Mode are included. Subscriptions apply to new users; eligible legacy users keep their existing access. It is not an all day blocker, website blocker, parental control service, or emergency tool.</p>
         <ol>
           <li>Choose only the apps that begin the unwanted loop.</li>
           <li>Set a short window before the time you usually open them.</li>
@@ -538,7 +537,7 @@ pages.push({
           <li><a href="${appStoreUrl}">Twilock on the App Store</a> for current features, compatibility, and purchases.</li>
         </ul>
       </article>
-      ${articleAside("Twilock includes Night and Morning protection and unlimited Strict Mode. New users need a subscription or eligible trial; existing users keep permanent full access.")}
+      ${articleAside("Twilock includes Night and Morning protection and unlimited Strict Mode. New users need a subscription or eligible trial; eligible legacy users keep their existing access.")}
     </div>`,
   schema: [articleSchema(blockAppsGuideRoute, "How to Block Apps on iPhone", "A practical guide to blocking selected iPhone apps with App Limits, Downtime, or a focused blocker while preserving essential access.", seoGuideIsoDate), breadcrumbSchema(blockAppsGuideRoute, "Block apps on iPhone")],
 });
@@ -604,7 +603,7 @@ pages.push({
 
         <h2>Add a focused blocker only when it fits the moment</h2>
         <p>A dedicated blocker can be useful when Apple Screen Time feels too broad, too easy to change, or disconnected from the routine you want to protect.</p>
-        <p>Twilock is built for unwanted scrolling around sleep. Everyone with access gets Night and Morning protection and unlimited Strict Mode. Existing users keep permanent full access; subscriptions apply to new users. Each window is capped at two hours, so Twilock is not designed to control an entire workday. That narrow scope is useful when night and morning are the real problem, and limiting when they are not.</p>
+        <p>Twilock is built for unwanted scrolling around sleep. Everyone with access gets Night and Morning protection and unlimited Strict Mode. Eligible legacy users keep their existing access; subscriptions apply to new users. Each window is capped at two hours, so Twilock is not designed to control an entire workday. That narrow scope is useful when night and morning are the real problem, and limiting when they are not.</p>
 
         <h2>A seven day screen time plan</h2>
         <div class="comparison-table-wrap" tabindex="0" role="region" aria-label="Seven day iPhone screen time plan">
@@ -781,13 +780,13 @@ pages.push({
             <tbody>
               <tr><th scope="row">Primary job</th><td>Protect Night and Morning windows</td><td>Manage focus and app access across the day</td></tr>
               <tr><th scope="row">Platforms</th><td>iPhone</td><td>iPhone, Mac, and Android</td></tr>
-              <tr><th scope="row">Access</th><td>New users need a subscription or eligible trial; existing users keep permanent full access</td><td>Free plan with limited rules and basic blocking</td></tr>
+              <tr><th scope="row">Access</th><td>New users need a subscription or eligible trial; eligible legacy users keep their existing access</td><td>Free plan with limited rules and basic blocking</td></tr>
               <tr><th scope="row">Recurring schedules</th><td class="yes">Night and Morning: daily, weekdays and weekends, or custom days</td><td class="yes">Yes — flexible Rules and Schedules</td></tr>
               <tr><th scope="row">Strict option</th><td>Strict Mode in every routine; locks active settings and prevents deleting Twilock mid-session</td><td>Hard Mode / No Unblocks on Pro; one Emergency Pass per week</td></tr>
               <tr><th scope="row">Allow-only mode</th><td>No</td><td class="yes">Yes on Pro</td></tr>
               <tr><th scope="row">Window length</th><td>Up to two hours per Night or Morning window</td><td>Flexible schedules, sessions, limits, and timers</td></tr>
               <tr><th scope="row">Progress</th><td>Streaks, badges, reclaimed time, and optional check-ins</td><td>Opal Score, history, and Focus Gems</td></tr>
-              <tr><th scope="row">U.S. annual price</th><td>$39.99</td><td>$99.99 on Opal’s website</td></tr>
+              <tr><th scope="row">U.S. annual price</th><td>Check your local offer in the app</td><td>$99.99 on Opal’s website</td></tr>
               <tr><th scope="row">U.S. lifetime price</th><td>Existing lifetime access honored; no new-user lifetime offer</td><td>$399 on Opal’s website</td></tr>
             </tbody>
           </table>
@@ -807,13 +806,13 @@ pages.push({
         <p>If you want a strict bedtime boundary with a very small setup surface, Twilock is the clearer fit. If you need strict sessions, schedules, time limits, open limits, or an allow-only “brick phone” configuration, Opal has substantially more range.</p>
 
         <h2>Free plans and pricing</h2>
-        <p>Twilock provides every feature to everyone with access. New users need a subscription or eligible trial; supported existing purchases are honored. All existing users retain permanent full access.</p>
-        <p>Opal offers a free tier with limits on rules and history. Its current website lists Pro at $19.99 monthly, $99.99 billed annually, or $399 as a one-time purchase. Twilock’s US prices are $39.99 annually or $6.99 monthly for new users. Eligible annual subscriptions include a 7 day trial; monthly has no free trial. Confirm your actual localized price and eligibility before purchase.</p>
+        <p>Twilock provides every feature to everyone with access. New users need a subscription or eligible trial; supported existing purchases are honored. Eligible legacy users keep their existing access.</p>
+        <p>Opal offers a free tier with limits on rules and history. Its current website lists Pro at $19.99 monthly, $99.99 billed annually, or $399 as a one-time purchase. Twilock shows the available subscription plans, billing periods, local prices and eligible trials in the app before purchase.</p>
 
         <h2>Advantages and drawbacks</h2>
         <div class="pros-cons-grid">
-          <section class="pros-cons"><h3>Twilock</h3><ul><li><strong>Advantage:</strong> a faster mental model for bedtime and morning protection.</li><li><strong>Advantage:</strong> lower current U.S. list prices.</li><li><strong>Advantage:</strong> Existing users keep permanent full access.</li><li><strong>Drawback:</strong> iPhone only.</li><li><strong>Drawback:</strong> two-hour cap and no general workday rule engine.</li><li><strong>Drawback:</strong> New users need a subscription or eligible trial.</li></ul></section>
-          <section class="pros-cons"><h3>Opal</h3><ul><li><strong>Advantage:</strong> much broader rule types and flexible schedules.</li><li><strong>Advantage:</strong> iPhone, Mac, and Android support.</li><li><strong>Advantage:</strong> Allow Only, time limits, open limits, and longer-term history.</li><li><strong>Drawback:</strong> more configuration than a bedtime-only use case needs.</li><li><strong>Drawback:</strong> strict controls and unlimited rules require Pro.</li><li><strong>Drawback:</strong> higher current list prices.</li></ul></section>
+          <section class="pros-cons"><h3>Twilock</h3><ul><li><strong>Advantage:</strong> a faster mental model for bedtime and morning protection.</li><li><strong>Advantage:</strong> Eligible legacy users keep their existing access.</li><li><strong>Drawback:</strong> iPhone only.</li><li><strong>Drawback:</strong> two-hour cap and no general workday rule engine.</li><li><strong>Drawback:</strong> New users need a subscription or eligible trial.</li></ul></section>
+          <section class="pros-cons"><h3>Opal</h3><ul><li><strong>Advantage:</strong> much broader rule types and flexible schedules.</li><li><strong>Advantage:</strong> iPhone, Mac, and Android support.</li><li><strong>Advantage:</strong> Allow Only, time limits, open limits, and longer-term history.</li><li><strong>Drawback:</strong> more configuration than a bedtime-only use case needs.</li><li><strong>Drawback:</strong> strict controls and unlimited rules require Pro.</li></ul></section>
         </div>
 
         <h2>Which should you choose?</h2>
@@ -836,7 +835,7 @@ pages.push({
         <h2>Frequently asked questions</h2>
         <div class="faq-list">
           <details><summary>Is Twilock better than Opal?</summary><div>Not overall. Twilock is the more focused choice for a narrow night-and-morning use case. Opal is the more capable choice when you need broad rules, multiple platforms, or many blocking modes.</div></details>
-          <details><summary>Which app is cheaper?</summary><div>Twilock’s US prices checked ${productCheckedDate} are $39.99 per year or $6.99 per month. The Opal prices above were last reviewed ${checkedDate}. Twilock does not offer a new Lifetime plan in the app. Confirm current local prices before choosing.</div></details>
+          <details><summary>How can I compare subscription prices?</summary><div>Check the billing period and renewal price in Twilock before purchase and compare them with the offer shown by Opal for the same period. The Opal prices above were reviewed ${checkedDate}.</div></details>
           <details><summary>Can both apps block social media at night?</summary><div>Yes. Twilock makes Night a first-class window. Opal can create a scheduled Rule for the same period.</div></details>
           <details><summary>Which has stronger emergency access?</summary><div>They take different approaches. Opal documents one Emergency Pass per week for Hard Mode. Twilock offers a timed early unlock configured before a window starts, and None disables that option. The scheduled end still applies. Revoking Screen Time access in iOS can end Twilock protection. Review the exact settings before committing.</div></details>
         </div>
@@ -1285,7 +1284,7 @@ pages.push({
             <caption>Twilock checked ${productCheckedDate}; competitors last reviewed ${checkedDate}</caption>
             <thead><tr><th scope="col">App</th><th scope="col">Best for</th><th scope="col">Night schedule</th><th scope="col">Strict option</th><th scope="col">Current price signal</th></tr></thead>
             <tbody>
-              <tr><th scope="row">Twilock</th><td>Focused night and morning protection</td><td class="yes">Dedicated Night window</td><td>Strict Mode in every routine included</td><td>New users: $39.99/year target; permanent access for existing users</td></tr>
+              <tr><th scope="row">Twilock</th><td>Focused night and morning protection</td><td class="yes">Dedicated Night window</td><td>Strict Mode in every routine included</td><td>Subscription for new users. Available plans and prices appear in the app.</td></tr>
               <tr><th scope="row">ScreenZen</th><td>A free, highly configurable blocker</td><td class="yes">Scheduled blocks</td><td>Lock mode / strict block</td><td>Free, donation-supported</td></tr>
               <tr><th scope="row">Opal</th><td>Broad automation and multiple platforms</td><td class="yes">Flexible Schedules</td><td>Hard Mode / No Unblocks on Pro</td><td>Free; Pro $99.99/year on web</td></tr>
               <tr><th scope="row">Jomo</th><td>Deep customization and varied unlock rules</td><td class="yes">Scheduled Sessions</td><td>Strict Mode on Plus</td><td>Free; Plus $29.99/year</td></tr>
@@ -1308,7 +1307,7 @@ pages.push({
         <p>Leave the apps you genuinely need outside your blocked selection. With Apple Screen Time, review Always Allowed. Test a short schedule while you are awake before relying on it overnight. See our <a href="/block-social-media-at-night-iphone/">nighttime social media setup guide</a> for the steps.</p>
 
         <h3>How can you try the bedtime routine?</h3>
-        <p>Twilock includes Night, Morning, and unlimited Strict Mode for everyone with access. Subscriptions apply to new users; existing users keep permanent full access. If a focused bedtime window fits your problem, <a href="${appStoreUrl}">explore Twilock’s Night and Morning routines</a>: choose the distracting apps, set a short window, and review Strict Mode and early unlock before activating protection. New users can try the app with an eligible annual subscription trial; eligibility is shown before purchase.</p>
+        <p>Twilock includes Night, Morning, and unlimited Strict Mode for everyone with access. Subscriptions apply to new users; eligible legacy users keep their existing access. If a focused bedtime window fits your problem, <a href="${appStoreUrl}">explore Twilock’s Night and Morning routines</a>: choose the distracting apps, set a short window, and review Strict Mode and early unlock before activating protection. New users can try the app with an eligible annual subscription trial; eligibility is shown before purchase.</p>
 
         <h2>1. Twilock — best for a focused night-and-morning routine</h2>
         ${productReview({name:"Twilock",bestFor:"people whose scrolling clusters around sleep",summary:"Twilock makes Night and Morning the core schedule instead of treating bedtime as one possible rule. Everyone with access gets Night, Morning, unlimited Strict Mode, Streak Repair, and deeper Insights.",advantages:"Fast setup, clear two-window model, lower current U.S. pricing, and Screen Time/app-usage data that stay on device.",drawbacks:"iPhone only, each window is capped at two hours, and new users need a subscription or eligible trial.",choose:"you want a small system that is obvious every evening rather than a general productivity suite."})}
@@ -1349,10 +1348,10 @@ pages.push({
 
         <h2>Frequently asked questions</h2>
         <div class="faq-list">
-          <details><summary>What is the best free nighttime app blocker?</summary><div>ScreenZen offers the broadest free third-party feature set in this comparison. Apple Screen Time is the best built-in option. Existing Twilock users retain permanent full access; new users need a subscription or eligible trial.</div></details>
+          <details><summary>What is the best free nighttime app blocker?</summary><div>ScreenZen offers the broadest free third-party feature set in this comparison. Apple Screen Time is the best built-in option. Eligible legacy users keep their existing access; new users need a subscription or eligible trial.</div></details>
           <details><summary>Which blocker is hardest to bypass?</summary><div>“Strict” means different things across apps and iOS versions. Review the exact exit, emergency, uninstall, and Screen Time permission behavior before committing. Our <a href="/best-strict-app-blockers-iphone/">strict blocker guide</a> compares those differences.</div></details>
           <details><summary>Can these apps block websites as well as apps?</summary><div>Opal, Jomo, ScreenZen, one sec, Freedom, and Apple Screen Time offer website controls in at least some configurations. Twilock is positioned around the apps or categories selected with Apple’s Screen Time picker.</div></details>
-          <details><summary>Do I need to pay for a bedtime schedule?</summary><div>No. Apple Screen Time and ScreenZen provide free ways to schedule nighttime protection. Twilock subscriptions apply to new users; existing users keep permanent full access.</div></details>
+          <details><summary>Do I need to pay for a bedtime schedule?</summary><div>No. Apple Screen Time and ScreenZen provide free ways to schedule nighttime protection. Twilock subscriptions apply to new users; eligible legacy users keep their existing access.</div></details>
         </div>
       </article>
       ${articleAside()}
@@ -1482,7 +1481,7 @@ pages.push({
             <tbody>
               <tr><th scope="row">Apple Screen Time</th><td>Built-in limits and family controls</td><td class="yes">Included</td><td>Passcode / family organizer</td><td>Apple devices</td></tr>
               <tr><th scope="row">ScreenZen</th><td>Free customization</td><td class="yes">Complete software is free</td><td>Strict blocks and lock mode</td><td>iOS, macOS, Windows, Android</td></tr>
-              <tr><th scope="row">Twilock</th><td>Night and Morning windows</td><td>Permanent full access for existing users</td><td>Strict Mode in every routine included</td><td>iPhone</td></tr>
+              <tr><th scope="row">Twilock</th><td>Night and Morning windows</td><td>Existing access for eligible legacy users</td><td>Strict Mode in every routine included</td><td>iPhone</td></tr>
               <tr><th scope="row">one sec</th><td>Pause before opening apps</td><td>One app</td><td>Strict Block on Pro</td><td>iOS, Android, browser, Mac</td></tr>
               <tr><th scope="row">Opal</th><td>All-day rules and polish</td><td>Limited free plan</td><td>Hard Mode on Pro</td><td>iPhone, Mac, Android</td></tr>
               <tr><th scope="row">Jomo</th><td>Flexible rule and unlock design</td><td>Limited free plan</td><td>Strict Mode on Plus</td><td>iPhone, iPad, Mac</td></tr>
@@ -1706,7 +1705,7 @@ pages.push({
         <div class="direct-answer"><p><strong>Official agreement:</strong> Your use of Twilock is governed by <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple’s Standard Licensed Application End User License Agreement</a>.</p></div>
         <section><h2>What this page means</h2><p>The Apple agreement is the controlling license for Twilock. This page gives you direct links and practical purchase information so you can find the terms that matter without replacing or rewriting Apple’s legal text. If this summary and the EULA ever differ, the EULA controls.</p></section>
         <section><h2>License and availability</h2><p>Downloading Twilock gives you a license to use the app under Apple’s EULA; it does not transfer ownership of the software. Availability, compatibility, and features may change as Twilock and iOS are updated. The current App Store listing is the best place to confirm device requirements and the version offered in your storefront.</p></section>
-        <section><h2>Subscriptions and purchases</h2><p>New users need a monthly or annual auto-renewing subscription, an eligible subscription trial, or an honored entitlement. Existing users retain permanent full access. Existing lifetime and promotional entitlements remain honored; no lifetime plan is offered to new users. Prices are shown before you buy. Subscriptions renew automatically unless canceled at least 24 hours before the end of the current period.</p></section>
+        <section><h2>Subscriptions and purchases</h2><p>New users need a subscription for full access. Available plans, prices, and any trial you qualify for appear before purchase. Eligible legacy users keep their existing access. Prior Lifetime purchases and eligible promotional entitlements remain supported. Subscriptions renew automatically unless canceled at least 24 hours before the end of the current period.</p></section>
         <section><h2>Before you purchase</h2><p>Review the price, billing period, and any introductory offer shown by Apple before confirming. Offers and eligibility can vary by storefront and account. Keep access to the Apple Account used for the purchase so you can manage the subscription or restore the entitlement later.</p></section>
         <section><h2>Managing a subscription</h2><p>Apple processes Twilock purchases. Manage or cancel a subscription from iPhone Settings → your name → Subscriptions. Canceling stops future renewal but does not normally reverse the current billing period. Use <a href="https://reportaproblem.apple.com/">Apple’s Report a Problem service</a> for refund requests because Twilock does not receive or control your payment card details.</p></section>
         <section><h2>Restoring access</h2><p>If a prior purchase is not recognized, use Restore Purchases inside Twilock while signed in to the Apple Account that made the purchase. For billing, refund, or account-history questions, use Apple’s support tools. For a Twilock feature or entitlement that still does not appear after restoration, contact Twilock support.</p></section>
